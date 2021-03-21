@@ -41,16 +41,15 @@ extension BerlinClockTests {
         XCTAssertEqual(uniqueResults.first!, returns, file: file, line: line)
     }
 
-    func assertFiveHourRow(every5HoursAfter hour: Int, returns: String, file: StaticString = #file, line: UInt = #line) {
-        let (sut, time) = createSut(hour: hour)
-        let hour: TimeInterval = 60 * 60
+    func assertFiveHourRow(hours: ClosedRange<Int>, returns: String, file: StaticString = #file, line: UInt = #line) {
+        let (sut, _) = createSut(hour: hours.lowerBound)
 
-        let uniqueResults = evaluateFunctionRow(
-            function: sut.fiveHourRow,
-            after: time,
-            every: hour,
-            repetitions: 4
-        )
+        let result = hours.map { (hour) in
+            Calendar.init(identifier: .gregorian).date(bySettingHour: hour, minute: 0, second: 0, of: Date())!
+        }.map(sut.fiveHourRow)
+
+
+        let uniqueResults = Set(result)
 
         XCTAssertEqual(uniqueResults.count, 1, "Expected a unique set of results", file: file, line: line)
         XCTAssertEqual(uniqueResults.first!, returns, file: file, line: line)
