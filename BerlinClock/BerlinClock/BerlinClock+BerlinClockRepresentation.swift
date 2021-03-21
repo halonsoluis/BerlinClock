@@ -10,30 +10,33 @@ import Foundation
 extension BerlinClock: BerlinClockRepresentation {
     func singleMinuteRow(for date: Date) -> String {
         singleMinuteRow(for: date)
-            .map { $0 ? "Y" : "0" }
+            .map { $0 ? colorSchema.minutes : colorSchema.off }
             .joined()
     }
 
     func fiveMinuteRow(for date: Date) -> String {
         fiveMinuteRow(for: date)
-            .map { $0 ? "Y" : "0" }
+            .map { $0 ? colorSchema.minutes : colorSchema.off }
             .joined()
-            .replacingOccurrences(of: "YYY", with: "YYR")
+            .replacingOccurrences(
+                of: [colorSchema.minutes, colorSchema.minutes, colorSchema.minutes].joined(),
+                with: [ colorSchema.minutes, colorSchema.minutes, colorSchema.minutesVisualAid].joined()
+            )
     }
 
     func fiveHourRow(for date: Date) -> String {
         fiveHourRow(for: date)
-            .map { $0 ? "R" : "0" }
+            .map { $0 ? colorSchema.hours : colorSchema.off }
             .joined()
     }
 
     func singleHourRow(for date: Date) -> String {
         singleHourRow(for: date)
-            .map { $0 ? "R" : "0" }
+            .map { $0 ? colorSchema.hours : colorSchema.off }
             .joined()
     }
 
     func secondsLamp(for date: Date) -> String {
-        secondsLamp(for: date) ? "Y" : "0"
+        secondsLamp(for: date) ? colorSchema.seconds : colorSchema.off
     }
 }
