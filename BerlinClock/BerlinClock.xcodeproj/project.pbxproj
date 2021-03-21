@@ -16,6 +16,7 @@
 		5B3D12AC2607235A00562332 /* BerlinClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12AB2607235A00562332 /* BerlinClock.swift */; };
 		5B3D12B02607238900562332 /* BerlinClock+BerlinClockRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12AF2607238900562332 /* BerlinClock+BerlinClockRepresentation.swift */; };
 		5B3D12B4260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12B3260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift */; };
+		5B3D12B82607EC2500562332 /* BerlinClockEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12B72607EC2500562332 /* BerlinClockEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		5B3D12AB2607235A00562332 /* BerlinClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClock.swift; sourceTree = "<group>"; };
 		5B3D12AF2607238900562332 /* BerlinClock+BerlinClockRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BerlinClock+BerlinClockRepresentation.swift"; sourceTree = "<group>"; };
 		5B3D12B3260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BerlinClock+BerlinClockTimeProvider.swift"; sourceTree = "<group>"; };
+		5B3D12B72607EC2500562332 /* BerlinClockEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				5B3D12AB2607235A00562332 /* BerlinClock.swift */,
 				5B3D12AF2607238900562332 /* BerlinClock+BerlinClockRepresentation.swift */,
 				5B3D12B3260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift */,
+				5B3D12B72607EC2500562332 /* BerlinClockEngine.swift */,
 			);
 			path = BerlinClock;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				5B3D12B02607238900562332 /* BerlinClock+BerlinClockRepresentation.swift in Sources */,
 				5B3D12A82607230A00562332 /* BerlinClockTimeProvider.swift in Sources */,
 				5B3D12A4260722D700562332 /* BerlinClockRepresentation.swift in Sources */,
+				5B3D12B82607EC2500562332 /* BerlinClockEngine.swift in Sources */,
 				5B3D12AC2607235A00562332 /* BerlinClock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
