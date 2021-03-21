@@ -177,15 +177,8 @@ final class BerlinClockTests: XCTestCase {
     }
 
     func test_berlinClock_reportsCorrectTimeInIntegration() {
-        let (sut, calendar) = createSut()
-        let date = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-
-        let result = sut.berlinClockTime(for: date)
-
-        XCTAssertEqual(result, "Y00000000000000000000000")
-
+        assertBerlinClockTime(hour: 0, minute: 0, second: 0, returns: "Y00000000000000000000000")
     }
-
 }
 
 //MARK - Helpers
