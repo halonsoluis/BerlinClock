@@ -30,8 +30,8 @@ public final class BerlinClock {
     let colorSchema: ColorSchema
 
     init(berlinClock: BerlinClockEngine = .init(),
-         calendar: Calendar = .init(identifier: .gregorian),
-         colorSchema: ColorSchema = .init(off: "0", seconds: "Y", minutes: "Y", minutesVisualAid: "R", hours: "R")) {
+         calendar: Calendar,
+         colorSchema: ColorSchema) {
         self.calendar = calendar
         self.colorSchema = colorSchema
         self.berlinClock = berlinClock
@@ -58,6 +58,8 @@ public final class BerlinClock {
     }
 }
 
+// MARK: - Input Date Handling
+
 extension BerlinClock {
     private func seconds(from date: Date) -> Int {
         calendar.component(.second, from: date)
@@ -67,14 +69,5 @@ extension BerlinClock {
     }
     private func hours(from date: Date) -> Int {
         calendar.component(.hour, from: date)
-    }
-}
-
-extension BerlinClock {
-    public static func create(
-        calendar: Calendar = .init(identifier: .gregorian),
-        colorSchema: BerlinClock.ColorSchema = .init(off: "0", seconds: "Y", minutes: "Y", minutesVisualAid: "R", hours: "R")
-    ) -> BerlinClockTimeProvider {
-        BerlinClock(berlinClock: .init(), calendar: calendar, colorSchema: colorSchema)
     }
 }
