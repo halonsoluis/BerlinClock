@@ -32,12 +32,17 @@ final class BerlinClock {
 }
 
 final class BerlinClockTests: XCTestCase {
-    func test_singleMinuteRow_returnsOOOOforFirstMomentOfTheDay() {
+    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter0() {
+        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 0)
 
-        let result = sut.singleMinuteRow(for: time)
+        var result = [String]()
+        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+        }
+        let uniqueResults = Set(result)
 
-        XCTAssertEqual(result, "0000")
+        XCTAssertEqual(uniqueResults, ["0000"])
     }
 
     func test_singleMinuteRow_returnsYOOOforFifthMinuteOfTheDay() {
