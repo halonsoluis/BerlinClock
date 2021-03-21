@@ -15,25 +15,20 @@ final class BerlinClock {
 
         let minute = calendar.component(.minute, from: date)
 
-        let value = minute % 5
+        let amountOfLights = 4
+        let iluminated = minute % 5
 
-        switch value {
-        case 0: return "0000"
-        case 1: return "Y000"
-        case 2: return "YY00"
-        case 3: return "YYY0"
-        case 4: return "YYYY"
-        default:
-            assertionFailure("There should not be a case hitting here")
-        }
-        return ""
+        var result = String(repeating: "Y", count: iluminated)
+        result.append(String(repeating: "0", count: amountOfLights - iluminated))
+
+        return result
     }
 
 }
 
 final class BerlinClockTests: XCTestCase {
     typealias FunctionRow = (Date) -> String
-    
+
     let amountOfMultiplesOfFiveInAMinute = 60 / 5
     let fiveMinutes: TimeInterval = 5 * 60
 
