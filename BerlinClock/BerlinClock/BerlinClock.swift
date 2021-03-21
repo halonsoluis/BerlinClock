@@ -16,34 +16,54 @@ final class BerlinClock {
     }
 
     func secondsLamp(for date: Date) -> Bool {
-        extractSecond(from: date) % 2 == 0
+        secondsLamp(for: seconds(from: date))
     }
 
     func fiveHourRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: extractHour(from: date) / 5
-        )
+        fiveHourRow(for: hours(from: date))
     }
 
     func singleHourRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: extractHour(from: date) % 5
-        )
+        singleHourRow(for: hours(from: date))
     }
 
     func fiveMinuteRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 11,
-            iluminated: extractMinute(from: date) / 5
-        )
+        fiveMinuteRow(for: minutes(from: date))
     }
 
     func singleMinuteRow(for date: Date) -> [Bool] {
+        singleMinuteRow(for: minutes(from: date))
+    }
+
+    private func secondsLamp(for second: Int) -> Bool {
+        second % 2 == 0
+    }
+
+    private func fiveHourRow(for hour: Int) -> [Bool] {
         calculateLights(
             total: 4,
-            iluminated: extractMinute(from: date) % 5
+            iluminated: hour / 5
+        )
+    }
+
+    private func singleHourRow(for hour: Int) -> [Bool] {
+        calculateLights(
+            total: 4,
+            iluminated: hour % 5
+        )
+    }
+
+    private func fiveMinuteRow(for minute: Int) -> [Bool] {
+        calculateLights(
+            total: 11,
+            iluminated: minute / 5
+        )
+    }
+
+    private func singleMinuteRow(for minute: Int) -> [Bool] {
+        calculateLights(
+            total: 4,
+            iluminated: minute % 5
         )
     }
 
@@ -56,13 +76,13 @@ final class BerlinClock {
 }
 
 extension BerlinClock {
-    func extractMinute(from date: Date) -> Int {
+    private func seconds(from date: Date) -> Int {
+        calendar.component(.second, from: date)
+    }
+    private func minutes(from date: Date) -> Int {
         calendar.component(.minute, from: date)
     }
-    func extractHour(from date: Date) -> Int {
+    private func hours(from date: Date) -> Int {
         calendar.component(.hour, from: date)
-    }
-    func extractSecond(from date: Date) -> Int {
-        calendar.component(.second, from: date)
     }
 }
