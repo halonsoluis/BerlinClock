@@ -14,6 +14,8 @@ protocol BerlinClockRepresentation {
     func fiveHourRow(for date: Date) -> String
     func singleHourRow(for date: Date) -> String
     func secondsLamp(for date: Date) -> String
+
+    func berlinClockTime(for date: Date) -> String
 }
 
 final class BerlinClock {
@@ -106,6 +108,16 @@ extension BerlinClock: BerlinClockRepresentation {
     func secondsLamp(for date: Date) -> String {
         secondsLamp(for: date) ? "Y" : "0"
     }
+
+    func berlinClockTime(for date: Date) -> String {
+        return [
+            secondsLamp(for: date),
+            fiveHourRow(for: date),
+            singleHourRow(for: date),
+            fiveMinuteRow(for: date),
+            singleHourRow(for: date)
+        ].joined()
+    }
 }
 
 final class BerlinClockTests: XCTestCase {
@@ -168,13 +180,7 @@ final class BerlinClockTests: XCTestCase {
         let (sut, calendar) = createSut()
         let date = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
 
-        let result = [
-            sut.secondsLamp(for: date),
-            sut.fiveHourRow(for: date),
-            sut.singleHourRow(for: date),
-            sut.fiveMinuteRow(for: date),
-            sut.singleHourRow(for: date)
-        ].joined()
+        let result = sut.berlinClockTime(for: date)
 
         XCTAssertEqual(result, "Y00000000000000000000000")
 
