@@ -13,6 +13,7 @@ protocol BerlinClockRepresentation {
     func fiveMinuteRow(for date: Date) -> String
     func fiveHourRow(for date: Date) -> String
     func singleHourRow(for date: Date) -> String
+    func secondsLamp(for date: Date) -> String
 }
 
 final class BerlinClock {
@@ -50,6 +51,10 @@ final class BerlinClock {
             total: 4,
             iluminated: extractHour(from: date) / 5
         )
+    }
+
+    private func secondsLamp(for date: Date) -> Bool {
+        return true
     }
 
     private func calculateLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
@@ -93,6 +98,10 @@ extension BerlinClock: BerlinClockRepresentation {
         singleHourRow(for: date)
             .map { $0 ? "R" : "0" }
             .joined()
+    }
+
+    func secondsLamp(for date: Date) -> String {
+        secondsLamp(for: date) ? "Y" : "0"
     }
 }
 
@@ -143,6 +152,13 @@ final class BerlinClockTests: XCTestCase {
         assertSingleHourRow(hours: [2, 7, 12, 17, 22], returns: "RR00")
         assertSingleHourRow(hours: [3, 8, 13, 18, 23], returns: "RRR0")
         assertSingleHourRow(hours: [4, 9, 14, 19]    , returns: "RRRR")
+    }
+
+    // MARK: - Second Lamp
+
+    func test_secondsLamp_returnsExpectedOutput() {
+        assertSecondLamp(seconds: [0, 2, 4, 8, 10], returns: "Y")
+        //assertSecondLamp(seconds: [1, 3, 5, 7, 9], returns: "0")
     }
 }
 
