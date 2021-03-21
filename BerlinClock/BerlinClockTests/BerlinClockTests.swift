@@ -101,13 +101,11 @@ final class BerlinClockTests: XCTestCase {
     // MARK: - Single Minutes Row
     
     func test_singleMinuteRow_returnsExpectedOutput() {
-        let multiplesOfFiveUntil55 = (0...(55 / 5)).map { $0 * 5 }
-
-        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 0 }, returns: "0000")
-        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 1 }, returns: "Y000")
-        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 2 }, returns: "YY00")
-        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 3 }, returns: "YYY0")
-        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 4 }, returns: "YYYY")
+        assertSingleMinuteRow(minutes: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55], returns: "0000")
+        assertSingleMinuteRow(minutes: [1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56], returns: "Y000")
+        assertSingleMinuteRow(minutes: [2, 7, 12, 17, 22, 27, 32, 37, 42, 47, 52, 57], returns: "YY00")
+        assertSingleMinuteRow(minutes: [3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58], returns: "YYY0")
+        assertSingleMinuteRow(minutes: [4, 9, 14, 19, 24, 29, 34, 39, 44, 49, 54, 59], returns: "YYYY")
     }
 
     // MARK: - Five Minutes Row
@@ -140,19 +138,11 @@ final class BerlinClockTests: XCTestCase {
     // MARK: - Single Hour Row
 
     func test_singleHourRow_returnsExpectedOutput() {
-        let multiplesOfFiveUntil24 = (0...(24 / 5)).map { $0 * 5 }
-
-//        Tried with hours: [0, 5, 10, 15, 20] -> 0000
-//        Tried with hours: [1, 6, 11, 16, 21] -> R000
-//        Tried with hours: [2, 7, 12, 17, 22] -> RR00
-//        Tried with hours: [3, 8, 13, 18, 23] -> RRR0
-//        Tried with hours: [4, 9, 14, 19]     -> RRRR
-
-        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 0 }, returns: "0000")
-        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 1 }, returns: "R000")
-        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 2 }, returns: "RR00")
-        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 3 }, returns: "RRR0")
-        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 4 }.dropLast(), returns: "RRRR")
+        assertSingleHourRow(hours: [0, 5, 10, 15, 20], returns: "0000")
+        assertSingleHourRow(hours: [1, 6, 11, 16, 21], returns: "R000")
+        assertSingleHourRow(hours: [2, 7, 12, 17, 22], returns: "RR00")
+        assertSingleHourRow(hours: [3, 8, 13, 18, 23], returns: "RRR0")
+        assertSingleHourRow(hours: [4, 9, 14, 19]    , returns: "RRRR")
     }
 }
 
