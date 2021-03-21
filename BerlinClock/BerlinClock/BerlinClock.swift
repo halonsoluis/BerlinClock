@@ -9,7 +9,15 @@ import Foundation
 
 public final class BerlinClock {
 
-    struct ColorSchema {
+    public struct ColorSchema {
+        public init(off: String, seconds: String, minutes: String, minutesVisualAid: String, hours: String) {
+            self.off = off
+            self.seconds = seconds
+            self.minutes = minutes
+            self.minutesVisualAid = minutesVisualAid
+            self.hours = hours
+        }
+
         let off: String
         let seconds: String
         let minutes: String
@@ -62,3 +70,11 @@ extension BerlinClock {
     }
 }
 
+extension BerlinClock {
+    public static func create(
+        calendar: Calendar = .init(identifier: .gregorian),
+        colorSchema: BerlinClock.ColorSchema = .init(off: "0", seconds: "Y", minutes: "Y", minutesVisualAid: "R", hours: "R")
+    ) -> BerlinClockTimeProvider {
+        BerlinClock(berlinClock: .init(), calendar: calendar, colorSchema: colorSchema)
+    }
+}
