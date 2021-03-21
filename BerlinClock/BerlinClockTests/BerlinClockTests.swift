@@ -168,7 +168,7 @@ final class BerlinClockTests: XCTestCase {
 //MARK - Helpers
 extension BerlinClockTests {
 
-    func createSut(second: Int = 0, minute: Int = 0, hour: Int = 0) -> (BerlinClockRepresentation, Calendar) {
+    func createSut() -> (BerlinClockRepresentation, Calendar) {
         let calendar = Calendar.init(identifier: .gregorian)
         let sut = BerlinClock(calendar: calendar)
 
