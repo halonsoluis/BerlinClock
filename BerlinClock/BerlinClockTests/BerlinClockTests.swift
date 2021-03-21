@@ -91,7 +91,7 @@ final class BerlinClockTests: XCTestCase {
         assertFiveMinuteRow(at: 5, returns: "Y0000000000")
     }
 
-    func test_fiveMinuteRow_returnsYOOOOOOOOOOAtMinute10() {
+    func test_fiveMinuteRow_returnsYYOOOOOOOOOAtMinute10() {
         assertFiveMinuteRow(at: 10, returns: "YY000000000")
     }
 
