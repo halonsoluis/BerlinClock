@@ -85,14 +85,13 @@
 		5B3D12812606BE0E00562332 /* BerlinClock */ = {
 			isa = PBXGroup;
 			children = (
+				5B3D12BC2607EC6700562332 /* PublicInterface */,
+				5B3D12BB2607EC5100562332 /* Engine */,
 				5B3D12822606BE0E00562332 /* BerlinClock.h */,
 				5B3D12832606BE0E00562332 /* Info.plist */,
-				5B3D12A3260722D700562332 /* BerlinClockRepresentation.swift */,
-				5B3D12A72607230A00562332 /* BerlinClockTimeProvider.swift */,
 				5B3D12AB2607235A00562332 /* BerlinClock.swift */,
 				5B3D12AF2607238900562332 /* BerlinClock+BerlinClockRepresentation.swift */,
 				5B3D12B3260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift */,
-				5B3D12B72607EC2500562332 /* BerlinClockEngine.swift */,
 			);
 			path = BerlinClock;
 			sourceTree = "<group>";
@@ -105,6 +104,23 @@
 				5B3D129F2607014700562332 /* TestUtils.swift */,
 			);
 			path = BerlinClockTests;
+			sourceTree = "<group>";
+		};
+		5B3D12BB2607EC5100562332 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				5B3D12B72607EC2500562332 /* BerlinClockEngine.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		5B3D12BC2607EC6700562332 /* PublicInterface */ = {
+			isa = PBXGroup;
+			children = (
+				5B3D12A72607230A00562332 /* BerlinClockTimeProvider.swift */,
+				5B3D12A3260722D700562332 /* BerlinClockRepresentation.swift */,
+			);
+			path = PublicInterface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

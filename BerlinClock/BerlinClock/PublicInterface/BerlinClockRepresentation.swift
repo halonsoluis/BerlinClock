@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol BerlinClockRepresentation {
+protocol BerlinClockRepresentation {
     func singleMinuteRow(for date: Date) -> String
     func fiveMinuteRow(for date: Date) -> String
     func fiveHourRow(for date: Date) -> String
