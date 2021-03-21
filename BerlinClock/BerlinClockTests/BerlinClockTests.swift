@@ -27,13 +27,7 @@ final class BerlinClock {
     }
 
     private func fiveMinuteRow(for minute: Int) -> [Bool] {
-        let amountOfLights = 11
-        let iluminated = minute / 5
-
-        let onLights = Array(repeating: true, count: iluminated)
-        let offLights = Array(repeating: false, count: amountOfLights - iluminated)
-
-        return onLights + offLights
+        calculateMinuteLights(total: 11, iluminated: minute / 5)
     }
 
     private func singleMinuteRow(for date: Date) -> [Bool] {
@@ -42,9 +36,10 @@ final class BerlinClock {
     }
 
     private func singleMinuteRow(for minute: Int) -> [Bool] {
-        let amountOfLights = 4
-        let iluminated = minute % 5
+        calculateMinuteLights(total: 4, iluminated: minute % 5)
+    }
 
+    private func calculateMinuteLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
         let onLights = Array(repeating: true, count: iluminated)
         let offLights = Array(repeating: false, count: amountOfLights - iluminated)
 
