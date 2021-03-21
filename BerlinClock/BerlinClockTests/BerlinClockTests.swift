@@ -8,23 +8,17 @@
 import XCTest
 @testable import BerlinClock
 
+protocol BerlinClockRepresentation {
+    func singleMinuteRow(for date: Date) -> String
+    func fiveMinuteRow(for date: Date) -> String
+}
+
 final class BerlinClock {
 
     let calendar: Calendar
 
     init(calendar: Calendar = .init(identifier: .gregorian)) {
         self.calendar = calendar
-    }
-
-    func singleMinuteRow(for date: Date) -> String {
-        return singleMinuteRow(for: date).map { $0 ? "Y" : "0" }.joined()
-    }
-
-    func fiveMinuteRow(for date: Date) -> String {
-        return fiveMinuteRow(for: date)
-            .map { $0 ? "Y" : "0" }
-            .joined()
-            .replacingOccurrences(of: "YYY", with: "YYR")
     }
 
     private func fiveMinuteRow(for date: Date) -> [Bool] {
@@ -56,7 +50,19 @@ final class BerlinClock {
 
         return onLights + offLights
     }
+}
 
+extension BerlinClock: BerlinClockRepresentation {
+    func singleMinuteRow(for date: Date) -> String {
+        singleMinuteRow(for: date).map { $0 ? "Y" : "0" }.joined()
+    }
+
+    func fiveMinuteRow(for date: Date) -> String {
+        fiveMinuteRow(for: date)
+            .map { $0 ? "Y" : "0" }
+            .joined()
+            .replacingOccurrences(of: "YYY", with: "YYR")
+    }
 }
 
 final class BerlinClockTests: XCTestCase {
@@ -92,7 +98,7 @@ final class BerlinClockTests: XCTestCase {
 //MARK - Helpers
 extension BerlinClockTests {
 
-    func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClock, Date) {
+    func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClockRepresentation, Date) {
         let calendar = Calendar.init(identifier: .gregorian)
         let sut = BerlinClock(calendar: calendar)
 
