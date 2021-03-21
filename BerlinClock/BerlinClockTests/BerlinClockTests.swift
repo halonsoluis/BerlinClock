@@ -8,118 +8,6 @@
 import XCTest
 @testable import BerlinClock
 
-protocol BerlinClockRepresentation {
-    func singleMinuteRow(for date: Date) -> String
-    func fiveMinuteRow(for date: Date) -> String
-    func fiveHourRow(for date: Date) -> String
-    func singleHourRow(for date: Date) -> String
-    func secondsLamp(for date: Date) -> String
-
-    func berlinClockTime(for date: Date) -> String
-}
-
-final class BerlinClock {
-
-    let calendar: Calendar
-
-    init(calendar: Calendar = .init(identifier: .gregorian)) {
-        self.calendar = calendar
-    }
-
-    private func fiveMinuteRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 11,
-            iluminated: extractMinute(from: date) / 5
-        )
-    }
-
-    private func singleMinuteRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: extractMinute(from: date) % 5
-        )
-    }
-
-    private func singleHourRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: extractHour(from: date) % 5
-        )
-    }
-
-
-    private func fiveHourRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: extractHour(from: date) / 5
-        )
-    }
-
-    private func secondsLamp(for date: Date) -> Bool {
-        extractSecond(from: date) % 2 == 0
-    }
-
-    private func calculateLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
-        let onLights = Array(repeating: true, count: iluminated)
-        let offLights = Array(repeating: false, count: amountOfLights - iluminated)
-
-        return onLights + offLights
-    }
-}
-
-extension BerlinClock {
-    func extractMinute(from date: Date) -> Int {
-        calendar.component(.minute, from: date)
-    }
-    func extractHour(from date: Date) -> Int {
-        calendar.component(.hour, from: date)
-    }
-    func extractSecond(from date: Date) -> Int {
-        calendar.component(.second, from: date)
-    }
-}
-
-extension BerlinClock: BerlinClockRepresentation {
-    func singleMinuteRow(for date: Date) -> String {
-        singleMinuteRow(for: date)
-            .map { $0 ? "Y" : "0" }
-            .joined()
-    }
-
-    func fiveMinuteRow(for date: Date) -> String {
-        fiveMinuteRow(for: date)
-            .map { $0 ? "Y" : "0" }
-            .joined()
-            .replacingOccurrences(of: "YYY", with: "YYR")
-    }
-
-    func fiveHourRow(for date: Date) -> String {
-        fiveHourRow(for: date)
-            .map { $0 ? "R" : "0" }
-            .joined()
-    }
-
-    func singleHourRow(for date: Date) -> String {
-        singleHourRow(for: date)
-            .map { $0 ? "R" : "0" }
-            .joined()
-    }
-
-    func secondsLamp(for date: Date) -> String {
-        secondsLamp(for: date) ? "Y" : "0"
-    }
-
-    func berlinClockTime(for date: Date) -> String {
-        return [
-            secondsLamp(for: date),
-            fiveHourRow(for: date),
-            singleHourRow(for: date),
-            fiveMinuteRow(for: date),
-            singleMinuteRow(for: date)
-        ].joined()
-    }
-}
-
 final class BerlinClockTests: XCTestCase {
 
     // MARK: - Single Minutes Row
@@ -187,7 +75,7 @@ final class BerlinClockTests: XCTestCase {
 //MARK - Helpers
 extension BerlinClockTests {
 
-    func createSut() -> (BerlinClockRepresentation, Calendar) {
+    func createSut() -> (BerlinClockRepresentation & BerlinClockTimeProvider, Calendar) {
         let calendar = Calendar.init(identifier: .gregorian)
         let sut = BerlinClock(calendar: calendar)
 
