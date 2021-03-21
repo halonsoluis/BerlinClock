@@ -60,10 +60,9 @@ final class BerlinClock {
 }
 
 final class BerlinClockTests: XCTestCase {
-    typealias FunctionRow = (Date) -> String
 
     // MARK: - Single Minutes Row
-
+    
     func test_singleMinuteRow_returnsExpectedOutput() {
         assertSingleMinuteRow(every5MinutesAfter: 0, returns: "0000")
         assertSingleMinuteRow(every5MinutesAfter: 1, returns: "Y000")
@@ -75,22 +74,23 @@ final class BerlinClockTests: XCTestCase {
     // MARK: - Five Minutes Row
 
     func test_fiveMinuteRow_returnsExpectedOutput() {
-        assertFiveMinuteRow(at: 00, returns: "00000000000")
-        assertFiveMinuteRow(at: 05, returns: "Y0000000000")
-        assertFiveMinuteRow(at: 10, returns: "YY000000000")
-        assertFiveMinuteRow(at: 15, returns: "YYR00000000")
-        assertFiveMinuteRow(at: 20, returns: "YYRY0000000")
-        assertFiveMinuteRow(at: 25, returns: "YYRYY000000")
-        assertFiveMinuteRow(at: 30, returns: "YYRYYR00000")
-        assertFiveMinuteRow(at: 35, returns: "YYRYYRY0000")
-        assertFiveMinuteRow(at: 40, returns: "YYRYYRYY000")
-        assertFiveMinuteRow(at: 45, returns: "YYRYYRYYR00")
-        assertFiveMinuteRow(at: 50, returns: "YYRYYRYYRY0")
-        assertFiveMinuteRow(at: 55, returns: "YYRYYRYYRYY")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 00, returns: "00000000000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 05, returns: "Y0000000000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 10, returns: "YY000000000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 15, returns: "YYR00000000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 20, returns: "YYRY0000000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 25, returns: "YYRYY000000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 30, returns: "YYRYYR00000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 35, returns: "YYRYYRY0000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 40, returns: "YYRYYRYY000")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 45, returns: "YYRYYRYYR00")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 50, returns: "YYRYYRYYRY0")
+        assertFiveMinuteRow(inTheNext4minutesAfter: 55, returns: "YYRYYRYYRYY")
     }
+}
 
-
-    //MARK - Helpers
+//MARK - Helpers
+extension BerlinClockTests {
 
     func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClock, Date) {
         let calendar = Calendar.init(identifier: .gregorian)
@@ -101,50 +101,4 @@ final class BerlinClockTests: XCTestCase {
         return (sut, time)
     }
 
-    func assertFiveMinuteRow(at minute: Int, returns: String, file: StaticString = #file, line: UInt = #line) {
-        let (sut, time) = createSut(minute: minute)
-        let minute: TimeInterval = 60
-
-        let uniqueResults = evaluateFunctionRow(
-            function: sut.fiveMinuteRow,
-            after: time,
-            every: minute,
-            repetitions: 4
-        )
-
-        XCTAssertEqual(uniqueResults.count, 1, "Expected a unique set of results", file: file, line: line)
-        XCTAssertEqual(uniqueResults.first!, returns, file: file, line: line)
-    }
-
-    func assertSingleMinuteRow(every5MinutesAfter minute: Int, returns: String, file: StaticString = #file, line: UInt = #line) {
-        let (sut, time) = createSut(minute: minute)
-
-        let amountOfMultiplesOfFiveInAMinute = 60 / 5
-        let fiveMinutes: TimeInterval = 5 * 60
-
-        let uniqueResults = evaluateFunctionRow(
-            function: sut.singleMinuteRow,
-            after: time,
-            every: fiveMinutes,
-            repetitions: amountOfMultiplesOfFiveInAMinute
-        )
-
-        XCTAssertEqual(uniqueResults.count, 1, file: file, line: line)
-        XCTAssertEqual(uniqueResults.first!, returns, file: file, line: line)
-    }
-
-    func evaluateFunctionRow(function: FunctionRow,
-                             after time: Date,
-                             every interval: TimeInterval,
-                             repetitions: Int) -> Set<String> {
-        var result = [String]()
-        var movingWindow = time
-
-        (0...repetitions).forEach { (_) in
-            result.append(function(movingWindow))
-            movingWindow = movingWindow.addingTimeInterval(interval)
-        }
-
-        return Set(result)
-    }
 }
