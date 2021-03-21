@@ -21,7 +21,10 @@ final class BerlinClock {
     }
 
     func fiveMinuteRow(for date: Date) -> String {
-        return fiveMinuteRow(for: date).map { $0 ? "Y" : "0" }.joined()
+        return fiveMinuteRow(for: date)
+            .map { $0 ? "Y" : "0" }
+            .joined()
+            .replacingOccurrences(of: "YYY", with: "YYR")
     }
 
     private func fiveMinuteRow(for date: Date) -> [Bool] {
@@ -93,6 +96,10 @@ final class BerlinClockTests: XCTestCase {
 
     func test_fiveMinuteRow_returnsYYOOOOOOOOOAtMinute10() {
         assertFiveMinuteRow(at: 10, returns: "YY000000000")
+    }
+
+    func test_fiveMinuteRow_returnsYYROOOOOOOOAtMinute15() {
+        assertFiveMinuteRow(at: 15, returns: "YYR00000000")
     }
 
     //MARK - Helpers
