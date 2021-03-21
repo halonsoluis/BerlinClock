@@ -21,7 +21,13 @@ final class BerlinClock {
     }
 
     func fiveMinuteRow(for date: Date) -> String {
-        return "OOOOOOOOOOO"
+        let minute = calendar.component(.minute, from: date)
+
+        if minute < 5 {
+            return "OOOOOOOOOOO"
+        } else {
+            return "YOOOOOOOOOO"
+        }
     }
 
     private func singleMinuteRow(for date: Date) -> [Bool] {
@@ -70,6 +76,10 @@ final class BerlinClockTests: XCTestCase {
 
     func test_fiveMinuteRow_returnsOOOOOOOOOOOAtMinute0() {
         assertFiveMinuteRow(at: 0, returns: "OOOOOOOOOOO")
+    }
+
+    func test_fiveMinuteRow_returnsYOOOOOOOOOOAtMinute5() {
+        assertFiveMinuteRow(at: 5, returns: "YOOOOOOOOOO")
     }
 
     //MARK - Helpers
