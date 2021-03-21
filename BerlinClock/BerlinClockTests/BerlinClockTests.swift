@@ -86,15 +86,13 @@ final class BerlinClockTests: XCTestCase {
     // MARK: - Single Minutes Row
     
     func test_singleMinuteRow_returnsExpectedOutput() {
-        let sixtyCountsAs0 = 1
-        let cases = (60 / 5) - sixtyCountsAs0
-        let multip = (0...cases).map { $0 * 5 }
+        let multiplesOfFiveUntil55 = (0...(55 / 5)).map { $0 * 5 }
 
-        assertSingleMinuteRow(minutes: multip.map { $0 + 0 }, returns: "0000")
-        assertSingleMinuteRow(minutes: multip.map { $0 + 1 }, returns: "Y000")
-        assertSingleMinuteRow(minutes: multip.map { $0 + 2 }, returns: "YY00")
-        assertSingleMinuteRow(minutes: multip.map { $0 + 3 }, returns: "YYY0")
-        assertSingleMinuteRow(minutes: multip.map { $0 + 4 }, returns: "YYYY")
+        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 0 }, returns: "0000")
+        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 1 }, returns: "Y000")
+        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 2 }, returns: "YY00")
+        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 3 }, returns: "YYY0")
+        assertSingleMinuteRow(minutes: multiplesOfFiveUntil55.map { $0 + 4 }, returns: "YYYY")
     }
 
     // MARK: - Five Minutes Row
