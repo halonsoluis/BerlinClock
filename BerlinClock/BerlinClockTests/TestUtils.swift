@@ -22,6 +22,19 @@ extension BerlinClockTests {
         XCTAssertEqual(result.first!, returns, file: file, line: line)
     }
 
+    func assertSingleHourRow(hours: [Int], originalDate: Date = Date(), returns: String, file: StaticString = #file, line: UInt = #line) {
+        let (sut, calendar) = createSut()
+
+        let result = Set(
+            hours
+                .map { calendar.date(bySettingHour: $0, minute: 0, second: 0, of: originalDate)! }
+                .map(sut.singleHourRow)
+        )
+
+        XCTAssertEqual(result.count, 1, file: file, line: line)
+        XCTAssertEqual(result.first!, returns, file: file, line: line)
+    }
+
     func assertFiveMinuteRow(minutes: ClosedRange<Int>, returns: String, originalDate: Date = Date(), file: StaticString = #file, line: UInt = #line) {
         let (sut, calendar) = createSut()
 

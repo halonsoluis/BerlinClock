@@ -12,6 +12,7 @@ protocol BerlinClockRepresentation {
     func singleMinuteRow(for date: Date) -> String
     func fiveMinuteRow(for date: Date) -> String
     func fiveHourRow(for date: Date) -> String
+    func singleHourRow(for date: Date) -> String
 }
 
 final class BerlinClock {
@@ -35,6 +36,14 @@ final class BerlinClock {
             iluminated: extractMinute(from: date) % 5
         )
     }
+
+    private func singleHourRow(for date: Date) -> [Bool] {
+        calculateLights(
+            total: 4,
+            iluminated: extractHour(from: date) % 5
+        )
+    }
+
 
     private func fiveHourRow(for date: Date) -> [Bool] {
         calculateLights(
@@ -79,6 +88,12 @@ extension BerlinClock: BerlinClockRepresentation {
             .map { $0 ? "R" : "0" }
             .joined()
     }
+
+    func singleHourRow(for date: Date) -> String {
+        singleHourRow(for: date)
+            .map { $0 ? "R" : "0" }
+            .joined()
+    }
 }
 
 final class BerlinClockTests: XCTestCase {
@@ -120,6 +135,18 @@ final class BerlinClockTests: XCTestCase {
         assertFiveHourRow(hours: 10...14, returns: "RR00")
         assertFiveHourRow(hours: 15...19, returns: "RRR0")
         assertFiveHourRow(hours: 20...23, returns: "RRRR")
+    }
+
+    // MARK: - Single Hour Row
+
+    func test_singleHourRow_returnsExpectedOutput() {
+        let multiplesOfFiveUntil24 = (0...(24 / 5)).map { $0 * 5 }
+
+        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 0 }, returns: "0000")
+        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 1 }, returns: "R000")
+        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 2 }, returns: "RR00")
+        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 3 }, returns: "RRR0")
+        //assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 4 }, returns: "RRRR")
     }
 }
 
