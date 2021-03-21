@@ -45,14 +45,6 @@ final class BerlinClockTests: XCTestCase {
         XCTAssertEqual(uniqueResults, ["0000"])
     }
 
-    func test_singleMinuteRow_returnsYOOOforFifthMinuteOfTheDay() {
-        let (sut, time) = createSut(minute: 5)
-
-        let result = sut.singleMinuteRow(for: time)
-
-        XCTAssertEqual(result, "0000")
-    }
-
     func test_singleMinuteRow_returnsYOOOforFirstMinuteOfTheDay() {
         let (sut, time) = createSut(minute: 1)
 
