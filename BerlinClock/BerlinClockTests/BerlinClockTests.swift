@@ -54,7 +54,7 @@ final class BerlinClock {
     }
 
     private func secondsLamp(for date: Date) -> Bool {
-        return true
+        extractSecond(from: date) % 2 == 0
     }
 
     private func calculateLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
@@ -71,6 +71,9 @@ extension BerlinClock {
     }
     func extractHour(from date: Date) -> Int {
         calendar.component(.hour, from: date)
+    }
+    func extractSecond(from date: Date) -> Int {
+        calendar.component(.second, from: date)
     }
 }
 
@@ -158,7 +161,7 @@ final class BerlinClockTests: XCTestCase {
 
     func test_secondsLamp_returnsExpectedOutput() {
         assertSecondLamp(seconds: [0, 2, 4, 8, 10], returns: "Y")
-        //assertSecondLamp(seconds: [1, 3, 5, 7, 9], returns: "0")
+        assertSecondLamp(seconds: [1, 3, 5, 7, 9], returns: "0")
     }
 }
 
