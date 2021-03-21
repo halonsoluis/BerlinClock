@@ -64,73 +64,28 @@ final class BerlinClockTests: XCTestCase {
 
     // MARK: - Single Minutes Row
 
-    func test_singleMinuteRow_returnsOOOOEveryFiveMinutesAfter1() {
+    func test_singleMinuteRow_returnsExpectedOutput() {
         assertSingleMinuteRow(every5MinutesAfter: 0, returns: "0000")
-    }
-
-    func test_singleMinuteRow_returnsYOOOEveryFiveMinutesAfter1() {
         assertSingleMinuteRow(every5MinutesAfter: 1, returns: "Y000")
-    }
-
-    func test_singleMinuteRow_returnsYY00EveryFiveMinutesAfter2() {
         assertSingleMinuteRow(every5MinutesAfter: 2, returns: "YY00")
-    }
-
-    func test_singleMinuteRow_returnsYYY0EveryFiveMinutesAfter3() {
         assertSingleMinuteRow(every5MinutesAfter: 3, returns: "YYY0")
-    }
-
-    func test_singleMinuteRow_returnsYYYYEveryFiveMinutesAfter4() {
         assertSingleMinuteRow(every5MinutesAfter: 4, returns: "YYYY")
     }
 
     // MARK: - Five Minutes Row
 
-    func test_fiveMinuteRow_returnsOOOOOOOOOOOAtMinute0() {
-        assertFiveMinuteRow(at: 0, returns: "00000000000")
-    }
-
-    func test_fiveMinuteRow_returnsYOOOOOOOOOOAtMinute5() {
-        assertFiveMinuteRow(at: 5, returns: "Y0000000000")
-    }
-
-    func test_fiveMinuteRow_returnsYYOOOOOOOOOAtMinute10() {
+    func test_fiveMinuteRow_returnsExpectedOutput() {
+        assertFiveMinuteRow(at: 00, returns: "00000000000")
+        assertFiveMinuteRow(at: 05, returns: "Y0000000000")
         assertFiveMinuteRow(at: 10, returns: "YY000000000")
-    }
-
-    func test_fiveMinuteRow_returnsYYROOOOOOOOAtMinute15() {
         assertFiveMinuteRow(at: 15, returns: "YYR00000000")
-    }
-
-    func test_fiveMinuteRow_returnsYYRYOOOOOOOAtMinute20() {
         assertFiveMinuteRow(at: 20, returns: "YYRY0000000")
-    }
-
-    func test_fiveMinuteRow_returnsYYRYYOOOOOOAtMinute25() {
         assertFiveMinuteRow(at: 25, returns: "YYRYY000000")
-    }
-
-    func test_fiveMinuteRow_returnsYYRYYROOOOAtMinute30() {
         assertFiveMinuteRow(at: 30, returns: "YYRYYR00000")
-    }
-
-    func test_fiveMinuteRow_returnsYYRYYRYOOOAtMinute35() {
         assertFiveMinuteRow(at: 35, returns: "YYRYYRY0000")
-    }
-
-    func test_fiveMinuteRow_returnsYYRYYRYYOOOAtMinute40() {
         assertFiveMinuteRow(at: 40, returns: "YYRYYRYY000")
-    }
-
-    func test_fiveMinuteRow_returnsYYRYYRYYROOAtMinute45() {
         assertFiveMinuteRow(at: 45, returns: "YYRYYRYYR00")
-    }
-
-    func test_fiveMinuteRow_returnsYYRYYRYYRYOAtMinute50() {
         assertFiveMinuteRow(at: 50, returns: "YYRYYRYYRY0")
-    }
-    
-    func test_fiveMinuteRow_returnsYYRYYRYYRYYAtMinute55() {
         assertFiveMinuteRow(at: 55, returns: "YYRYYRYYRYY")
     }
 
