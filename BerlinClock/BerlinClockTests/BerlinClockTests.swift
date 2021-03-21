@@ -11,17 +11,23 @@ import XCTest
 final class BerlinClock {
 
     func singleMinuteRow(for date: Date) -> String {
+        return singleMinuteRow(for: date).map { $0 ? "Y" : "0" }.joined()
+    }
+
+    private func singleMinuteRow(for date: Date) -> [Bool] {
         let calendar = Calendar.init(identifier: .gregorian)
-
         let minute = calendar.component(.minute, from: date)
+        return singleMinuteRow(for: minute)
+    }
 
+    private func singleMinuteRow(for minute: Int) -> [Bool] {
         let amountOfLights = 4
         let iluminated = minute % 5
 
-        var result = String(repeating: "Y", count: iluminated)
-        result.append(String(repeating: "0", count: amountOfLights - iluminated))
+        let onLights = Array(repeating: true, count: iluminated)
+        let offLights = Array(repeating: false, count: amountOfLights - iluminated)
 
-        return result
+        return onLights + offLights
     }
 
 }
