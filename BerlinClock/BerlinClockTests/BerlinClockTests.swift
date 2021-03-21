@@ -40,72 +40,24 @@ final class BerlinClock {
 final class BerlinClockTests: XCTestCase {
     typealias FunctionRow = (Date) -> String
 
-    let amountOfMultiplesOfFiveInAMinute = 60 / 5
-    let fiveMinutes: TimeInterval = 5 * 60
-
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter0() {
-        let (sut, time) = createSut(minute: 0)
-
-        let uniqueResults = evaluateFunctionRow(
-            function: sut.singleMinuteRow,
-            after: time,
-            every: fiveMinutes,
-            repetitions: amountOfMultiplesOfFiveInAMinute
-        )
-
-        XCTAssertEqual(uniqueResults, ["0000"])
+        assertSingleMinuteRow(every5MinutesAfter: 0, returns: "0000")
     }
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter1() {
-        let (sut, time) = createSut(minute: 1)
-
-        let uniqueResults = evaluateFunctionRow(
-            function: sut.singleMinuteRow,
-            after: time,
-            every: fiveMinutes,
-            repetitions: amountOfMultiplesOfFiveInAMinute
-        )
-
-        XCTAssertEqual(uniqueResults, ["Y000"])
+        assertSingleMinuteRow(every5MinutesAfter: 1, returns: "Y000")
     }
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter2() {
-        let (sut, time) = createSut(minute: 2)
-
-        let uniqueResults = evaluateFunctionRow(
-            function: sut.singleMinuteRow,
-            after: time,
-            every: fiveMinutes,
-            repetitions: amountOfMultiplesOfFiveInAMinute
-        )
-
-        XCTAssertEqual(uniqueResults, ["YY00"])
+        assertSingleMinuteRow(every5MinutesAfter: 2, returns: "YY00")
     }
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter3() {
-        let (sut, time) = createSut(minute: 3)
-
-        let uniqueResults = evaluateFunctionRow(
-            function: sut.singleMinuteRow,
-            after: time,
-            every: fiveMinutes,
-            repetitions: amountOfMultiplesOfFiveInAMinute
-        )
-
-        XCTAssertEqual(uniqueResults, ["YYY0"])
+        assertSingleMinuteRow(every5MinutesAfter: 3, returns: "YYY0")
     }
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter4() {
-        let (sut, time) = createSut(minute: 4)
-
-        let uniqueResults = evaluateFunctionRow(
-            function: sut.singleMinuteRow,
-            after: time,
-            every: fiveMinutes,
-            repetitions: amountOfMultiplesOfFiveInAMinute
-        )
-
-        XCTAssertEqual(uniqueResults, ["YYYY"])
+        assertSingleMinuteRow(every5MinutesAfter: 4, returns: "YYYY")
     }
 
     //MARK - Helpers
@@ -117,6 +69,22 @@ final class BerlinClockTests: XCTestCase {
         let time = calendar.date(bySettingHour: 0, minute: minute, second: 0, of: originalDate)!
 
         return (sut, time)
+    }
+
+    func assertSingleMinuteRow(every5MinutesAfter minute: Int, returns: String) {
+        let (sut, time) = createSut(minute: minute)
+
+        let amountOfMultiplesOfFiveInAMinute = 60 / 5
+        let fiveMinutes: TimeInterval = 5 * 60
+
+        let uniqueResults = evaluateFunctionRow(
+            function: sut.singleMinuteRow,
+            after: time,
+            every: fiveMinutes,
+            repetitions: amountOfMultiplesOfFiveInAMinute
+        )
+
+        XCTAssertEqual(uniqueResults, [returns])
     }
 
     func evaluateFunctionRow(function: FunctionRow,
