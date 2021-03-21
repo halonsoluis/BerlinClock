@@ -11,6 +11,7 @@ import XCTest
 protocol BerlinClockRepresentation {
     func singleMinuteRow(for date: Date) -> String
     func fiveMinuteRow(for date: Date) -> String
+    func fiveHourRow(for date: Date) -> String
 }
 
 final class BerlinClock {
@@ -35,6 +36,13 @@ final class BerlinClock {
         )
     }
 
+    private func fiveHourRow(for date: Date) -> [Bool] {
+        calculateMinuteLights(
+            total: 4,
+            iluminated: extractHour(from: date) / 5
+        )
+    }
+
     private func calculateMinuteLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
         let onLights = Array(repeating: true, count: iluminated)
         let offLights = Array(repeating: false, count: amountOfLights - iluminated)
@@ -47,11 +55,16 @@ extension BerlinClock {
     func extractMinute(from date: Date) -> Int {
         calendar.component(.minute, from: date)
     }
+    func extractHour(from date: Date) -> Int {
+        calendar.component(.hour, from: date)
+    }
 }
 
 extension BerlinClock: BerlinClockRepresentation {
     func singleMinuteRow(for date: Date) -> String {
-        singleMinuteRow(for: date).map { $0 ? "Y" : "0" }.joined()
+        singleMinuteRow(for: date)
+            .map { $0 ? "Y" : "0" }
+            .joined()
     }
 
     func fiveMinuteRow(for date: Date) -> String {
@@ -59,6 +72,12 @@ extension BerlinClock: BerlinClockRepresentation {
             .map { $0 ? "Y" : "0" }
             .joined()
             .replacingOccurrences(of: "YYY", with: "YYR")
+    }
+
+    func fiveHourRow(for date: Date) -> String {
+        fiveHourRow(for: date)
+            .map { $0 ? "R" : "0" }
+            .joined()
     }
 }
 
@@ -90,16 +109,26 @@ final class BerlinClockTests: XCTestCase {
         assertFiveMinuteRow(inTheNext4minutesAfter: 50, returns: "YYRYYRYYRY0")
         assertFiveMinuteRow(inTheNext4minutesAfter: 55, returns: "YYRYYRYYRYY")
     }
+
+    // MARK: - Five Hour Row
+
+    func test_fiveHourRow_returnsExpectedOutput() {
+        assertFiveHourRow(every5HoursAfter: 0, returns: "0000")
+        assertFiveHourRow(every5HoursAfter: 5, returns: "R000")
+        assertFiveHourRow(every5HoursAfter: 10, returns: "RR00")
+        assertFiveHourRow(every5HoursAfter: 15, returns: "RRR0")
+       // assertFiveHourRow(every5HoursAfter: 20, returns: "RRRR")
+    }
 }
 
 //MARK - Helpers
 extension BerlinClockTests {
 
-    func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClockRepresentation, Date) {
+    func createSut(second: Int = 0, minute: Int = 0, hour: Int = 0, originalDate: Date = Date()) -> (BerlinClockRepresentation, Date) {
         let calendar = Calendar.init(identifier: .gregorian)
         let sut = BerlinClock(calendar: calendar)
 
-        let time = calendar.date(bySettingHour: 0, minute: minute, second: 0, of: originalDate)!
+        let time = calendar.date(bySettingHour: hour, minute: minute, second: second, of: originalDate)!
 
         return (sut, time)
     }
