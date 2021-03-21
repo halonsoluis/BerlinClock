@@ -22,8 +22,7 @@ final class BerlinClock {
     }
 
     private func fiveMinuteRow(for date: Date) -> [Bool] {
-        let minute = calendar.component(.minute, from: date)
-        return fiveMinuteRow(for: minute)
+        fiveMinuteRow(for: extractMinute(from: date))
     }
 
     private func fiveMinuteRow(for minute: Int) -> [Bool] {
@@ -31,8 +30,7 @@ final class BerlinClock {
     }
 
     private func singleMinuteRow(for date: Date) -> [Bool] {
-        let minute = calendar.component(.minute, from: date)
-        return singleMinuteRow(for: minute)
+        singleMinuteRow(for: extractMinute(from: date))
     }
 
     private func singleMinuteRow(for minute: Int) -> [Bool] {
@@ -44,6 +42,12 @@ final class BerlinClock {
         let offLights = Array(repeating: false, count: amountOfLights - iluminated)
 
         return onLights + offLights
+    }
+}
+
+extension BerlinClock {
+    func extractMinute(from date: Date) -> Int {
+        calendar.component(.minute, from: date)
     }
 }
 
