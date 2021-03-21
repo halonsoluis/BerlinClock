@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B3D12892606BE0E00562332 /* BerlinClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3D127F2606BE0E00562332 /* BerlinClock.framework */; };
-		5B3D128E2606BE0E00562332 /* BerlinClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D128D2606BE0E00562332 /* BerlinClockTests.swift */; };
+		5B3D128E2606BE0E00562332 /* BerlinClockRepresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D128D2606BE0E00562332 /* BerlinClockRepresentationTests.swift */; };
 		5B3D12902606BE0E00562332 /* BerlinClock.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3D12822606BE0E00562332 /* BerlinClock.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B3D12A02607014700562332 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D129F2607014700562332 /* TestUtils.swift */; };
 		5B3D12A4260722D700562332 /* BerlinClockRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12A3260722D700562332 /* BerlinClockRepresentation.swift */; };
 		5B3D12A82607230A00562332 /* BerlinClockTimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12A72607230A00562332 /* BerlinClockTimeProvider.swift */; };
 		5B3D12AC2607235A00562332 /* BerlinClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12AB2607235A00562332 /* BerlinClock.swift */; };
@@ -35,9 +34,8 @@
 		5B3D12822606BE0E00562332 /* BerlinClock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerlinClock.h; sourceTree = "<group>"; };
 		5B3D12832606BE0E00562332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B3D12882606BE0E00562332 /* BerlinClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B3D128D2606BE0E00562332 /* BerlinClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockTests.swift; sourceTree = "<group>"; };
+		5B3D128D2606BE0E00562332 /* BerlinClockRepresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockRepresentationTests.swift; sourceTree = "<group>"; };
 		5B3D128F2606BE0E00562332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B3D129F2607014700562332 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		5B3D12A3260722D700562332 /* BerlinClockRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockRepresentation.swift; sourceTree = "<group>"; };
 		5B3D12A72607230A00562332 /* BerlinClockTimeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockTimeProvider.swift; sourceTree = "<group>"; };
 		5B3D12AB2607235A00562332 /* BerlinClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClock.swift; sourceTree = "<group>"; };
@@ -101,10 +99,9 @@
 		5B3D128C2606BE0E00562332 /* BerlinClockTests */ = {
 			isa = PBXGroup;
 			children = (
-				5B3D128D2606BE0E00562332 /* BerlinClockTests.swift */,
-				5B3D128F2606BE0E00562332 /* Info.plist */,
-				5B3D129F2607014700562332 /* TestUtils.swift */,
 				5B3D12C12607F11F00562332 /* BerlinClockTimeProviderTests.swift */,
+				5B3D128D2606BE0E00562332 /* BerlinClockRepresentationTests.swift */,
+				5B3D128F2606BE0E00562332 /* Info.plist */,
 			);
 			path = BerlinClockTests;
 			sourceTree = "<group>";
@@ -248,9 +245,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B3D128E2606BE0E00562332 /* BerlinClockTests.swift in Sources */,
+				5B3D128E2606BE0E00562332 /* BerlinClockRepresentationTests.swift in Sources */,
 				5B3D12C22607F11F00562332 /* BerlinClockTimeProviderTests.swift in Sources */,
-				5B3D12A02607014700562332 /* TestUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
