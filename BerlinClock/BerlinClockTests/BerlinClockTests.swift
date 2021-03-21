@@ -40,23 +40,23 @@ final class BerlinClock {
 final class BerlinClockTests: XCTestCase {
     typealias FunctionRow = (Date) -> String
 
-    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter0() {
+    func test_singleMinuteRow_returnsOOOOEveryFiveMinutesAfter1() {
         assertSingleMinuteRow(every5MinutesAfter: 0, returns: "0000")
     }
 
-    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter1() {
+    func test_singleMinuteRow_returnsYOOOEveryFiveMinutesAfter1() {
         assertSingleMinuteRow(every5MinutesAfter: 1, returns: "Y000")
     }
 
-    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter2() {
+    func test_singleMinuteRow_returnsYY00EveryFiveMinutesAfter2() {
         assertSingleMinuteRow(every5MinutesAfter: 2, returns: "YY00")
     }
 
-    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter3() {
+    func test_singleMinuteRow_returnsYYY0EveryFiveMinutesAfter3() {
         assertSingleMinuteRow(every5MinutesAfter: 3, returns: "YYY0")
     }
 
-    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter4() {
+    func test_singleMinuteRow_returnsYYYYEveryFiveMinutesAfter4() {
         assertSingleMinuteRow(every5MinutesAfter: 4, returns: "YYYY")
     }
 
