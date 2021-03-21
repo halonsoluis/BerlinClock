@@ -26,22 +26,29 @@ final class BerlinClock {
 
 final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOforFirstMomentOfTheDay() {
-        let sut = BerlinClock()
-        let calendar = Calendar.init(identifier: .gregorian)
-        let time = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
+        let (sut, time) = createSut(minute: 0)
 
-        let result = sut.singleMinuteRow(for: time!)
+        let result = sut.singleMinuteRow(for: time)
 
         XCTAssertEqual(result, "0000")
     }
 
     func test_singleMinuteRow_returnsYOOOforSecondMinuteOfTheDay() {
-        let sut = BerlinClock()
-        let calendar = Calendar.init(identifier: .gregorian)
-        let time = calendar.date(bySettingHour: 0, minute: 1, second: 0, of: Date())
+        let (sut, time) = createSut(minute: 1)
 
-        let result = sut.singleMinuteRow(for: time!)
+        let result = sut.singleMinuteRow(for: time)
 
         XCTAssertEqual(result, "Y000")
+    }
+
+    //MARK - Helpers
+
+    func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClock, Date) {
+        let sut = BerlinClock()
+
+        let calendar = Calendar.init(identifier: .gregorian)
+        let time = calendar.date(bySettingHour: 0, minute: minute, second: 0, of: originalDate)!
+
+        return (sut, time)
     }
 }
