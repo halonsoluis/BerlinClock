@@ -94,7 +94,7 @@ final class BerlinClockTests: XCTestCase {
             repetitions: 4
         )
 
-        XCTAssertEqual(uniqueResults.count, 1, file: file, line: line)
+        XCTAssertEqual(uniqueResults.count, 1, "Expected a unique set of results", file: file, line: line)
         XCTAssertEqual(uniqueResults.first!, returns, file: file, line: line)
     }
 
@@ -120,11 +120,13 @@ final class BerlinClockTests: XCTestCase {
                              every interval: TimeInterval,
                              repetitions: Int) -> Set<String> {
         var result = [String]()
+        var movingWindow = time
+
         (0...repetitions).forEach { (_) in
-            result.append(
-                function(time.addingTimeInterval(interval))
-            )
+            result.append(function(movingWindow))
+            movingWindow = movingWindow.addingTimeInterval(interval)
         }
+
         return Set(result)
     }
 }
