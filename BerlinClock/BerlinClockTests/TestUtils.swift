@@ -24,7 +24,7 @@ extension BerlinClockTests {
 
     func assertSingleHourRow(hours: [Int], originalDate: Date = Date(), returns: String, file: StaticString = #file, line: UInt = #line) {
         let (sut, calendar) = createSut()
-
+        
         let result = Set(
             hours
                 .map { calendar.date(bySettingHour: $0, minute: 0, second: 0, of: originalDate)! }
