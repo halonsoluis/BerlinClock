@@ -60,4 +60,17 @@ extension BerlinClockTests {
         XCTAssertEqual(result.count, 1, "Expected a unique set of results", file: file, line: line)
         XCTAssertEqual(result.first!, returns, file: file, line: line)
     }
+
+    func assertSecondLamp(seconds: [Int], returns: String, originalDate: Date = Date(), file: StaticString = #file, line: UInt = #line) {
+        let (sut, calendar) = createSut()
+
+        let result = Set(
+            seconds
+                .map { calendar.date(bySettingHour: 0, minute: 0, second: $0, of: originalDate)! }
+                .map(sut.secondsLamp)
+        )
+
+        XCTAssertEqual(result.count, 1, "Expected a unique set of results", file: file, line: line)
+        XCTAssertEqual(result.first!, returns, file: file, line: line)
+    }
 }
