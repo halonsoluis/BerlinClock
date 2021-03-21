@@ -9,10 +9,21 @@ import Foundation
 
 final class BerlinClock {
 
-    let calendar: Calendar
+    struct ColorSchema {
+        let off: String
+        let seconds: String
+        let minutes: String
+        let minutesVisualAid: String
+        let hours: String
+    }
 
-    init(calendar: Calendar = .init(identifier: .gregorian)) {
+    let calendar: Calendar
+    let colorSchema: ColorSchema
+
+    init(calendar: Calendar = .init(identifier: .gregorian),
+         colorSchema: ColorSchema = .init(off: "0", seconds: "Y", minutes: "Y", minutesVisualAid: "R", hours: "R")) {
         self.calendar = calendar
+        self.colorSchema = colorSchema
     }
 
     func secondsLamp(for date: Date) -> Bool {
