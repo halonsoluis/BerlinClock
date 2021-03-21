@@ -1,5 +1,5 @@
 //
-//  BerlinClock+BerlinClockRepresentation.swift
+//  BerlinClockUI.swift
 //  BerlinClock
 //
 //  Created by ***REMOVED*** on 21/03/2021.
@@ -7,15 +7,24 @@
 
 import Foundation
 
-extension BerlinClock: BerlinClockRepresentation {
+final class BerlinClockUI: BerlinClockRepresentation {
+
+    private let colorSchema: ColorSchema
+    private let berlinClock: BerlinClock
+
+    init(berlinClock: BerlinClock, colorSchema: ColorSchema) {
+        self.berlinClock = berlinClock
+        self.colorSchema = colorSchema
+    }
+
     func singleMinuteRow(for date: Date) -> String {
-        singleMinuteRow(for: date)
+        berlinClock.singleMinuteRow(for: date)
             .map { $0 ? colorSchema.minutes : colorSchema.off }
             .joined()
     }
 
     func fiveMinuteRow(for date: Date) -> String {
-        fiveMinuteRow(for: date)
+        berlinClock.fiveMinuteRow(for: date)
             .map { $0 ? colorSchema.minutes : colorSchema.off }
             .joined()
             .replacingOccurrences(
@@ -25,18 +34,18 @@ extension BerlinClock: BerlinClockRepresentation {
     }
 
     func fiveHourRow(for date: Date) -> String {
-        fiveHourRow(for: date)
+        berlinClock.fiveHourRow(for: date)
             .map { $0 ? colorSchema.hours : colorSchema.off }
             .joined()
     }
 
     func singleHourRow(for date: Date) -> String {
-        singleHourRow(for: date)
+        berlinClock.singleHourRow(for: date)
             .map { $0 ? colorSchema.hours : colorSchema.off }
             .joined()
     }
 
     func secondsLamp(for date: Date) -> String {
-        secondsLamp(for: date) ? colorSchema.seconds : colorSchema.off
+        berlinClock.secondsLamp(for: date) ? colorSchema.seconds : colorSchema.off
     }
 }

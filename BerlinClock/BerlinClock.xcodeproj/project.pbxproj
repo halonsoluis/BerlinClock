@@ -13,11 +13,12 @@
 		5B3D12A4260722D700562332 /* BerlinClockRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12A3260722D700562332 /* BerlinClockRepresentation.swift */; };
 		5B3D12A82607230A00562332 /* BerlinClockTimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12A72607230A00562332 /* BerlinClockTimeProvider.swift */; };
 		5B3D12AC2607235A00562332 /* BerlinClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12AB2607235A00562332 /* BerlinClock.swift */; };
-		5B3D12B02607238900562332 /* BerlinClock+BerlinClockRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12AF2607238900562332 /* BerlinClock+BerlinClockRepresentation.swift */; };
-		5B3D12B4260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12B3260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift */; };
+		5B3D12B02607238900562332 /* BerlinClockUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12AF2607238900562332 /* BerlinClockUI.swift */; };
+		5B3D12B4260723C700562332 /* BerlinClockUI+BerlinClockTimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12B3260723C700562332 /* BerlinClockUI+BerlinClockTimeProvider.swift */; };
 		5B3D12B82607EC2500562332 /* BerlinClockEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12B72607EC2500562332 /* BerlinClockEngine.swift */; };
 		5B3D12C22607F11F00562332 /* BerlinClockTimeProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12C12607F11F00562332 /* BerlinClockTimeProviderTests.swift */; };
 		5B3D12D22607F41C00562332 /* BerlinClock+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12D12607F41C00562332 /* BerlinClock+Factory.swift */; };
+		5B3D12D62607F50B00562332 /* ColorSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D12D52607F50B00562332 /* ColorSchema.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,11 +41,12 @@
 		5B3D12A3260722D700562332 /* BerlinClockRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockRepresentation.swift; sourceTree = "<group>"; };
 		5B3D12A72607230A00562332 /* BerlinClockTimeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockTimeProvider.swift; sourceTree = "<group>"; };
 		5B3D12AB2607235A00562332 /* BerlinClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClock.swift; sourceTree = "<group>"; };
-		5B3D12AF2607238900562332 /* BerlinClock+BerlinClockRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BerlinClock+BerlinClockRepresentation.swift"; sourceTree = "<group>"; };
-		5B3D12B3260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BerlinClock+BerlinClockTimeProvider.swift"; sourceTree = "<group>"; };
+		5B3D12AF2607238900562332 /* BerlinClockUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockUI.swift; sourceTree = "<group>"; };
+		5B3D12B3260723C700562332 /* BerlinClockUI+BerlinClockTimeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BerlinClockUI+BerlinClockTimeProvider.swift"; sourceTree = "<group>"; };
 		5B3D12B72607EC2500562332 /* BerlinClockEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockEngine.swift; sourceTree = "<group>"; };
 		5B3D12C12607F11F00562332 /* BerlinClockTimeProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockTimeProviderTests.swift; sourceTree = "<group>"; };
 		5B3D12D12607F41C00562332 /* BerlinClock+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BerlinClock+Factory.swift"; sourceTree = "<group>"; };
+		5B3D12D52607F50B00562332 /* ColorSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchema.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,14 +89,11 @@
 		5B3D12812606BE0E00562332 /* BerlinClock */ = {
 			isa = PBXGroup;
 			children = (
-				5B3D12BC2607EC6700562332 /* PublicInterface */,
 				5B3D12BB2607EC5100562332 /* Engine */,
+				5B3D12DD2607F7C200562332 /* Representation */,
+				5B3D12BC2607EC6700562332 /* PublicInterface */,
 				5B3D12822606BE0E00562332 /* BerlinClock.h */,
 				5B3D12832606BE0E00562332 /* Info.plist */,
-				5B3D12AB2607235A00562332 /* BerlinClock.swift */,
-				5B3D12AF2607238900562332 /* BerlinClock+BerlinClockRepresentation.swift */,
-				5B3D12B3260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift */,
-				5B3D12D12607F41C00562332 /* BerlinClock+Factory.swift */,
 			);
 			path = BerlinClock;
 			sourceTree = "<group>";
@@ -113,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3D12B72607EC2500562332 /* BerlinClockEngine.swift */,
+				5B3D12AB2607235A00562332 /* BerlinClock.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -120,10 +120,21 @@
 		5B3D12BC2607EC6700562332 /* PublicInterface */ = {
 			isa = PBXGroup;
 			children = (
+				5B3D12D12607F41C00562332 /* BerlinClock+Factory.swift */,
+				5B3D12D52607F50B00562332 /* ColorSchema.swift */,
 				5B3D12A72607230A00562332 /* BerlinClockTimeProvider.swift */,
-				5B3D12A3260722D700562332 /* BerlinClockRepresentation.swift */,
+				5B3D12B3260723C700562332 /* BerlinClockUI+BerlinClockTimeProvider.swift */,
 			);
 			path = PublicInterface;
+			sourceTree = "<group>";
+		};
+		5B3D12DD2607F7C200562332 /* Representation */ = {
+			isa = PBXGroup;
+			children = (
+				5B3D12A3260722D700562332 /* BerlinClockRepresentation.swift */,
+				5B3D12AF2607238900562332 /* BerlinClockUI.swift */,
+			);
+			path = Representation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,10 +246,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B3D12B4260723C700562332 /* BerlinClock+BerlinClockTimeProvider.swift in Sources */,
-				5B3D12B02607238900562332 /* BerlinClock+BerlinClockRepresentation.swift in Sources */,
+				5B3D12B4260723C700562332 /* BerlinClockUI+BerlinClockTimeProvider.swift in Sources */,
+				5B3D12B02607238900562332 /* BerlinClockUI.swift in Sources */,
 				5B3D12A82607230A00562332 /* BerlinClockTimeProvider.swift in Sources */,
 				5B3D12D22607F41C00562332 /* BerlinClock+Factory.swift in Sources */,
+				5B3D12D62607F50B00562332 /* ColorSchema.swift in Sources */,
 				5B3D12A4260722D700562332 /* BerlinClockRepresentation.swift in Sources */,
 				5B3D12B82607EC2500562332 /* BerlinClockEngine.swift in Sources */,
 				5B3D12AC2607235A00562332 /* BerlinClock.swift in Sources */,

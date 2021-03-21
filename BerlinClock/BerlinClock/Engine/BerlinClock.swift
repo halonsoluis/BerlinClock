@@ -9,31 +9,11 @@ import Foundation
 
 public final class BerlinClock {
 
-    public struct ColorSchema {
-        public init(off: String, seconds: String, minutes: String, minutesVisualAid: String, hours: String) {
-            self.off = off
-            self.seconds = seconds
-            self.minutes = minutes
-            self.minutesVisualAid = minutesVisualAid
-            self.hours = hours
-        }
-
-        let off: String
-        let seconds: String
-        let minutes: String
-        let minutesVisualAid: String
-        let hours: String
-    }
-
     private let calendar: Calendar
     private let berlinClock: BerlinClockEngine
-    let colorSchema: ColorSchema
 
-    init(berlinClock: BerlinClockEngine = .init(),
-         calendar: Calendar,
-         colorSchema: ColorSchema) {
+    init(berlinClock: BerlinClockEngine = .init(), calendar: Calendar) {
         self.calendar = calendar
-        self.colorSchema = colorSchema
         self.berlinClock = berlinClock
     }
 
