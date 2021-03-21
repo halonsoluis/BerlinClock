@@ -10,12 +10,17 @@ import XCTest
 
 final class BerlinClock {
 
+    let calendar: Calendar
+
+    init(calendar: Calendar = .init(identifier: .gregorian)) {
+        self.calendar = calendar
+    }
+
     func singleMinuteRow(for date: Date) -> String {
         return singleMinuteRow(for: date).map { $0 ? "Y" : "0" }.joined()
     }
 
     private func singleMinuteRow(for date: Date) -> [Bool] {
-        let calendar = Calendar.init(identifier: .gregorian)
         let minute = calendar.component(.minute, from: date)
         return singleMinuteRow(for: minute)
     }
@@ -106,9 +111,9 @@ final class BerlinClockTests: XCTestCase {
     //MARK - Helpers
 
     func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClock, Date) {
-        let sut = BerlinClock()
-
         let calendar = Calendar.init(identifier: .gregorian)
+        let sut = BerlinClock(calendar: calendar)
+
         let time = calendar.date(bySettingHour: 0, minute: minute, second: 0, of: originalDate)!
 
         return (sut, time)
