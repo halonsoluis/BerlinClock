@@ -24,7 +24,7 @@ final class BerlinClock {
         case 3: return "YYY0"
         case 4: return "YYYY"
         default:
-            assertionFailure("There should no be a case hitting here")
+            assertionFailure("There should not be a case hitting here")
         }
         return ""
     }
@@ -33,15 +33,17 @@ final class BerlinClock {
 
 final class BerlinClockTests: XCTestCase {
     let amountOfMultiplesOfFiveInAMinute = 60 / 5
+    let fiveMinutes: TimeInterval = 5 * 60
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter0() {
         let (sut, time) = createSut(minute: 0)
 
-        var result = [String]()
-        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
-        }
-        let uniqueResults = Set(result)
+        let uniqueResults = evaluateSingleMinuteRow(
+            using: sut,
+            after: time,
+            every: fiveMinutes,
+            repetitions: amountOfMultiplesOfFiveInAMinute
+        )
 
         XCTAssertEqual(uniqueResults, ["0000"])
     }
@@ -49,11 +51,12 @@ final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter1() {
         let (sut, time) = createSut(minute: 1)
 
-        var result = [String]()
-        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
-        }
-        let uniqueResults = Set(result)
+        let uniqueResults = evaluateSingleMinuteRow(
+            using: sut,
+            after: time,
+            every: fiveMinutes,
+            repetitions: amountOfMultiplesOfFiveInAMinute
+        )
 
         XCTAssertEqual(uniqueResults, ["Y000"])
     }
@@ -61,11 +64,12 @@ final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter2() {
         let (sut, time) = createSut(minute: 2)
 
-        var result = [String]()
-        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
-        }
-        let uniqueResults = Set(result)
+        let uniqueResults = evaluateSingleMinuteRow(
+            using: sut,
+            after: time,
+            every: fiveMinutes,
+            repetitions: amountOfMultiplesOfFiveInAMinute
+        )
 
         XCTAssertEqual(uniqueResults, ["YY00"])
     }
@@ -73,11 +77,12 @@ final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter3() {
         let (sut, time) = createSut(minute: 3)
 
-        var result = [String]()
-        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
-        }
-        let uniqueResults = Set(result)
+        let uniqueResults = evaluateSingleMinuteRow(
+            using: sut,
+            after: time,
+            every: fiveMinutes,
+            repetitions: amountOfMultiplesOfFiveInAMinute
+        )
 
         XCTAssertEqual(uniqueResults, ["YYY0"])
     }
@@ -85,11 +90,12 @@ final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter4() {
         let (sut, time) = createSut(minute: 4)
 
-        var result = [String]()
-        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
-        }
-        let uniqueResults = Set(result)
+        let uniqueResults = evaluateSingleMinuteRow(
+            using: sut,
+            after: time,
+            every: fiveMinutes,
+            repetitions: amountOfMultiplesOfFiveInAMinute
+        )
 
         XCTAssertEqual(uniqueResults, ["YYYY"])
     }
@@ -103,5 +109,16 @@ final class BerlinClockTests: XCTestCase {
         let time = calendar.date(bySettingHour: 0, minute: minute, second: 0, of: originalDate)!
 
         return (sut, time)
+    }
+
+    func evaluateSingleMinuteRow(using sut: BerlinClock,
+                                 after time: Date,
+                                 every interval: TimeInterval,
+                                 repetitions: Int) -> Set<String> {
+        var result = [String]()
+        (0...repetitions).forEach { (_) in
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(interval)))
+        }
+        return Set(result)
     }
 }
