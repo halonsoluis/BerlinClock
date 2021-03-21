@@ -7,6 +7,47 @@
 
 import Foundation
 
+final class BerlinClockEngine {
+    func secondsLamp(for second: Int) -> Bool {
+        second % 2 == 0
+    }
+
+    func fiveHourRow(for hour: Int) -> [Bool] {
+        calculateLights(
+            total: 4,
+            iluminated: hour / 5
+        )
+    }
+
+    func singleHourRow(for hour: Int) -> [Bool] {
+        calculateLights(
+            total: 4,
+            iluminated: hour % 5
+        )
+    }
+
+    func fiveMinuteRow(for minute: Int) -> [Bool] {
+        calculateLights(
+            total: 11,
+            iluminated: minute / 5
+        )
+    }
+
+    func singleMinuteRow(for minute: Int) -> [Bool] {
+        calculateLights(
+            total: 4,
+            iluminated: minute % 5
+        )
+    }
+
+    private func calculateLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
+        let onLights = Array(repeating: true, count: iluminated)
+        let offLights = Array(repeating: false, count: amountOfLights - iluminated)
+
+        return onLights + offLights
+    }
+}
+
 final class BerlinClock {
 
     struct ColorSchema {
@@ -19,70 +60,34 @@ final class BerlinClock {
 
     let calendar: Calendar
     let colorSchema: ColorSchema
+    let berlinClock: BerlinClockEngine
 
-    init(calendar: Calendar = .init(identifier: .gregorian),
+    init(berlinClock: BerlinClockEngine = .init(),
+         calendar: Calendar = .init(identifier: .gregorian),
          colorSchema: ColorSchema = .init(off: "0", seconds: "Y", minutes: "Y", minutesVisualAid: "R", hours: "R")) {
         self.calendar = calendar
         self.colorSchema = colorSchema
+        self.berlinClock = berlinClock
     }
 
     func secondsLamp(for date: Date) -> Bool {
-        secondsLamp(for: seconds(from: date))
+        berlinClock.secondsLamp(for: seconds(from: date))
     }
 
     func fiveHourRow(for date: Date) -> [Bool] {
-        fiveHourRow(for: hours(from: date))
+        berlinClock.fiveHourRow(for: hours(from: date))
     }
 
     func singleHourRow(for date: Date) -> [Bool] {
-        singleHourRow(for: hours(from: date))
+        berlinClock.singleHourRow(for: hours(from: date))
     }
 
     func fiveMinuteRow(for date: Date) -> [Bool] {
-        fiveMinuteRow(for: minutes(from: date))
+        berlinClock.fiveMinuteRow(for: minutes(from: date))
     }
 
     func singleMinuteRow(for date: Date) -> [Bool] {
-        singleMinuteRow(for: minutes(from: date))
-    }
-
-    private func secondsLamp(for second: Int) -> Bool {
-        second % 2 == 0
-    }
-
-    private func fiveHourRow(for hour: Int) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: hour / 5
-        )
-    }
-
-    private func singleHourRow(for hour: Int) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: hour % 5
-        )
-    }
-
-    private func fiveMinuteRow(for minute: Int) -> [Bool] {
-        calculateLights(
-            total: 11,
-            iluminated: minute / 5
-        )
-    }
-
-    private func singleMinuteRow(for minute: Int) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: minute % 5
-        )
-    }
-
-    private func calculateLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
-        let onLights = Array(repeating: true, count: iluminated)
-        let offLights = Array(repeating: false, count: amountOfLights - iluminated)
-
-        return onLights + offLights
+        berlinClock.singleMinuteRow(for: minutes(from: date))
     }
 }
 
