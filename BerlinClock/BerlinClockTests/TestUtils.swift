@@ -78,7 +78,7 @@ extension BerlinClockTests {
         let (sut, calendar) = createSut()
         let date = calendar.date(bySettingHour: hour, minute: minute, second: second, of: date)!
 
-        let result = sut.berlinClockTime(for: date)
+        let result = sut.time(for: date)
 
         XCTAssertEqual(result, expectedResult)
     }
