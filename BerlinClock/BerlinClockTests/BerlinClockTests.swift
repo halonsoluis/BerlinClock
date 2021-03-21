@@ -32,13 +32,14 @@ final class BerlinClock {
 }
 
 final class BerlinClockTests: XCTestCase {
+    let amountOfMultiplesOfFiveInAMinute = 60 / 5
+
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter0() {
-        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 0)
 
         var result = [String]()
         (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
         }
         let uniqueResults = Set(result)
 
@@ -46,12 +47,11 @@ final class BerlinClockTests: XCTestCase {
     }
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter1() {
-        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 1)
 
         var result = [String]()
         (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
         }
         let uniqueResults = Set(result)
 
@@ -59,12 +59,11 @@ final class BerlinClockTests: XCTestCase {
     }
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter2() {
-        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 2)
 
         var result = [String]()
         (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
         }
         let uniqueResults = Set(result)
 
@@ -72,12 +71,11 @@ final class BerlinClockTests: XCTestCase {
     }
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter3() {
-        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 3)
 
         var result = [String]()
         (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
         }
         let uniqueResults = Set(result)
 
@@ -85,18 +83,17 @@ final class BerlinClockTests: XCTestCase {
     }
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter4() {
-        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 4)
 
         var result = [String]()
         (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5 * 60)))
         }
         let uniqueResults = Set(result)
 
         XCTAssertEqual(uniqueResults, ["YYYY"])
     }
-    
+
     //MARK - Helpers
 
     func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClock, Date) {
