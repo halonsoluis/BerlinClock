@@ -113,11 +113,11 @@ final class BerlinClockTests: XCTestCase {
     // MARK: - Five Hour Row
 
     func test_fiveHourRow_returnsExpectedOutput() {
-        assertFiveHourRow(every5HoursAfter: 0, returns: "0000")
-        assertFiveHourRow(every5HoursAfter: 5, returns: "R000")
-        assertFiveHourRow(every5HoursAfter: 10, returns: "RR00")
-        assertFiveHourRow(every5HoursAfter: 15, returns: "RRR0")
-       // assertFiveHourRow(every5HoursAfter: 20, returns: "RRRR")
+        assertFiveHourRow(hours: 0...4, returns: "0000")
+        assertFiveHourRow(hours: 5...9, returns: "R000")
+        assertFiveHourRow(hours: 10...14, returns: "RR00")
+        assertFiveHourRow(hours: 15...19, returns: "RRR0")
+        assertFiveHourRow(hours: 20...23, returns: "RRRR")
     }
 }
 
