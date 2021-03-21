@@ -163,6 +163,23 @@ final class BerlinClockTests: XCTestCase {
         assertSecondLamp(seconds: [0, 2, 4, 8, 10], returns: "Y")
         assertSecondLamp(seconds: [1, 3, 5, 7, 9], returns: "0")
     }
+
+    func test_berlinClock_reportsCorrectTimeInIntegration() {
+        let (sut, calendar) = createSut()
+        let date = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+
+        let result = [
+            sut.secondsLamp(for: date),
+            sut.fiveHourRow(for: date),
+            sut.singleHourRow(for: date),
+            sut.fiveMinuteRow(for: date),
+            sut.singleHourRow(for: date)
+        ].joined()
+
+        XCTAssertEqual(result, "Y00000000000000000000000")
+
+    }
+
 }
 
 //MARK - Helpers
