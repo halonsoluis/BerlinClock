@@ -15,7 +15,9 @@ final class BerlinClock {
 
         let minute = calendar.component(.minute, from: date)
 
-        if minute == 0 {
+        let value = minute % 5
+
+        if value == 0 {
             return "0000"
         } else {
             return "Y000"
@@ -33,13 +35,30 @@ final class BerlinClockTests: XCTestCase {
         XCTAssertEqual(result, "0000")
     }
 
-    func test_singleMinuteRow_returnsYOOOforSecondMinuteOfTheDay() {
+    func test_singleMinuteRow_returnsYOOOforFifthMinuteOfTheDay() {
+        let (sut, time) = createSut(minute: 5)
+
+        let result = sut.singleMinuteRow(for: time)
+
+        XCTAssertEqual(result, "0000")
+    }
+
+    func test_singleMinuteRow_returnsYOOOforFirstMinuteOfTheDay() {
         let (sut, time) = createSut(minute: 1)
 
         let result = sut.singleMinuteRow(for: time)
 
         XCTAssertEqual(result, "Y000")
     }
+
+    func test_singleMinuteRow_returnsYOOOforSixthMinuteOfTheDay() {
+        let (sut, time) = createSut(minute: 6)
+
+        let result = sut.singleMinuteRow(for: time)
+
+        XCTAssertEqual(result, "Y000")
+    }
+
 
     //MARK - Helpers
 
