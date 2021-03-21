@@ -102,6 +102,39 @@ final class BerlinClockTests: XCTestCase {
         assertFiveMinuteRow(at: 15, returns: "YYR00000000")
     }
 
+    func test_fiveMinuteRow_returnsYYRYOOOOOOOAtMinute20() {
+        assertFiveMinuteRow(at: 20, returns: "YYRY0000000")
+    }
+
+    func test_fiveMinuteRow_returnsYYRYYOOOOOOAtMinute25() {
+        assertFiveMinuteRow(at: 25, returns: "YYRYY000000")
+    }
+
+    func test_fiveMinuteRow_returnsYYRYYROOOOAtMinute30() {
+        assertFiveMinuteRow(at: 30, returns: "YYRYYR00000")
+    }
+
+    func test_fiveMinuteRow_returnsYYRYYRYOOOAtMinute35() {
+        assertFiveMinuteRow(at: 35, returns: "YYRYYRY0000")
+    }
+
+    func test_fiveMinuteRow_returnsYYRYYRYYOOOAtMinute40() {
+        assertFiveMinuteRow(at: 40, returns: "YYRYYRYY000")
+    }
+
+    func test_fiveMinuteRow_returnsYYRYYRYYROOAtMinute45() {
+        assertFiveMinuteRow(at: 45, returns: "YYRYYRYYR00")
+    }
+
+    func test_fiveMinuteRow_returnsYYRYYRYYRYOAtMinute50() {
+        assertFiveMinuteRow(at: 50, returns: "YYRYYRYYRY0")
+    }
+    
+    func test_fiveMinuteRow_returnsYYRYYRYYRYYAtMinute55() {
+        assertFiveMinuteRow(at: 55, returns: "YYRYYRYYRYY")
+    }
+
+
     //MARK - Helpers
 
     func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClock, Date) {
