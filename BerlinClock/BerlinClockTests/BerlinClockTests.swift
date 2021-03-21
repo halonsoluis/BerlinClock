@@ -32,14 +32,16 @@ final class BerlinClock {
 }
 
 final class BerlinClockTests: XCTestCase {
+    typealias FunctionRow = (Date) -> String
+    
     let amountOfMultiplesOfFiveInAMinute = 60 / 5
     let fiveMinutes: TimeInterval = 5 * 60
 
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter0() {
         let (sut, time) = createSut(minute: 0)
 
-        let uniqueResults = evaluateSingleMinuteRow(
-            using: sut,
+        let uniqueResults = evaluateFunctionRow(
+            function: sut.singleMinuteRow,
             after: time,
             every: fiveMinutes,
             repetitions: amountOfMultiplesOfFiveInAMinute
@@ -51,8 +53,8 @@ final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter1() {
         let (sut, time) = createSut(minute: 1)
 
-        let uniqueResults = evaluateSingleMinuteRow(
-            using: sut,
+        let uniqueResults = evaluateFunctionRow(
+            function: sut.singleMinuteRow,
             after: time,
             every: fiveMinutes,
             repetitions: amountOfMultiplesOfFiveInAMinute
@@ -64,8 +66,8 @@ final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter2() {
         let (sut, time) = createSut(minute: 2)
 
-        let uniqueResults = evaluateSingleMinuteRow(
-            using: sut,
+        let uniqueResults = evaluateFunctionRow(
+            function: sut.singleMinuteRow,
             after: time,
             every: fiveMinutes,
             repetitions: amountOfMultiplesOfFiveInAMinute
@@ -77,8 +79,8 @@ final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter3() {
         let (sut, time) = createSut(minute: 3)
 
-        let uniqueResults = evaluateSingleMinuteRow(
-            using: sut,
+        let uniqueResults = evaluateFunctionRow(
+            function: sut.singleMinuteRow,
             after: time,
             every: fiveMinutes,
             repetitions: amountOfMultiplesOfFiveInAMinute
@@ -90,8 +92,8 @@ final class BerlinClockTests: XCTestCase {
     func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter4() {
         let (sut, time) = createSut(minute: 4)
 
-        let uniqueResults = evaluateSingleMinuteRow(
-            using: sut,
+        let uniqueResults = evaluateFunctionRow(
+            function: sut.singleMinuteRow,
             after: time,
             every: fiveMinutes,
             repetitions: amountOfMultiplesOfFiveInAMinute
@@ -111,13 +113,15 @@ final class BerlinClockTests: XCTestCase {
         return (sut, time)
     }
 
-    func evaluateSingleMinuteRow(using sut: BerlinClock,
-                                 after time: Date,
-                                 every interval: TimeInterval,
-                                 repetitions: Int) -> Set<String> {
+    func evaluateFunctionRow(function: FunctionRow,
+                             after time: Date,
+                             every interval: TimeInterval,
+                             repetitions: Int) -> Set<String> {
         var result = [String]()
         (0...repetitions).forEach { (_) in
-            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(interval)))
+            result.append(
+                function(time.addingTimeInterval(interval))
+            )
         }
         return Set(result)
     }
