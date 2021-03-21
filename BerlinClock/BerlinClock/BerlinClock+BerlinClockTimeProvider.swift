@@ -8,7 +8,7 @@
 import Foundation
 
 extension BerlinClock: BerlinClockTimeProvider {
-    func time(for date: Date) -> String {
+    public func time(for date: Date) -> String {
         return [
             secondsLamp(for: date),
             fiveHourRow(for: date),

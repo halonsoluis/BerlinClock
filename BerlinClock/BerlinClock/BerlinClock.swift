@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class BerlinClock {
+public final class BerlinClock {
 
     struct ColorSchema {
         let off: String
@@ -17,9 +17,9 @@ final class BerlinClock {
         let hours: String
     }
 
-    let calendar: Calendar
+    private let calendar: Calendar
+    private let berlinClock: BerlinClockEngine
     let colorSchema: ColorSchema
-    let berlinClock: BerlinClockEngine
 
     init(berlinClock: BerlinClockEngine = .init(),
          calendar: Calendar = .init(identifier: .gregorian),
@@ -61,3 +61,4 @@ extension BerlinClock {
         calendar.component(.hour, from: date)
     }
 }
+
