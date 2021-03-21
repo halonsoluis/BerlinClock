@@ -36,14 +36,4 @@ extension BerlinClock: BerlinClockRepresentation {
     func secondsLamp(for date: Date) -> String {
         secondsLamp(for: date) ? "Y" : "0"
     }
-
-    func berlinClockTime(for date: Date) -> String {
-        return [
-            secondsLamp(for: date),
-            fiveHourRow(for: date),
-            singleHourRow(for: date),
-            fiveMinuteRow(for: date),
-            singleMinuteRow(for: date)
-        ].joined()
-    }
 }
