@@ -74,13 +74,4 @@ extension BerlinClockTests {
         XCTAssertEqual(result.count, 1, "Expected a unique set of results", file: file, line: line)
         XCTAssertEqual(result.first!, returns, file: file, line: line)
     }
-
-    func assertBerlinClockTime(hour: Int, minute: Int, second: Int, from date: Date = Date(), returns expectedResult: String, file: StaticString = #file, line: UInt = #line) {
-        let (sut, calendar) = createSut()
-        let date = calendar.date(bySettingHour: hour, minute: minute, second: second, of: date)!
-
-        let result = sut.time(for: date)
-
-        XCTAssertEqual(result, expectedResult)
-    }
 }

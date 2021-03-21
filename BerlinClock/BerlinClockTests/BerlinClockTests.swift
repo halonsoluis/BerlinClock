@@ -63,19 +63,12 @@ final class BerlinClockTests: XCTestCase {
         assertSecondLamp(seconds: [0, 2, 4, 8, 10], returns: "Y")
         assertSecondLamp(seconds: [1, 3, 5, 7, 9], returns: "0")
     }
-
-    func test_berlinClock_reportsCorrectTimeInIntegration() {
-        assertBerlinClockTime(hour: 00, minute: 00, second: 00, returns: "Y00000000000000000000000")
-        assertBerlinClockTime(hour: 23, minute: 59, second: 59, returns: "0RRRRRRR0YYRYYRYYRYYYYYY")
-        assertBerlinClockTime(hour: 16, minute: 50, second: 06, returns: "YRRR0R000YYRYYRYYRY00000")
-        assertBerlinClockTime(hour: 11, minute: 37, second: 01, returns: "0RR00R000YYRYYRY0000YY00")
-    }
 }
 
 //MARK - Helpers
 extension BerlinClockTests {
 
-    func createSut() -> (BerlinClockRepresentation & BerlinClockTimeProvider, Calendar) {
+    func createSut() -> (BerlinClockRepresentation, Calendar) {
         let calendar = Calendar.init(identifier: .gregorian)
 
         let sut = BerlinClock(
