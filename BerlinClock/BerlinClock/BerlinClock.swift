@@ -15,6 +15,24 @@ final class BerlinClock {
         self.calendar = calendar
     }
 
+    func secondsLamp(for date: Date) -> Bool {
+        extractSecond(from: date) % 2 == 0
+    }
+
+    func fiveHourRow(for date: Date) -> [Bool] {
+        calculateLights(
+            total: 4,
+            iluminated: extractHour(from: date) / 5
+        )
+    }
+
+    func singleHourRow(for date: Date) -> [Bool] {
+        calculateLights(
+            total: 4,
+            iluminated: extractHour(from: date) % 5
+        )
+    }
+
     func fiveMinuteRow(for date: Date) -> [Bool] {
         calculateLights(
             total: 11,
@@ -27,25 +45,6 @@ final class BerlinClock {
             total: 4,
             iluminated: extractMinute(from: date) % 5
         )
-    }
-
-    func singleHourRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: extractHour(from: date) % 5
-        )
-    }
-
-
-    func fiveHourRow(for date: Date) -> [Bool] {
-        calculateLights(
-            total: 4,
-            iluminated: extractHour(from: date) / 5
-        )
-    }
-
-    func secondsLamp(for date: Date) -> Bool {
-        extractSecond(from: date) % 2 == 0
     }
 
     private func calculateLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
