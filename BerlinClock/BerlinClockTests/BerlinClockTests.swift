@@ -17,11 +17,16 @@ final class BerlinClock {
 
         let value = minute % 5
 
-        if value == 0 {
-            return "0000"
-        } else {
-            return "Y000"
+        switch value {
+        case 0: return "0000"
+        case 1: return "Y000"
+        case 2: return "YY00"
+        case 3: return "YYY0"
+        case 4: return "YYYY"
+        default:
+            assertionFailure("There should no be a case hitting here")
         }
+        return ""
     }
 
 }
@@ -59,6 +64,29 @@ final class BerlinClockTests: XCTestCase {
         XCTAssertEqual(result, "Y000")
     }
 
+    func test_singleMinuteRow_returnsYOOOforSecondMinuteOfTheDay() {
+        let (sut, time) = createSut(minute: 2)
+
+        let result = sut.singleMinuteRow(for: time)
+
+        XCTAssertEqual(result, "YY00")
+    }
+
+    func test_singleMinuteRow_returnsYOOOforThirdMinuteOfTheDay() {
+        let (sut, time) = createSut(minute: 3)
+
+        let result = sut.singleMinuteRow(for: time)
+
+        XCTAssertEqual(result, "YYY0")
+    }
+
+    func test_singleMinuteRow_returnsYOOOforFourthMinuteOfTheDay() {
+        let (sut, time) = createSut(minute: 4)
+
+        let result = sut.singleMinuteRow(for: time)
+
+        XCTAssertEqual(result, "YYYY")
+    }
 
     //MARK - Helpers
 
