@@ -45,46 +45,58 @@ final class BerlinClockTests: XCTestCase {
         XCTAssertEqual(uniqueResults, ["0000"])
     }
 
-    func test_singleMinuteRow_returnsYOOOforFirstMinuteOfTheDay() {
+    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter1() {
+        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 1)
 
-        let result = sut.singleMinuteRow(for: time)
+        var result = [String]()
+        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+        }
+        let uniqueResults = Set(result)
 
-        XCTAssertEqual(result, "Y000")
+        XCTAssertEqual(uniqueResults, ["Y000"])
     }
 
-    func test_singleMinuteRow_returnsYOOOforSixthMinuteOfTheDay() {
-        let (sut, time) = createSut(minute: 6)
-
-        let result = sut.singleMinuteRow(for: time)
-
-        XCTAssertEqual(result, "Y000")
-    }
-
-    func test_singleMinuteRow_returnsYOOOforSecondMinuteOfTheDay() {
+    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter2() {
+        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 2)
 
-        let result = sut.singleMinuteRow(for: time)
+        var result = [String]()
+        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+        }
+        let uniqueResults = Set(result)
 
-        XCTAssertEqual(result, "YY00")
+        XCTAssertEqual(uniqueResults, ["YY00"])
     }
 
-    func test_singleMinuteRow_returnsYOOOforThirdMinuteOfTheDay() {
+    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter3() {
+        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 3)
 
-        let result = sut.singleMinuteRow(for: time)
+        var result = [String]()
+        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+        }
+        let uniqueResults = Set(result)
 
-        XCTAssertEqual(result, "YYY0")
+        XCTAssertEqual(uniqueResults, ["YYY0"])
     }
 
-    func test_singleMinuteRow_returnsYOOOforFourthMinuteOfTheDay() {
+    func test_singleMinuteRow_returnsOOOOOEveryFiveMinutesAfter4() {
+        let amountOfMultiplesOfFiveInAMinute = 60 / 5
         let (sut, time) = createSut(minute: 4)
 
-        let result = sut.singleMinuteRow(for: time)
+        var result = [String]()
+        (0...amountOfMultiplesOfFiveInAMinute).forEach { (_) in
+            result.append(sut.singleMinuteRow(for: time.addingTimeInterval(5)))
+        }
+        let uniqueResults = Set(result)
 
-        XCTAssertEqual(result, "YYYY")
+        XCTAssertEqual(uniqueResults, ["YYYY"])
     }
-
+    
     //MARK - Helpers
 
     func createSut(minute: Int, originalDate: Date = Date()) -> (BerlinClock, Date) {
