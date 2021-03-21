@@ -142,11 +142,17 @@ final class BerlinClockTests: XCTestCase {
     func test_singleHourRow_returnsExpectedOutput() {
         let multiplesOfFiveUntil24 = (0...(24 / 5)).map { $0 * 5 }
 
+//        Tried with hours: [0, 5, 10, 15, 20] -> 0000
+//        Tried with hours: [1, 6, 11, 16, 21] -> R000
+//        Tried with hours: [2, 7, 12, 17, 22] -> RR00
+//        Tried with hours: [3, 8, 13, 18, 23] -> RRR0
+//        Tried with hours: [4, 9, 14, 19]     -> RRRR
+
         assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 0 }, returns: "0000")
         assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 1 }, returns: "R000")
         assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 2 }, returns: "RR00")
         assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 3 }, returns: "RRR0")
-        //assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 4 }, returns: "RRRR")
+        assertSingleHourRow(hours: multiplesOfFiveUntil24.map { $0 + 4 }.dropLast(), returns: "RRRR")
     }
 }
 
