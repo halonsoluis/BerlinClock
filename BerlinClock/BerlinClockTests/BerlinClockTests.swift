@@ -71,7 +71,7 @@ final class BerlinClockTests: XCTestCase {
         return (sut, time)
     }
 
-    func assertSingleMinuteRow(every5MinutesAfter minute: Int, returns: String) {
+    func assertSingleMinuteRow(every5MinutesAfter minute: Int, returns: String, file: StaticString = #file, line: UInt = #line) {
         let (sut, time) = createSut(minute: minute)
 
         let amountOfMultiplesOfFiveInAMinute = 60 / 5
@@ -84,7 +84,8 @@ final class BerlinClockTests: XCTestCase {
             repetitions: amountOfMultiplesOfFiveInAMinute
         )
 
-        XCTAssertEqual(uniqueResults, [returns])
+        XCTAssertEqual(uniqueResults.count, 1, file: file, line: line)
+        XCTAssertEqual(uniqueResults.first!, returns, file: file, line: line)
     }
 
     func evaluateFunctionRow(function: FunctionRow,
