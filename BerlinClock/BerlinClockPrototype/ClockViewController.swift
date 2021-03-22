@@ -10,30 +10,22 @@ import UIKit
 
 open class Lamp: UIView {
     func turnOn() {
-        DispatchQueue.main.async {
-            self.backgroundColor = .black
-        }
+        self.backgroundColor = .black
     }
 
     func turnOff() {
-        DispatchQueue.main.async {
-            self.backgroundColor = .black
-        }
+        self.backgroundColor = .black
     }
 }
 
 final class YellowLamp: Lamp {
 
     override func turnOn()  {
-        DispatchQueue.main.async {
-            self.backgroundColor = .yellow
-        }
+        self.backgroundColor = .yellow
     }
 
     override func turnOff() {
-        DispatchQueue.main.async {
-            self.backgroundColor = .darkGray
-        }
+        self.backgroundColor = .darkGray
     }
 }
 
@@ -107,65 +99,70 @@ final class ClockViewController: UIViewController {
     func start() {
         var minute: Int = 0
         var hour: Int = 0
-        ticker = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] timer in
-            if self.seconds?.backgroundColor == .darkGray {
-                self.seconds?.turnOn()
-            } else {
-                self.seconds?.turnOff()
-            }
-            if minute == 60 {
-                hour = hour.advanced(by: 1)
-                minute = 0
-            }
+        ticker = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3) {
 
-            if hour == 24 {
-                hour = 0
+                    if self.seconds?.backgroundColor == .darkGray {
+                        self.seconds?.turnOn()
+                    } else {
+                        self.seconds?.turnOff()
+                    }
+                    if minute == 60 {
+                        hour = hour.advanced(by: 1)
+                        minute = 0
+                    }
+
+                    if hour == 24 {
+                        hour = 0
+                    }
+
+
+                    if singleMinuteRow.count > minute % 5 {
+                        self.singleMinuteRow?[minute % 5].turnOn()
+                    } else {
+                        self.turnCLockOff(views: self.singleMinuteRow)
+                    }
+
+                    if minute % 5 == 0 {
+                        self.turnCLockOff(views: self.singleMinuteRow)
+                    }
+
+                    if hour % 5 == 0 {
+                        self.turnCLockOff(views: self.singleHourRow)
+                    }
+
+                    if fiveMinuteRow.count > minute / 5 {
+                        self.fiveMinuteRow?[minute / 5].turnOn()
+                    } else {
+                        self.turnCLockOff(views: self.fiveMinuteRow)
+                    }
+
+                    if singleHourRow.count > hour % 5 && hour > 0 {
+                        self.singleHourRow?[hour % 5].turnOn()
+                    } else {
+                        self.turnCLockOff(views: self.singleHourRow)
+                    }
+
+                    if fiveHourRow.count > hour / 5 && hour > 0{
+                        self.fiveHourRow?[hour / 5].turnOn()
+                    } else {
+                        self.turnCLockOff(views: self.fiveHourRow)
+                    }
+
+                    if minute == 0 {
+                        self.turnCLockOff(views: self.singleMinuteRow)
+                        self.turnCLockOff(views: self.fiveMinuteRow)
+                    }
+
+                    if hour == 0 {
+                        self.turnCLockOff(views: self.singleHourRow)
+                        self.turnCLockOff(views: self.fiveHourRow)
+                    }
+
+                    minute+=1
+                }
             }
-
-
-            if singleMinuteRow.count > minute % 5 {
-                self.singleMinuteRow?[minute % 5].turnOn()
-            } else {
-                self.turnCLockOff(views: self.singleMinuteRow)
-            }
-
-            if minute % 5 == 0 {
-                self.turnCLockOff(views: self.singleMinuteRow)
-            }
-
-            if hour % 5 == 0 {
-                self.turnCLockOff(views: self.singleHourRow)
-            }
-
-            if fiveMinuteRow.count > minute / 5 {
-                self.fiveMinuteRow?[minute / 5].turnOn()
-            } else {
-                self.turnCLockOff(views: self.fiveMinuteRow)
-            }
-
-            if singleHourRow.count > hour % 5 {
-                self.singleHourRow?[hour % 5].turnOn()
-            } else {
-                self.turnCLockOff(views: self.singleHourRow)
-            }
-
-            if fiveHourRow.count > hour / 5 {
-                self.fiveHourRow?[hour / 5].turnOn()
-            } else {
-                self.turnCLockOff(views: self.fiveHourRow)
-            }
-
-            if minute == 0 {
-                self.turnCLockOff(views: self.singleMinuteRow)
-                self.turnCLockOff(views: self.fiveMinuteRow)
-            }
-
-            if hour == 0 {
-                self.turnCLockOff(views: self.singleHourRow)
-                self.turnCLockOff(views: self.fiveHourRow)
-            }
-
-            minute+=1
         }
         ticker?.fire()
     }
