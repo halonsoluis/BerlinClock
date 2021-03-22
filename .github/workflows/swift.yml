@@ -14,15 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
+      - name: Clean Build & Test for iOS
         env:
           scheme: CI_iOS
-          project: BerlinClock/BerlinClock.xcodeproj
         run: |
-          xcodebuild build-for-testing -scheme "$scheme" -project $project  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO -enableCodeCoverage YES -destination "platform=iOS Simulator,name=iPhone 12"
-      - name: Test
-        env:
-          scheme: CI
-          project: BerlinClock/BerlinClock.xcodeproj
-        run: |
-          xcodebuild test-without-building -scheme "$scheme" -project $project CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO -enableCodeCoverage YES -destination "platform=iOS Simulator,name=iPhone 12"
+          xcodebuild clean build test -scheme CI_iOS -project BerlinClock/BerlinClock.xcodeproj  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO -enableCodeCoverage YES -destination "platform=iOS Simulator,name=iPhone 12"
