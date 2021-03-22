@@ -29,7 +29,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjy-6r-a66">
                                                 <rect key="frame" x="127.5" y="0.0" width="127" height="127"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2c-d8-hcG" userLabel="seconds">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2c-d8-hcG" userLabel="seconds" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                         <rect key="frame" x="8" y="8" width="111" height="111"/>
                                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -99,19 +99,19 @@
                                     <stackView opaque="NO" contentMode="center" semanticContentAttribute="spatial" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FXp-T2-U2g">
                                         <rect key="frame" x="0.0" y="147" width="382" height="100"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjt-ow-Sv4" userLabel="hour5">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjt-ow-Sv4" userLabel="hour5" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
-                                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAo-vD-9G8" userLabel="hour10">
+                                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAo-vD-9G8" userLabel="hour10" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="102" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" red="0.20755476804123707" green="0.031632216442225684" blue="0.055319294154933883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
-                                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4A9-Q1-Rp9" userLabel="hour15">
+                                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4A9-Q1-Rp9" userLabel="hour15" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="196" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" red="0.20755476804123707" green="0.031632216442225684" blue="0.055319294154933883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
-                                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcx-I8-azh" userLabel="hour20">
+                                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcx-I8-azh" userLabel="hour20" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="290" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" red="0.20755476804123707" green="0.031632216442225684" blue="0.055319294154933883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -172,19 +172,19 @@
                                     <stackView opaque="NO" contentMode="center" semanticContentAttribute="spatial" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xay-Pa-VWb">
                                         <rect key="frame" x="0.0" y="267" width="382" height="100"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R07-zP-LZg" userLabel="hour1">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R07-zP-LZg" userLabel="hour1" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XjL-It-CjR" userLabel="hour2">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XjL-It-CjR" userLabel="hour2" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="102" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pcs-kG-JFP" userLabel="hour3">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pcs-kG-JFP" userLabel="hour3" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="196" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofk-5P-cUI" userLabel="hour4">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofk-5P-cUI" userLabel="hour4" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="290" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
@@ -245,11 +245,11 @@
                                     <stackView opaque="NO" contentMode="center" semanticContentAttribute="spatial" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7No-my-lmS">
                                         <rect key="frame" x="0.0" y="387" width="382" height="100"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vg-aB-JTJ" userLabel="minute5">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vg-aB-JTJ" userLabel="minute5" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHe-k4-5S7" userLabel="minute10">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHe-k4-5S7" userLabel="minute10" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="42" y="8" width="24.5" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
@@ -257,11 +257,11 @@
                                                 <rect key="frame" x="76.5" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbQ-Tc-RMl" userLabel="minute20">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbQ-Tc-RMl" userLabel="minute20" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="110.5" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZa-T1-0PV" userLabel="minute25">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZa-T1-0PV" userLabel="minute25" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="144.5" y="8" width="24.5" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
@@ -269,11 +269,11 @@
                                                 <rect key="frame" x="179" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6Y-Ws-N4g" userLabel="minute35">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6Y-Ws-N4g" userLabel="minute35" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="213" y="8" width="24.5" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfb-75-ID3" userLabel="minute40">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfb-75-ID3" userLabel="minute40" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="247.5" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
@@ -281,11 +281,11 @@
                                                 <rect key="frame" x="281.5" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRm-k8-Wao" userLabel="minute50">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRm-k8-Wao" userLabel="minute50" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="315.5" y="8" width="24.5" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USj-fT-CsY" userLabel="minute55">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USj-fT-CsY" userLabel="minute55" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="350" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" red="0.49043572809278346" green="0.39446433992333396" blue="0.0032783226950844585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -346,7 +346,7 @@
                                     <stackView opaque="NO" contentMode="center" semanticContentAttribute="spatial" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WL8-rv-DWu">
                                         <rect key="frame" x="0.0" y="507" width="382" height="100"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ys8-qd-0G0" userLabel="minute1">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ys8-qd-0G0" userLabel="minute1" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -355,7 +355,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTF-Uq-RbL" userLabel="minute2">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTF-Uq-RbL" userLabel="minute2" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="102" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" red="0.38778592139175261" green="0.31190165958794147" blue="0.0025921590008881057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <userDefinedRuntimeAttributes>
@@ -364,7 +364,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guA-bp-Cp7" userLabel="minute3">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guA-bp-Cp7" userLabel="minute3" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="196" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" red="0.38778592139175261" green="0.31190165958794147" blue="0.0025921590008881057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <userDefinedRuntimeAttributes>
@@ -373,7 +373,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdG-Fs-NwF" userLabel="minute4">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdG-Fs-NwF" userLabel="minute4" customClass="YellowLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="290" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" red="0.38778592139175261" green="0.31190165958794147" blue="0.0025921590008881057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <userDefinedRuntimeAttributes>
