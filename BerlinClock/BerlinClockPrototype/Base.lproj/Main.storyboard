@@ -452,6 +452,27 @@
                         <outletCollection property="singleHourRow" destination="R07-zP-LZg" collectionClass="NSMutableArray" id="WOy-gq-LQW"/>
                         <outletCollection property="fiveMinuteRow" destination="9vg-aB-JTJ" collectionClass="NSMutableArray" id="omI-dV-Qh9"/>
                         <outletCollection property="singleMinuteRow" destination="ys8-qd-0G0" collectionClass="NSMutableArray" id="CI4-kJ-jV5"/>
+                        <outletCollection property="fiveHourRow" destination="vAo-vD-9G8" collectionClass="NSMutableArray" id="VVg-aR-TdE"/>
+                        <outletCollection property="fiveHourRow" destination="4A9-Q1-Rp9" collectionClass="NSMutableArray" id="S3a-kF-EV3"/>
+                        <outletCollection property="fiveHourRow" destination="hcx-I8-azh" collectionClass="NSMutableArray" id="kij-IJ-HlZ"/>
+                        <outletCollection property="singleHourRow" destination="R07-zP-LZg" collectionClass="NSMutableArray" id="ffs-XR-33E"/>
+                        <outletCollection property="singleHourRow" destination="XjL-It-CjR" collectionClass="NSMutableArray" id="OAR-To-ZEs"/>
+                        <outletCollection property="singleHourRow" destination="Pcs-kG-JFP" collectionClass="NSMutableArray" id="e4n-QS-c4i"/>
+                        <outletCollection property="singleHourRow" destination="ofk-5P-cUI" collectionClass="NSMutableArray" id="Oxe-FG-mNK"/>
+                        <outletCollection property="fiveMinuteRow" destination="kHe-k4-5S7" collectionClass="NSMutableArray" id="Htr-ZR-8mw"/>
+                        <outletCollection property="fiveMinuteRow" destination="ROl-cH-MKa" collectionClass="NSMutableArray" id="6Ja-dV-r8w"/>
+                        <outletCollection property="fiveMinuteRow" destination="zbQ-Tc-RMl" collectionClass="NSMutableArray" id="d1m-e6-MBq"/>
+                        <outletCollection property="fiveMinuteRow" destination="CZa-T1-0PV" collectionClass="NSMutableArray" id="R9u-jy-4wp"/>
+                        <outletCollection property="fiveMinuteRow" destination="UUT-VD-ns8" collectionClass="NSMutableArray" id="Bjj-OS-5BC"/>
+                        <outletCollection property="fiveMinuteRow" destination="A6Y-Ws-N4g" collectionClass="NSMutableArray" id="mDS-Qg-c0g"/>
+                        <outletCollection property="fiveMinuteRow" destination="Kfb-75-ID3" collectionClass="NSMutableArray" id="y9H-33-jFG"/>
+                        <outletCollection property="fiveMinuteRow" destination="vMH-uK-cVE" collectionClass="NSMutableArray" id="jQf-hh-1FG"/>
+                        <outletCollection property="fiveMinuteRow" destination="yRm-k8-Wao" collectionClass="NSMutableArray" id="zpZ-lR-wZY"/>
+                        <outletCollection property="fiveMinuteRow" destination="USj-fT-CsY" collectionClass="NSMutableArray" id="w1i-HL-cQj"/>
+                        <outletCollection property="singleMinuteRow" destination="ys8-qd-0G0" collectionClass="NSMutableArray" id="vUh-lt-Ezo"/>
+                        <outletCollection property="singleMinuteRow" destination="rTF-Uq-RbL" collectionClass="NSMutableArray" id="IUh-6Y-N1d"/>
+                        <outletCollection property="singleMinuteRow" destination="guA-bp-Cp7" collectionClass="NSMutableArray" id="XQ7-vA-hx7"/>
+                        <outletCollection property="singleMinuteRow" destination="WdG-Fs-NwF" collectionClass="NSMutableArray" id="HFV-II-DXz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
