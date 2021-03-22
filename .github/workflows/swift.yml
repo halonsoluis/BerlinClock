@@ -23,6 +23,6 @@ jobs:
       - name: Test
         env:
           scheme: CI
-          workspace: Marvel.xcworkspace
+          project: BerlinClock/BerlinClock.xcodeproj
         run: |
           xcodebuild test-without-building -scheme "$scheme" -project $project CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO -enableCodeCoverage YES -destination "platform=iOS Simulator,name=iPhone 12"
