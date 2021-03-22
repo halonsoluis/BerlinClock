@@ -1,11 +1,3 @@
-name: Swift
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-
-
 name: BerlinClockCI
 
 on:
