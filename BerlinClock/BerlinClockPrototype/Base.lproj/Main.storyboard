@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Clock View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ClockViewController" customModule="BerlinClockPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -446,6 +446,13 @@
                             <constraint firstItem="deu-wG-gvB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="taX-dA-hdm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="seconds" destination="p2c-d8-hcG" id="CLg-hg-AET"/>
+                        <outletCollection property="fiveHourRow" destination="Wjt-ow-Sv4" collectionClass="NSMutableArray" id="0O9-70-nUO"/>
+                        <outletCollection property="singleHourRow" destination="R07-zP-LZg" collectionClass="NSMutableArray" id="WOy-gq-LQW"/>
+                        <outletCollection property="fiveMinuteRow" destination="9vg-aB-JTJ" collectionClass="NSMutableArray" id="omI-dV-Qh9"/>
+                        <outletCollection property="singleMinuteRow" destination="ys8-qd-0G0" collectionClass="NSMutableArray" id="CI4-kJ-jV5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
