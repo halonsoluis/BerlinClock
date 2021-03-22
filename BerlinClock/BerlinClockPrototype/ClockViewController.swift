@@ -10,22 +10,30 @@ import UIKit
 
 open class Lamp: UIView {
     func turnOn() {
-        backgroundColor = .black
+        DispatchQueue.main.async {
+            self.backgroundColor = .black
+        }
     }
 
     func turnOff() {
-        backgroundColor = .black
+        DispatchQueue.main.async {
+            self.backgroundColor = .black
+        }
     }
 }
 
 final class YellowLamp: Lamp {
 
     override func turnOn()  {
-        backgroundColor = .yellow
+        DispatchQueue.main.async {
+            self.backgroundColor = .yellow
+        }
     }
 
     override func turnOff() {
-        backgroundColor = .darkGray
+        DispatchQueue.main.async {
+            self.backgroundColor = .darkGray
+        }
     }
 }
 
@@ -48,6 +56,8 @@ final class ClockViewController: UIViewController {
 
     @IBOutlet var fiveMinuteRow: [Lamp]!
     @IBOutlet var singleMinuteRow: [Lamp]!
+
+    var ticker: Timer?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -86,5 +96,83 @@ final class ClockViewController: UIViewController {
             views:  hours + minutes,
             cornerRadius: 10
         )
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        start()
+    }
+
+    func start() {
+        var minute: Int = 0
+        var hour: Int = 0
+        ticker = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] timer in
+            if self.seconds?.backgroundColor == .darkGray {
+                self.seconds?.turnOn()
+            } else {
+                self.seconds?.turnOff()
+            }
+            if minute == 60 {
+                hour = hour.advanced(by: 1)
+                minute = 0
+            }
+
+            if hour == 24 {
+                hour = 0
+            }
+
+
+            if singleMinuteRow.count > minute % 5 {
+                self.singleMinuteRow?[minute % 5].turnOn()
+            } else {
+                self.turnCLockOff(views: self.singleMinuteRow)
+            }
+
+            if minute % 5 == 0 {
+                self.turnCLockOff(views: self.singleMinuteRow)
+            }
+
+            if hour % 5 == 0 {
+                self.turnCLockOff(views: self.singleHourRow)
+            }
+
+            if fiveMinuteRow.count > minute / 5 {
+                self.fiveMinuteRow?[minute / 5].turnOn()
+            } else {
+                self.turnCLockOff(views: self.fiveMinuteRow)
+            }
+
+            if singleHourRow.count > hour % 5 {
+                self.singleHourRow?[hour % 5].turnOn()
+            } else {
+                self.turnCLockOff(views: self.singleHourRow)
+            }
+
+            if fiveHourRow.count > hour / 5 {
+                self.fiveHourRow?[hour / 5].turnOn()
+            } else {
+                self.turnCLockOff(views: self.fiveHourRow)
+            }
+
+            if minute == 0 {
+                self.turnCLockOff(views: self.singleMinuteRow)
+                self.turnCLockOff(views: self.fiveMinuteRow)
+            }
+
+            if hour == 0 {
+                self.turnCLockOff(views: self.singleHourRow)
+                self.turnCLockOff(views: self.fiveHourRow)
+            }
+
+            minute+=1
+        }
+        ticker?.fire()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        ticker?.invalidate()
     }
 }
