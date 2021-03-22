@@ -253,7 +253,7 @@
                                                 <rect key="frame" x="42" y="8" width="24.5" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROl-cH-MKa" userLabel="minute15">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROl-cH-MKa" userLabel="minute15" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="76.5" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
@@ -265,7 +265,7 @@
                                                 <rect key="frame" x="144.5" y="8" width="24.5" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUT-VD-ns8" userLabel="minute30">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUT-VD-ns8" userLabel="minute30" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="179" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
@@ -277,7 +277,7 @@
                                                 <rect key="frame" x="247.5" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMH-uK-cVE" userLabel="minute45">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMH-uK-cVE" userLabel="minute45" customClass="RedLamp" customModule="BerlinClockPrototype" customModuleProvider="target">
                                                 <rect key="frame" x="281.5" y="8" width="24" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                             </view>
