@@ -2,6 +2,10 @@
 
 [![pipeline status](https://github.com/2021-DEV2-012/BerlinClock/workflows/BerlinClockCI/badge.svg)](https://github.com/2021-DEV2-012/BerlinClock/actions)
 [![Swift version](https://img.shields.io/badge/swift-5.3-orange.svg)](https://swift.org/blog/swift-5-3-released/)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=2021-DEV2-012_BerlinClock&metric=ncloc)](https://sonarcloud.io/dashboard?id=2021-DEV2-012_BerlinClock)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=2021-DEV2-012_BerlinClock&metric=code_smells)](https://sonarcloud.io/dashboard?id=2021-DEV2-012_BerlinClock)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=2021-DEV2-012_BerlinClock&metric=bugs)](https://sonarcloud.io/dashboard?id=2021-DEV2-012_BerlinClock)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=2021-DEV2-012_BerlinClock&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=2021-DEV2-012_BerlinClock)
 
 # Berlin Clock (**Mengenlehreclock** or **Berlin Uhr**)
 
