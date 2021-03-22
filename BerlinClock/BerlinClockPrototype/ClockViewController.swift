@@ -8,41 +8,46 @@
 import Foundation
 import UIKit
 
-protocol Lamp: UIView {
-    var onColor: UIColor { get }
-    var offColor: UIColor { get }
-}
-
-extension Lamp {
-
+open class Lamp: UIView {
     func turnOn() {
-        backgroundColor = onColor
+        backgroundColor = .black
     }
 
     func turnOff() {
-        backgroundColor = offColor
+        backgroundColor = .black
     }
 }
 
-final class YellowLamp: UIView, Lamp {
-    let onColor: UIColor = .yellow
-    let offColor: UIColor = .darkGray
+final class YellowLamp: Lamp {
+
+    override func turnOn()  {
+        backgroundColor = .yellow
+    }
+
+    override func turnOff() {
+        backgroundColor = .darkGray
+    }
 }
 
-final class RedLamp: UIView, Lamp {
-    let onColor: UIColor = .red
-    let offColor: UIColor = .darkGray
+final class RedLamp: Lamp {
+    override func turnOn() {
+        backgroundColor = .red
+    }
+
+    override func turnOff() {
+        backgroundColor = .darkGray
+    }
 }
 
 final class ClockViewController: UIViewController {
 
-    @IBOutlet weak var seconds: UIView!
+    @IBOutlet weak var seconds: Lamp!
 
-    @IBOutlet var fiveHourRow: [UIView]!
-    @IBOutlet var singleHourRow: [UIView]!
+    @IBOutlet var fiveHourRow: [Lamp]!
+    @IBOutlet var singleHourRow: [Lamp]!
 
-    @IBOutlet var fiveMinuteRow: [UIView]!
-    @IBOutlet var singleMinuteRow: [UIView]!
+    @IBOutlet var fiveMinuteRow: [Lamp]!
+    @IBOutlet var singleMinuteRow: [Lamp]!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,15 +55,35 @@ final class ClockViewController: UIViewController {
         setupUI()
     }
 
-    private func roundCorners(views: [UIView], cornerRadius: CGFloat) {
+    private func roundCorners(views: [Lamp], cornerRadius: CGFloat) {
         views.forEach { (view) in
             view.layer.cornerRadius = cornerRadius
         }
     }
 
+    private func setTransparency(views: [Lamp], alpha: CGFloat) {
+        views.forEach { (view) in
+            view.alpha = alpha
+        }
+    }
+
+    private func turnCLockOff(views: [Lamp]) {
+        views.forEach { (lamp) in
+            lamp.turnOff()
+        }
+    }
+
     private func setupUI() {
+        let hours: [Lamp] = fiveHourRow + singleHourRow
+        let minutes: [Lamp] = fiveMinuteRow + singleMinuteRow
+        let second: [Lamp] = [seconds]
+
+        setTransparency(views: hours + minutes + second, alpha: 1)
+
+        turnCLockOff(views: hours + minutes + second)
+
         roundCorners(
-            views: fiveHourRow + singleHourRow + fiveMinuteRow + singleMinuteRow,
+            views:  hours + minutes,
             cornerRadius: 10
         )
     }
