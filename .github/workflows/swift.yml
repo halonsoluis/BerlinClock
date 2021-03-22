@@ -1,0 +1,36 @@
+name: Swift
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+
+name: BerlinClockCI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build and Test CI scheme
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        env:
+          scheme: CI_iOS
+          project: BerlinClock/BerlinClock.xcodeproj
+        run: |
+          xcodebuild build-for-testing -scheme "$scheme" -project $project  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO -enableCodeCoverage YES -destination "platform=iOS Simulator,name=iPhone 12"
+      - name: Test
+        env:
+          scheme: CI
+          workspace: Marvel.xcworkspace
+        run: |
+          xcodebuild test-without-building -scheme "$scheme" -project $project CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO -enableCodeCoverage YES -destination "platform=iOS Simulator,name=iPhone 12"
