@@ -8,6 +8,32 @@
 import Foundation
 import UIKit
 
+protocol Lamp: UIView {
+    var onColor: UIColor { get }
+    var offColor: UIColor { get }
+}
+
+extension Lamp {
+
+    func turnOn() {
+        backgroundColor = onColor
+    }
+
+    func turnOff() {
+        backgroundColor = offColor
+    }
+}
+
+final class YellowLamp: UIView, Lamp {
+    let onColor: UIColor = .yellow
+    let offColor: UIColor = .darkGray
+}
+
+final class RedLamp: UIView, Lamp {
+    let onColor: UIColor = .red
+    let offColor: UIColor = .darkGray
+}
+
 final class ClockViewController: UIViewController {
 
     @IBOutlet weak var seconds: UIView!
