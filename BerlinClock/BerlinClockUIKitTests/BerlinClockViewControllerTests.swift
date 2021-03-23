@@ -98,8 +98,6 @@ final class BerlinClockViewControllerTests: XCTestCase {
         XCTAssertEqual(clock.timeCallCount, 1)
     }
 
-
-
     // MARK: - Helpers
 
     class ClockSpy: BerlinClockTimeProvider {
