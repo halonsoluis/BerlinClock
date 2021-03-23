@@ -22,13 +22,19 @@ class BerlinClockMainUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func test_visualForSeconds_isPresent() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        let seconds = XCUIApplication().windows
+            .children(matching: .other)
+            .containing(.other, identifier: "seconds")
+
+        XCTAssertEqual(seconds.count, 1)
     }
 
     func testLaunchPerformance() throws {
