@@ -19,6 +19,12 @@ final class BerlinClockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        clock?.format()
+    }
 }
 
 final class BerlinClockViewControllerTests: XCTestCase {
@@ -39,9 +45,22 @@ final class BerlinClockViewControllerTests: XCTestCase {
         XCTAssertEqual(clock.formatCallCount, 0)
     }
 
+    func test_viewDidAppear_startTheClock() {
+        let clock = ClockSpy()
+        let sut = BerlinClockViewController(clock: clock)
+
+        sut.viewDidAppear(false)
+
+        XCTAssertEqual(clock.formatCallCount, 1)
+    }
+
     // MARK: - Helpers
 
     class ClockSpy {
         private (set) var formatCallCount: Int = 0
+
+        func format() {
+            formatCallCount += 1
+        }
     }
 }
