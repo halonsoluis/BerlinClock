@@ -67,7 +67,7 @@ final class BerlinClockViewModelTests: XCTestCase {
         sut.updateTime(timer: Timer())
 
         let red = RGBA(red: 1.0, green: 0, blue: 0, alpha: 1.0)
-        let yellow = RGBA(red: 0, green: 1.0, blue: 1.0, alpha: 1.0)
+        let yellow = RGBA(red: 245/255, green: 229/255, blue: 27/255, alpha: 1)
         let darkGray = RGBA(red: 0, green: 0, blue: 0, alpha: 0.65)
 
         let expectedColors: [RGBA] = [red, red, yellow, darkGray]
