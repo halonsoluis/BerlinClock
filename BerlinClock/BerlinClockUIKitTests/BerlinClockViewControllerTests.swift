@@ -11,6 +11,7 @@ import BerlinClock
 
 final class BerlinClockViewController: UIViewController {
     private var clock: BerlinClockTimeProvider?
+    var lamps: [UIView]?
 
     convenience init(clock: BerlinClockTimeProvider) {
         self.init()
@@ -19,6 +20,8 @@ final class BerlinClockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        lamps = Array(repeating: UIView(), count: 24)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +48,16 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
         XCTAssertEqual(clock.timeCallCount, 0)
     }
+
+    func test_viewDidLoad_preparesTheLamps() {
+        let clock = ClockSpy()
+        let sut = BerlinClockViewController(clock: clock)
+
+        sut.loadViewIfNeeded()
+
+        XCTAssertEqual(sut.lamps?.count, 24)
+    }
+
 
     func test_viewDidAppear_startTheClock() {
         let clock = ClockSpy()
