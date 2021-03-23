@@ -7,11 +7,12 @@
 
 import XCTest
 import UIKit
+import BerlinClock
 
 final class BerlinClockViewController: UIViewController {
-    private var clock: BerlinClockViewControllerTests.ClockSpy?
+    private var clock: BerlinClockTimeProvider?
 
-    convenience init(clock: BerlinClockViewControllerTests.ClockSpy) {
+    convenience init(clock: BerlinClockTimeProvider) {
         self.init()
         self.clock = clock
     }
@@ -23,7 +24,7 @@ final class BerlinClockViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        clock?.format()
+        _ = clock?.time(for: Date())
     }
 }
 
@@ -33,7 +34,7 @@ final class BerlinClockViewControllerTests: XCTestCase {
         let clock = ClockSpy()
         _ = BerlinClockViewController(clock: clock)
 
-        XCTAssertEqual(clock.formatCallCount, 0)
+        XCTAssertEqual(clock.timeCallCount, 0)
     }
 
     func test_viewDidLoad_doesNotStartTheClock() {
@@ -42,7 +43,7 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
         sut.loadViewIfNeeded()
 
-        XCTAssertEqual(clock.formatCallCount, 0)
+        XCTAssertEqual(clock.timeCallCount, 0)
     }
 
     func test_viewDidAppear_startTheClock() {
@@ -51,16 +52,17 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
         sut.viewDidAppear(false)
 
-        XCTAssertEqual(clock.formatCallCount, 1)
+        XCTAssertEqual(clock.timeCallCount, 1)
     }
 
     // MARK: - Helpers
 
-    class ClockSpy {
-        private (set) var formatCallCount: Int = 0
+    class ClockSpy: BerlinClockTimeProvider {
+        private (set) var timeCallCount: Int = 0
 
-        func format() {
-            formatCallCount += 1
+        func time(for date: Date) -> String {
+            timeCallCount += 1
+            return ""
         }
     }
 }
