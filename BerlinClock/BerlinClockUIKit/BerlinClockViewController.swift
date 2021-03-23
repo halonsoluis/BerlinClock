@@ -14,17 +14,11 @@ protocol ClockPresenter: class {
 
 final class BerlinClockViewController: UIViewController {
     private var interactor: BerlinClockInteractor?
-    var lamps: [UIView]?
+    @IBOutlet var lamps: [UIView]? = Array(repeating: UIView(), count: 24)
 
     convenience init(interactor: BerlinClockInteractor) {
         self.init()
         self.interactor = interactor
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        lamps = Array(repeating: UIView(), count: 24)
     }
 
     override func viewDidAppear(_ animated: Bool) {
