@@ -14,7 +14,7 @@ final class BerlinClockViewModelTests: XCTestCase {
         let (sut, clock, _) = createSut()
 
         XCTAssertNil(sut.ticker)
-        XCTAssertEqual(clock.timeCallCount, 0)
+        XCTAssertEqual(clock.invokedTimeWithArguments.count, 0)
     }
 
     func test_start_startsTheClock() {
@@ -23,7 +23,7 @@ final class BerlinClockViewModelTests: XCTestCase {
         sut.start()
 
         XCTAssertNotNil(sut.ticker)
-        XCTAssertEqual(clock.timeCallCount, 0)
+        XCTAssertEqual(clock.invokedTimeWithArguments.count, 0)
         XCTAssertTrue(sut.ticker!.isValid)
     }
 
@@ -41,7 +41,7 @@ final class BerlinClockViewModelTests: XCTestCase {
 
         sut.updateTime(timer: Timer())
 
-        XCTAssertEqual(clock.timeCallCount, 1)
+        XCTAssertEqual(clock.invokedTimeWithArguments.count, 1)
     }
 
     func test_updateTime_attemptsToInvokeAnUIUpdate() {
@@ -65,11 +65,11 @@ final class BerlinClockViewModelTests: XCTestCase {
     }
 
     class ClockSpy: BerlinClockTimeProvider {
-        private (set) var timeCallCount: Int = 0
-
+        var invokedTimeWithArguments: [Date] = []
+        var stubbedUHRTime: String = "YR0"
         func time(for date: Date) -> String {
-            timeCallCount += 1
-            return ""
+            invokedTimeWithArguments.append(date)
+            return stubbedUHRTime
         }
     }
 
