@@ -19,7 +19,7 @@ public final class BerlinClockViewModel {
     private let clock: BerlinClockTimeProvider
     private let dateProvider: () -> Date
 
-    public weak var presenter: ClockPresenter?
+    public var presenter: ClockPresenter?
     var ticker: Timer?
 
     public init(clock: BerlinClockTimeProvider, dateProvider: @escaping () -> Date = { Date() }) {
