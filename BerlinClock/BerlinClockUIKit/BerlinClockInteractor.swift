@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol BerlinClockInteractor {
+public protocol BerlinClockInteractor {
     func start()
     func stop()
 }

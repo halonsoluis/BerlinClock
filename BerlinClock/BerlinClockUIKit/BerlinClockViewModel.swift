@@ -8,21 +8,21 @@
 import Foundation
 import BerlinClock
 
-struct RGBA: Equatable {
+public struct RGBA: Equatable {
     let red: Float
     let green: Float
     let blue: Float
     let alpha: Float
 }
 
-final class BerlinClockViewModel {
+public final class BerlinClockViewModel {
     private let clock: BerlinClockTimeProvider
     private let dateProvider: () -> Date
 
-    weak var presenter: ClockPresenter?
+    public weak var presenter: ClockPresenter?
     var ticker: Timer?
 
-    init(clock: BerlinClockTimeProvider, dateProvider: @escaping () -> Date = { Date() }) {
+    public init(clock: BerlinClockTimeProvider, dateProvider: @escaping () -> Date = { Date() }) {
         self.clock = clock
         self.dateProvider = dateProvider
     }
@@ -43,11 +43,11 @@ final class BerlinClockViewModel {
 }
 
 extension BerlinClockViewModel: BerlinClockInteractor {
-    func start() {
+    public func start() {
         ticker = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: updateTime)
     }
 
-    func stop() {
+    public func stop() {
         ticker?.invalidate()
     }
 }
