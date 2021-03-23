@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,10 @@
 		5B3D14A3260951F200562332 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14A2260951F200562332 /* ClockViewController.swift */; };
 		5B3D14AB2609681F00562332 /* BerlinClockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14AA2609681F00562332 /* BerlinClockViewControllerTests.swift */; };
 		5B3D14B72609747F00562332 /* BerlinClockViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14B62609747F00562332 /* BerlinClockViewModelTests.swift */; };
+		5B3D14C326097B4300562332 /* BerlinClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14C226097B4300562332 /* BerlinClockViewController.swift */; };
+		5B3D14D826097BA500562332 /* BerlinClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3D127F2606BE0E00562332 /* BerlinClock.framework */; platformFilter = ios; };
+		5B3D14D926097BA500562332 /* BerlinClock.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3D127F2606BE0E00562332 /* BerlinClock.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B3D14E226097C1C00562332 /* BerlinClockInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14E126097C1C00562332 /* BerlinClockInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +49,28 @@
 			remoteGlobalIDString = 5B3D14102609256500562332;
 			remoteInfo = BerlinClockUIKit;
 		};
+		5B3D14DA26097BA500562332 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B3D12762606BE0E00562332 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B3D127E2606BE0E00562332;
+			remoteInfo = BerlinClock;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5B3D14DC26097BA500562332 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5B3D14D926097BA500562332 /* BerlinClock.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5B3D127F2606BE0E00562332 /* BerlinClock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BerlinClock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +104,8 @@
 		5B3D14A92609681E00562332 /* BerlinClockUIKitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BerlinClockUIKitTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		5B3D14AA2609681F00562332 /* BerlinClockViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockViewControllerTests.swift; sourceTree = "<group>"; };
 		5B3D14B62609747F00562332 /* BerlinClockViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockViewModelTests.swift; sourceTree = "<group>"; };
+		5B3D14C226097B4300562332 /* BerlinClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockViewController.swift; sourceTree = "<group>"; };
+		5B3D14E126097C1C00562332 /* BerlinClockInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3D14D826097BA500562332 /* BerlinClock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				5B3D14142609256500562332 /* Info.plist */,
+				5B3D14C226097B4300562332 /* BerlinClockViewController.swift */,
+				5B3D14E126097C1C00562332 /* BerlinClockInteractor.swift */,
 			);
 			path = BerlinClockUIKit;
 			sourceTree = "<group>";
@@ -304,10 +334,12 @@
 				5B3D140D2609256500562332 /* Sources */,
 				5B3D140E2609256500562332 /* Frameworks */,
 				5B3D140F2609256500562332 /* Resources */,
+				5B3D14DC26097BA500562332 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5B3D14DB26097BA500562332 /* PBXTargetDependency */,
 			);
 			name = BerlinClockUIKit;
 			productName = BerlinClockUIKit;
@@ -367,6 +399,7 @@
 					};
 					5B3D14102609256500562332 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					5B3D14182609256500562332 = {
 						CreatedOnToolsVersion = 12.4;
@@ -469,6 +502,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3D14C326097B4300562332 /* BerlinClockViewController.swift in Sources */,
+				5B3D14E226097C1C00562332 /* BerlinClockInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +538,12 @@
 			isa = PBXTargetDependency;
 			target = 5B3D14102609256500562332 /* BerlinClockUIKit */;
 			targetProxy = 5B3D141B2609256500562332 /* PBXContainerItemProxy */;
+		};
+		5B3D14DB26097BA500562332 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 5B3D127E2606BE0E00562332 /* BerlinClock */;
+			targetProxy = 5B3D14DA26097BA500562332 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -578,6 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -636,6 +678,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -739,6 +782,7 @@
 		5B3D14222609256500562332 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -760,6 +804,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -768,6 +813,7 @@
 		5B3D14232609256500562332 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -798,6 +844,7 @@
 		5B3D14242609256500562332 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BerlinClockUIKitTests/Info.plist;
@@ -820,6 +867,7 @@
 		5B3D14252609256500562332 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BerlinClockUIKitTests/Info.plist;
