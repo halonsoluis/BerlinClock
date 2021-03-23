@@ -66,7 +66,11 @@ final class BerlinClockViewModelTests: XCTestCase {
         clock.stubbedUHRTime = "RRY0"
         sut.updateTime(timer: Timer())
 
-        let expectedColors: [UIColor] = [UIColor.red, UIColor.red, UIColor.yellow, UIColor.darkGray]
+        let red = RGBA(red: 1.0, green: 0, blue: 0, alpha: 1.0)
+        let yellow = RGBA(red: 0, green: 1.0, blue: 1.0, alpha: 1.0)
+        let darkGray = RGBA(red: 0, green: 0, blue: 0, alpha: 0.65)
+
+        let expectedColors: [RGBA] = [red, red, yellow, darkGray]
         XCTAssertEqual(presenter.invokedSetLampsColorWithArguments.first, expectedColors)
     }
 
@@ -93,8 +97,8 @@ final class BerlinClockViewModelTests: XCTestCase {
 
     class PresenterSpy: ClockPresenter {
 
-        var invokedSetLampsColorWithArguments: [[UIColor]] = []
-        func setLampsColor(colors: [UIColor]) {
+        var invokedSetLampsColorWithArguments: [[RGBA]] = []
+        func setLampsColor(colors: [RGBA]) {
             invokedSetLampsColorWithArguments.append(colors)
         }
 

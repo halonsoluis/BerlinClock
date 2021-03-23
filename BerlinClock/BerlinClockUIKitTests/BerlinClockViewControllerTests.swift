@@ -39,7 +39,7 @@ final class BerlinClockViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
 
         let lampColors = Array(repeating: UIColor.red, count: 24)
-        sut.setLampsColor(colors: Array(repeating: UIColor.red, count: 24))
+        sut.setLampsColor(colors: Array(repeating: RGBA(red: 1, green: 0, blue: 0, alpha: 1), count: 24))
 
         XCTAssertEqual(sut.lamps?.compactMap { $0.backgroundColor }, lampColors)
     }
