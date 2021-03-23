@@ -9,6 +9,10 @@ import XCTest
 import UIKit
 import BerlinClock
 
+protocol ClockPresenter {
+    func setLampsColor(colors: [UIColor])
+}
+
 final class BerlinClockViewController: UIViewController {
     private var clock: BerlinClockTimeProvider?
     var lamps: [UIView]?
@@ -28,6 +32,19 @@ final class BerlinClockViewController: UIViewController {
         super.viewDidAppear(animated)
 
         _ = clock?.time(for: Date())
+    }
+}
+
+extension BerlinClockViewController: ClockPresenter {
+    func setLampsColor(colors: [UIColor]) {
+
+        guard let lamps = lamps else {
+            return
+        }
+
+        zip(colors, lamps).forEach { (color, lamp) in
+            lamp.backgroundColor = color
+        }
     }
 }
 
@@ -58,6 +75,19 @@ final class BerlinClockViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.lamps?.count, 24)
     }
 
+    func test_setLigthsColor_applyColorToTheLamps() {
+        let clock = ClockSpy()
+        let sut = BerlinClockViewController(clock: clock)
+
+        sut.loadViewIfNeeded()
+
+
+        let lampColors = Array(repeating: UIColor.red, count: 24)
+        sut.setLampsColor(colors: Array(repeating: UIColor.red, count: 24))
+
+        XCTAssertEqual(sut.lamps?.compactMap { $0.backgroundColor }, lampColors)
+    }
+
 
     func test_viewDidAppear_startTheClock() {
         let clock = ClockSpy()
@@ -67,6 +97,8 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
         XCTAssertEqual(clock.timeCallCount, 1)
     }
+
+
 
     // MARK: - Helpers
 
