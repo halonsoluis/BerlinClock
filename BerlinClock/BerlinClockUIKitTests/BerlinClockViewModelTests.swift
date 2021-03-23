@@ -62,25 +62,39 @@ final class BerlinClockViewModelTests: XCTestCase {
     }
 
     func test_updateTime_parsesTheStringIntoColors() {
-        let (sut, clock, presenter) = createSut()
+        let colorMapper = ColorMapperSpy()
+        let returnedColor: RGBA = colorMapper.returnedMap
+        let (sut, clock, presenter) = createSut(colorMapper: colorMapper)
         clock.stubbedUHRTime = "RRY0"
+
         sut.updateTime(timer: Timer())
 
-        let red = RGBA(red: 1.0, green: 0, blue: 0, alpha: 1.0)
-        let yellow = RGBA(red: 0, green: 1.0, blue: 1.0, alpha: 1.0)
-        let darkGray = RGBA(red: 0, green: 0, blue: 0, alpha: 0.65)
+//        let red = RGBA(red: 1.0, green: 0, blue: 0, alpha: 1.0)
+//        let yellow = RGBA(red: 245/255, green: 229/255, blue: 27/255, alpha: 1)
+//        let darkGray = RGBA(red: 0, green: 0, blue: 0, alpha: 0.65)
 
-        let expectedColors: [RGBA] = [red, red, yellow, darkGray]
+        let expectedColors: [RGBA] = [returnedColor, returnedColor, returnedColor, returnedColor]
         XCTAssertEqual(presenter.invokedSetLampsColorWithArguments.first, expectedColors)
+    }
+
+    func test_updateTime_invokesTheColorMapperMapFunction() {
+        let colorMapperSpy = ColorMapperSpy()
+        let (sut, clock, _) = createSut(colorMapper: colorMapperSpy)
+        clock.stubbedUHRTime = "RRY0"
+
+        sut.updateTime(timer: Timer())
+
+        XCTAssertEqual(colorMapperSpy.invokedMapWithArguments.count, clock.stubbedUHRTime.count)
     }
 
     // MARK: - Helpers
 
-    func createSut(returnedDate: Date = Date()) -> (BerlinClockViewModel, ClockSpy, PresenterSpy) {
+    func createSut(returnedDate: Date = Date(), colorMapper: ColorMapperSpy = ColorMapperSpy()) -> (BerlinClockViewModel, ClockSpy, PresenterSpy) {
         let clock = ClockSpy()
         let presenter = PresenterSpy()
         let dateProvider = { returnedDate }
-        let sut = BerlinClockViewModel(clock: clock, dateProvider: dateProvider)
+
+        let sut = BerlinClockViewModel(clock: clock, dateProvider: dateProvider, colorMapper: colorMapper.map)
         sut.presenter = presenter
 
         return (sut, clock, presenter)
@@ -101,12 +115,14 @@ final class BerlinClockViewModelTests: XCTestCase {
         func setLampsColor(colors: [RGBA]) {
             invokedSetLampsColorWithArguments.append(colors)
         }
+    }
 
-        private (set) var timeCallCount: Int = 0
-
-        func time(for date: Date) -> String {
-            timeCallCount += 1
-            return ""
+    class ColorMapperSpy {
+        var returnedMap = RGBA(red: 1, green: 1, blue: 1, alpha: 1)
+        var invokedMapWithArguments: [String] = []
+        func map(color: String) -> RGBA {
+            invokedMapWithArguments.append(color)
+            return returnedMap
         }
     }
 }

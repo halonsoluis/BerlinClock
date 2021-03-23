@@ -8,40 +8,39 @@
 import UIKit
 import BerlinClock
 
-protocol ClockPresenter: class {
+public protocol ClockPresenter: class {
     func setLampsColor(colors: [RGBA])
 }
 
-final class BerlinClockViewController: UIViewController {
+public final class BerlinClockViewController: UIViewController {
     private var interactor: BerlinClockInteractor?
-    var lamps: [UIView]?
+    @IBOutlet var lamps: [UIView]? = Array(repeating: UIView(), count: 24)
 
-    convenience init(interactor: BerlinClockInteractor) {
-        self.init()
+    public func connect(interactor: BerlinClockInteractor) {
         self.interactor = interactor
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        lamps = Array(repeating: UIView(), count: 24)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         interactor?.start()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         interactor?.stop()
     }
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+
+        style()
+    }
 }
 
 extension BerlinClockViewController: ClockPresenter {
-    func setLampsColor(colors: [RGBA]) {
+    public func setLampsColor(colors: [RGBA]) {
 
         guard let lamps = lamps else {
             return
@@ -49,8 +48,27 @@ extension BerlinClockViewController: ClockPresenter {
 
         let uiColors = colors.map { $0.uiColor() }
 
-        zip(uiColors, lamps).forEach { (color, lamp) in
+        colorize(colors: uiColors, lamps: lamps)
+    }
+
+    private func colorize(colors: [UIColor], lamps: [UIView]) {
+        zip(colors, lamps).forEach { (color, lamp) in
             lamp.backgroundColor = color
+        }
+    }
+}
+
+extension BerlinClockViewController {
+    private func style() {
+        guard let allButSeconds: ArraySlice<UIView> = lamps?.dropFirst() else {
+            return
+        }
+        roundCorners(views: Array(allButSeconds), cornerRadius: 10)
+    }
+
+    private func roundCorners(views: [UIView], cornerRadius: CGFloat) {
+        views.forEach { (view) in
+            view.layer.cornerRadius = cornerRadius
         }
     }
 }
@@ -65,4 +83,3 @@ extension RGBA {
         )
     }
 }
-
