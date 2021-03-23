@@ -13,6 +13,13 @@ public struct RGBA: Equatable {
     let green: Float
     let blue: Float
     let alpha: Float
+
+    public init(red: Float, green: Float, blue: Float, alpha: Float = 1) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.alpha = alpha
+    }
 }
 
 public final class BerlinClockViewModel {
@@ -30,16 +37,11 @@ public final class BerlinClockViewModel {
     }
 
     @objc func updateTime(timer: Timer) {
-        let formattedTime = clock.time(for: dateProvider())
 
-        let colors: [RGBA] = formattedTime.compactMap {
-            switch $0 {
-            case "Y": return RGBA(red: 245/255, green: 229/255, blue: 27/255, alpha: 1)
-            case "R": return RGBA(red: 1, green: 0, blue: 0, alpha: 1)
-            case "0": return RGBA(red: 0, green: 0, blue: 0, alpha: 0.65)
-            default: return nil
-            }
-        }
+        let colors = clock.time(for: dateProvider())
+            .map(String.init)
+            .map(colorMapper)
+
         presenter?.setLampsColor(colors: colors)
     }
 }
