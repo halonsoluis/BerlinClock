@@ -65,7 +65,8 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
     func createSut() -> (BerlinClockViewController, BerlinClockInteractorSpy) {
         let interactor = BerlinClockInteractorSpy()
-        let sut = BerlinClockViewController(interactor: interactor)
+        let sut = BerlinClockViewController()
+        sut.connect(interactor: interactor)
 
         return (sut, interactor)
     }
