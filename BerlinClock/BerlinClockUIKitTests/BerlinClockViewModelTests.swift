@@ -34,15 +34,13 @@ extension BerlinClockViewModel: BerlinClockInteractor {
 final class BerlinClockViewModelTests: XCTestCase {
    
     func test_init_doesNotStartTheClock() {
-        let clock = ClockSpy()
-        _ = BerlinClockViewModel(clock: clock)
+        let (_, clock) = createSut()
 
         XCTAssertEqual(clock.timeCallCount, 0)
     }
 
     func test_start_startsTheClock() {
-        let clock = ClockSpy()
-        let sut = BerlinClockViewModel(clock: clock)
+        let (sut, clock) = createSut()
 
         sut.start()
 
@@ -50,6 +48,13 @@ final class BerlinClockViewModelTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    func createSut() -> (BerlinClockViewModel, ClockSpy) {
+        let clock = ClockSpy()
+        let sut = BerlinClockViewModel(clock: clock)
+
+        return (sut, clock)
+    }
 
     class ClockSpy: BerlinClockTimeProvider {
         private (set) var timeCallCount: Int = 0
