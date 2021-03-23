@@ -54,10 +54,11 @@ final class BerlinClockViewModelTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func createSut() -> (BerlinClockViewModel, ClockSpy, PresenterSpy) {
+    func createSut(returnedDate: Date = Date()) -> (BerlinClockViewModel, ClockSpy, PresenterSpy) {
         let clock = ClockSpy()
         let presenter = PresenterSpy()
-        let sut = BerlinClockViewModel(clock: clock)
+        let dateProvider = { returnedDate }
+        let sut = BerlinClockViewModel(clock: clock, dateProvider: dateProvider)
         sut.presenter = presenter
 
         return (sut, clock, presenter)
