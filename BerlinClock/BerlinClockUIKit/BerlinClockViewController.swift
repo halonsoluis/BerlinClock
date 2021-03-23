@@ -52,9 +52,26 @@ extension BerlinClockViewController: ClockPresenter {
     }
 
     private func colorize(colors: [UIColor], lamps: [UIView]) {
-        zip(colors, lamps).forEach { (color, lamp) in
-            lamp.backgroundColor = color
-        }
+        zip(colors, lamps).forEach(generateGradient)
+    }
+
+    private func generateGradient(for color: UIColor, on view: UIView) {
+        view.layer.sublayers?.removeAll(where: { $0 is CAGradientLayer })
+
+        let gradient = CAGradientLayer()
+        gradient.type = .radial
+        gradient.colors = [ UIColor.white.withAlphaComponent(0.9).cgColor, color.cgColor]
+        gradient.locations = [ 0, 1 ]
+        gradient.opacity = 1
+
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+
+        gradient.frame = view.bounds
+
+        view.layer.insertSublayer(gradient, at: 0)
+        view.layoutIfNeeded()
+        view.clipsToBounds = true
     }
 }
 
