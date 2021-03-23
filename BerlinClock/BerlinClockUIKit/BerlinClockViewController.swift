@@ -31,6 +31,12 @@ public final class BerlinClockViewController: UIViewController {
 
         interactor?.stop()
     }
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+
+        style()
+    }
 }
 
 extension BerlinClockViewController: ClockPresenter {
@@ -48,6 +54,21 @@ extension BerlinClockViewController: ClockPresenter {
     }
 }
 
+extension BerlinClockViewController {
+    func style() {
+        guard let allButSeconds: ArraySlice<UIView> = lamps?.dropFirst() else {
+            return
+        }
+        roundCorners(views: Array(allButSeconds), cornerRadius: 10)
+    }
+
+    private func roundCorners(views: [UIView], cornerRadius: CGFloat) {
+        views.forEach { (view) in
+            view.layer.cornerRadius = cornerRadius
+        }
+    }
+}
+
 extension RGBA {
     func uiColor() -> UIColor {
         UIColor.init(
@@ -58,4 +79,3 @@ extension RGBA {
         )
     }
 }
-
