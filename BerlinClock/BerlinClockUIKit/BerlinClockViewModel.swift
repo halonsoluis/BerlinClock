@@ -18,6 +18,7 @@ final class BerlinClockViewModel {
 
     @objc func updateTime(timer: Timer) {
         _ = clock.time(for: Date())
+        presenter?.setLampsColor(colors: [])
     }
 }
 

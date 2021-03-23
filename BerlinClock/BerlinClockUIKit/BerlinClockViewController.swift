@@ -8,7 +8,7 @@
 import UIKit
 import BerlinClock
 
-protocol ClockPresenter {
+protocol ClockPresenter: class {
     func setLampsColor(colors: [UIColor])
 }
 
