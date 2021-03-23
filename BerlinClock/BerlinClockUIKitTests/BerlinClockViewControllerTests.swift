@@ -14,12 +14,12 @@ protocol ClockPresenter {
 }
 
 final class BerlinClockViewController: UIViewController {
-    private var clock: BerlinClockTimeProvider?
+    private var interactor: BerlinClockInteractor?
     var lamps: [UIView]?
 
-    convenience init(clock: BerlinClockTimeProvider) {
+    convenience init(interactor: BerlinClockInteractor) {
         self.init()
-        self.clock = clock
+        self.interactor = interactor
     }
 
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ final class BerlinClockViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        _ = clock?.time(for: Date())
+        interactor?.start()
     }
 }
 
@@ -51,24 +51,24 @@ extension BerlinClockViewController: ClockPresenter {
 final class BerlinClockViewControllerTests: XCTestCase {
 
     func test_init_doesNotStartTheClock() {
-        let clock = ClockSpy()
-        _ = BerlinClockViewController(clock: clock)
+        let interactor = BerlinClockInteractorSpy()
+        _ = BerlinClockViewController(interactor: interactor)
 
-        XCTAssertEqual(clock.timeCallCount, 0)
+        XCTAssertEqual(interactor.startCallCount, 0)
     }
 
     func test_viewDidLoad_doesNotStartTheClock() {
-        let clock = ClockSpy()
-        let sut = BerlinClockViewController(clock: clock)
+        let interactor = BerlinClockInteractorSpy()
+        let sut = BerlinClockViewController(interactor: interactor)
 
         sut.loadViewIfNeeded()
 
-        XCTAssertEqual(clock.timeCallCount, 0)
+        XCTAssertEqual(interactor.startCallCount, 0)
     }
 
     func test_viewDidLoad_preparesTheLamps() {
-        let clock = ClockSpy()
-        let sut = BerlinClockViewController(clock: clock)
+        let interactor = BerlinClockInteractorSpy()
+        let sut = BerlinClockViewController(interactor: interactor)
 
         sut.loadViewIfNeeded()
 
@@ -76,8 +76,8 @@ final class BerlinClockViewControllerTests: XCTestCase {
     }
 
     func test_setLigthsColor_applyColorToTheLamps() {
-        let clock = ClockSpy()
-        let sut = BerlinClockViewController(clock: clock)
+        let interactor = BerlinClockInteractorSpy()
+        let sut = BerlinClockViewController(interactor: interactor)
 
         sut.loadViewIfNeeded()
 
@@ -90,22 +90,25 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
 
     func test_viewDidAppear_startTheClock() {
-        let clock = ClockSpy()
-        let sut = BerlinClockViewController(clock: clock)
+        let interactor = BerlinClockInteractorSpy()
+        let sut = BerlinClockViewController(interactor: interactor)
 
         sut.viewDidAppear(false)
 
-        XCTAssertEqual(clock.timeCallCount, 1)
+        XCTAssertEqual(interactor.startCallCount, 1)
     }
 
     // MARK: - Helpers
 
-    class ClockSpy: BerlinClockTimeProvider {
-        private (set) var timeCallCount: Int = 0
+    class BerlinClockInteractorSpy: BerlinClockInteractor {
+        private (set) var startCallCount: Int = 0
+        private (set) var stopCallCount: Int = 0
 
-        func time(for date: Date) -> String {
-            timeCallCount += 1
-            return ""
+        func start() {
+            startCallCount += 1
+        }
+        func stop() {
+            stopCallCount += 1
         }
     }
 }
