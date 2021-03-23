@@ -33,6 +33,12 @@ final class BerlinClockViewController: UIViewController {
 
         interactor?.start()
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        interactor?.stop()
+    }
 }
 
 extension BerlinClockViewController: ClockPresenter {
@@ -90,6 +96,14 @@ final class BerlinClockViewControllerTests: XCTestCase {
         sut.viewDidAppear(false)
 
         XCTAssertEqual(interactor.startCallCount, 1)
+    }
+
+    func test_viewWillDisappear_stopsTheClock() {
+        let (sut, interactor) = createSut()
+
+        sut.viewWillDisappear(false)
+
+        XCTAssertEqual(interactor.stopCallCount, 1)
     }
 
     // MARK: - Helpers
