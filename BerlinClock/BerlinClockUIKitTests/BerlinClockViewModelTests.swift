@@ -101,12 +101,5 @@ final class BerlinClockViewModelTests: XCTestCase {
         func setLampsColor(colors: [RGBA]) {
             invokedSetLampsColorWithArguments.append(colors)
         }
-
-        private (set) var timeCallCount: Int = 0
-
-        func time(for date: Date) -> String {
-            timeCallCount += 1
-            return ""
-        }
     }
 }
