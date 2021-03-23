@@ -28,7 +28,7 @@ extension BerlinClockViewModel: BerlinClockInteractor {
     }
 
     func stop() {
-        
+        ticker?.invalidate()
     }
 }
 
@@ -48,6 +48,16 @@ final class BerlinClockViewModelTests: XCTestCase {
 
         XCTAssertNotNil(sut.ticker)
         XCTAssertEqual(clock.timeCallCount, 0)
+        XCTAssertTrue(sut.ticker!.isValid)
+    }
+
+    func test_stop_stopsTheClock() {
+        let (sut, _) = createSut()
+
+        sut.start()
+        sut.stop()
+
+        XCTAssertFalse(sut.ticker!.isValid)
     }
 
     // MARK: - Helpers
