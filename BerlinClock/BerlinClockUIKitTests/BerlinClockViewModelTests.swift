@@ -61,6 +61,15 @@ final class BerlinClockViewModelTests: XCTestCase {
         XCTAssertEqual(clock.invokedTimeWithArguments.first, date)
     }
 
+    func test_updateTime_parsesTheStringIntoColors() {
+        let (sut, clock, presenter) = createSut()
+        clock.stubbedUHRTime = "RRY0"
+        sut.updateTime(timer: Timer())
+
+        let expectedColors: [UIColor] = [UIColor.red, UIColor.red, UIColor.yellow, UIColor.darkGray]
+        XCTAssertEqual(presenter.invokedSetLampsColorWithArguments.first, expectedColors)
+    }
+
     // MARK: - Helpers
 
     func createSut(returnedDate: Date = Date()) -> (BerlinClockViewModel, ClockSpy, PresenterSpy) {
