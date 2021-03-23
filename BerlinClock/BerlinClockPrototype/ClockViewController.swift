@@ -9,33 +9,48 @@ import Foundation
 import UIKit
 
 open class Lamp: UIView {
+    func mainColor() -> UIColor {
+        .darkGray
+    }
+
     func turnOn() {
-        self.backgroundColor = .black
+        let gradient = generateGradient(for: mainColor())
+        gradient.frame = self.bounds
+
+        self.layer.insertSublayer(gradient, at: 0)
+        self.layoutIfNeeded()
+        self.clipsToBounds = true
     }
 
     func turnOff() {
-        self.backgroundColor = .black
+        backgroundColor = .darkGray
+        layer.sublayers?.removeAll(where: { $0 is CAGradientLayer })
+    }
+
+    func generateGradient(for color: UIColor) -> CAGradientLayer {
+        let gradient = CAGradientLayer()
+        gradient.type = .radial
+        gradient.colors = [ UIColor.white.cgColor, color.cgColor]
+        gradient.locations = [ 0, 0.7 ]
+        gradient.opacity = 1
+
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        let radius = 1.0
+        gradient.endPoint = CGPoint(x: radius, y: radius)
+
+        return gradient
     }
 }
 
 final class YellowLamp: Lamp {
-
-    override func turnOn()  {
-        self.backgroundColor = .yellow
-    }
-
-    override func turnOff() {
-        self.backgroundColor = .darkGray
+    override func mainColor() -> UIColor {
+        .systemYellow
     }
 }
 
 final class RedLamp: Lamp {
-    override func turnOn() {
-        backgroundColor = .red
-    }
-
-    override func turnOff() {
-        backgroundColor = .darkGray
+    override func mainColor() -> UIColor {
+        .systemRed
     }
 }
 
