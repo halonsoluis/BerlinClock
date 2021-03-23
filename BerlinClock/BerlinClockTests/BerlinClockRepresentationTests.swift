@@ -140,7 +140,7 @@ extension BerlinClockRepresentationTests {
     func createSut() -> (BerlinClockRepresentation, Calendar) {
         let calendar = Calendar.init(identifier: .gregorian)
         
-        let sut = BerlinClockUI(
+        let sut = BerlinClockDateFormatter(
             berlinClock: BerlinClock(calendar: calendar),
             colorSchema: .init(off: "0", seconds: "Y", minutes: "Y", minutesVisualAid: "R", hours: "R")
         )

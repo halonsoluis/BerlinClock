@@ -29,7 +29,7 @@ final class BerlinClockTimeProvidernTests: XCTestCase {
     func createSut() -> (BerlinClockTimeProvider, Calendar) {
         let calendar = Calendar.init(identifier: .gregorian)
         
-        let sut = BerlinClock.create(
+        let sut = BerlinClockFactory.create(
             calendar: calendar,
             colorSchema: .init(off: "0", seconds: "Y", minutes: "Y", minutesVisualAid: "R", hours: "R")
         )

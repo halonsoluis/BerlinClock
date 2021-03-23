@@ -1,5 +1,5 @@
 //
-//  BerlinClockUI+BerlinClockTimeProvider.swift
+//  BerlinClockDateFormatter+BerlinClockTimeProvider.swift
 //  BerlinClock
 //
 //  Created by ***REMOVED*** on 21/03/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension BerlinClockUI: BerlinClockTimeProvider {
+extension BerlinClockDateFormatter: BerlinClockTimeProvider {
     public func time(for date: Date) -> String {
         return [
             secondsLamp(for: date),

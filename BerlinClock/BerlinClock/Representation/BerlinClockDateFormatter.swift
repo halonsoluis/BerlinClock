@@ -1,5 +1,5 @@
 //
-//  BerlinClockUI.swift
+//  BerlinClockDateFormatter.swift
 //  BerlinClock
 //
 //  Created by ***REMOVED*** on 21/03/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class BerlinClockUI: BerlinClockRepresentation {
+final class BerlinClockDateFormatter: BerlinClockRepresentation {
 
     private let colorSchema: ColorSchema
     private let berlinClock: BerlinClock

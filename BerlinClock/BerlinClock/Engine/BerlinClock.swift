@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class BerlinClock {
+final class BerlinClock {
 
     private let calendar: Calendar
     private let berlinClock: BerlinClockEngine
