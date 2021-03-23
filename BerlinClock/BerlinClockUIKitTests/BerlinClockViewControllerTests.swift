@@ -6,12 +6,18 @@
 //
 
 import XCTest
+import UIKit
 
-final class BerlinClockViewController {
-    let clock: BerlinClockViewControllerTests.ClockSpy
+final class BerlinClockViewController: UIViewController {
+    private var clock: BerlinClockViewControllerTests.ClockSpy?
 
-    init(clock: BerlinClockViewControllerTests.ClockSpy) {
+    convenience init(clock: BerlinClockViewControllerTests.ClockSpy) {
+        self.init()
         self.clock = clock
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }
 
@@ -20,6 +26,15 @@ final class BerlinClockViewControllerTests: XCTestCase {
     func test_init_doesNotStartTheClock() {
         let clock = ClockSpy()
         _ = BerlinClockViewController(clock: clock)
+
+        XCTAssertEqual(clock.formatCallCount, 0)
+    }
+
+    func test_viewDidLoad_doesNotStartTheClock() {
+        let clock = ClockSpy()
+        let sut = BerlinClockViewController(clock: clock)
+
+        sut.loadViewIfNeeded()
 
         XCTAssertEqual(clock.formatCallCount, 0)
     }
