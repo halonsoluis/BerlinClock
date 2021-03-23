@@ -12,7 +12,24 @@ import UIKit
 
 final class MainComposer {
 
-    func configureColorHandling() -> (ColorSchema, mapper: (String) -> RGBA) {
+    func start(using window: UIWindow) {
+
+        let (schema, mapper) = configureColorHandling()
+
+        let berlinClock = BerlinClock.create(colorSchema: schema)
+        let interactor = BerlinClockViewModel(clock: berlinClock, colorMapper: mapper)
+
+        guard let clockView = obtainClockView() else {
+            fatalError("ViewController is not the expected")
+        }
+
+        clockView.connect(interactor: interactor)
+        interactor.presenter = ThreadSafeAnimatedClockPresenter(otherPresenter: clockView)
+
+        window.rootViewController = clockView
+    }
+
+    private func configureColorHandling() -> (ColorSchema, mapper: (String) -> RGBA) {
         let colors = (yellow: "Y", red: "R", off: "O")
 
         let colorMap: [String: RGBA] = [
@@ -37,20 +54,8 @@ final class MainComposer {
         return (colorSchema, mapper)
     }
 
-    func start(using window: UIWindow) {
-
-        let (schema, mapper) = configureColorHandling()
-
-        let berlinClock = BerlinClock.create(colorSchema: schema)
-        let interactor = BerlinClockViewModel(clock: berlinClock, colorMapper: mapper)
-
+    private func obtainClockView() -> BerlinClockViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let clockView = storyboard.instantiateViewController(withIdentifier: "Clock") as? BerlinClockViewController else {
-            fatalError("ViewController is not the expected")
-        }
-        clockView.connect(interactor: interactor)
-        interactor.presenter = ThreadSafeAnimatedClockPresenter(otherPresenter: clockView)
-
-        window.rootViewController = clockView
+        return storyboard.instantiateViewController(withIdentifier: "Clock") as? BerlinClockViewController
     }
 }
