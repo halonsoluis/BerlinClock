@@ -47,19 +47,22 @@ extension BerlinClockViewController: ClockPresenter {
             return
         }
 
-        let uiColors: [UIColor] = colors
-            .map { rgba in
-            UIColor.init(
-                red: CGFloat(rgba.red),
-                green: CGFloat(rgba.green),
-                blue: CGFloat(rgba.blue),
-                alpha: CGFloat(rgba.alpha)
-            )
-        }
+        let uiColors = colors.map { $0.uiColor() }
 
         zip(uiColors, lamps).forEach { (color, lamp) in
             lamp.backgroundColor = color
         }
+    }
+}
+
+extension RGBA {
+    func uiColor() -> UIColor {
+        UIColor.init(
+            red: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
+            alpha: CGFloat(alpha)
+        )
     }
 }
 
