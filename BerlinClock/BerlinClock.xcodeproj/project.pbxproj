@@ -26,6 +26,7 @@
 		5B3D1490260941EB00562332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B3D148F260941EB00562332 /* Assets.xcassets */; };
 		5B3D1493260941EB00562332 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B3D1491260941EB00562332 /* LaunchScreen.storyboard */; };
 		5B3D14A3260951F200562332 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14A2260951F200562332 /* ClockViewController.swift */; };
+		5B3D14AB2609681F00562332 /* BerlinClockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14AA2609681F00562332 /* BerlinClockViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		5B3D1492260941EB00562332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B3D1494260941EB00562332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B3D14A2260951F200562332 /* ClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
+		5B3D14A92609681E00562332 /* BerlinClockUIKitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BerlinClockUIKitTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		5B3D14AA2609681F00562332 /* BerlinClockViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				5B3D14202609256500562332 /* Info.plist */,
+				5B3D14AA2609681F00562332 /* BerlinClockViewControllerTests.swift */,
+				5B3D14A92609681E00562332 /* BerlinClockUIKitTests-Bridging-Header.h */,
 			);
 			path = BerlinClockUIKitTests;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 					};
 					5B3D14182609256500562332 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					5B3D1483260941E900562332 = {
 						CreatedOnToolsVersion = 12.4;
@@ -467,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3D14AB2609681F00562332 /* BerlinClockViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +794,7 @@
 		5B3D14242609256500562332 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BerlinClockUIKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -798,6 +806,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = halonso.BerlinClockUIKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "BerlinClockUIKitTests/BerlinClockUIKitTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -806,6 +816,7 @@
 		5B3D14252609256500562332 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BerlinClockUIKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -817,6 +828,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = halonso.BerlinClockUIKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "BerlinClockUIKitTests/BerlinClockUIKitTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
