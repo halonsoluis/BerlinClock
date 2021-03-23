@@ -32,6 +32,7 @@
 		5B3D14D826097BA500562332 /* BerlinClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3D127F2606BE0E00562332 /* BerlinClock.framework */; platformFilter = ios; };
 		5B3D14D926097BA500562332 /* BerlinClock.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3D127F2606BE0E00562332 /* BerlinClock.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B3D14E226097C1C00562332 /* BerlinClockInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14E126097C1C00562332 /* BerlinClockInteractor.swift */; };
+		5B3D14F22609804000562332 /* BerlinClockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D14F12609804000562332 /* BerlinClockViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		5B3D14B62609747F00562332 /* BerlinClockViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockViewModelTests.swift; sourceTree = "<group>"; };
 		5B3D14C226097B4300562332 /* BerlinClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockViewController.swift; sourceTree = "<group>"; };
 		5B3D14E126097C1C00562332 /* BerlinClockInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockInteractor.swift; sourceTree = "<group>"; };
+		5B3D14F12609804000562332 /* BerlinClockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 				5B3D14142609256500562332 /* Info.plist */,
 				5B3D14C226097B4300562332 /* BerlinClockViewController.swift */,
 				5B3D14E126097C1C00562332 /* BerlinClockInteractor.swift */,
+				5B3D14F12609804000562332 /* BerlinClockViewModel.swift */,
 			);
 			path = BerlinClockUIKit;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B3D14C326097B4300562332 /* BerlinClockViewController.swift in Sources */,
+				5B3D14F22609804000562332 /* BerlinClockViewModel.swift in Sources */,
 				5B3D14E226097C1C00562332 /* BerlinClockInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
