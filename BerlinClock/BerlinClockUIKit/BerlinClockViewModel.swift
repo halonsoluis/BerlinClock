@@ -29,10 +29,10 @@ public final class BerlinClockViewModel {
 
     @objc func updateTime(timer: Timer) {
         let formattedTime = clock.time(for: dateProvider())
-
+        
         let colors: [RGBA] = formattedTime.compactMap {
             switch $0 {
-            case "Y": return RGBA(red: 0, green: 1, blue: 1, alpha: 1)
+            case "Y": return RGBA(red: 245/255, green: 229/255, blue: 27/255, alpha: 1)
             case "R": return RGBA(red: 1, green: 0, blue: 0, alpha: 1)
             case "0": return RGBA(red: 0, green: 0, blue: 0, alpha: 0.65)
             default: return nil
