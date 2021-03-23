@@ -29,13 +29,13 @@ final class MainComposer {
         window.rootViewController = clockView
     }
 
-    private func configureColorHandling() -> (ColorSchema, mapper: (String) -> RGBA) {
+    private func configureColorHandling() -> (ColorSchema, mapper: (String) -> CGColor) {
         let colors = (yellow: "Y", red: "R", off: "O")
 
-        let colorMap: [String: RGBA] = [
-            colors.yellow: RGBA(red: 245/255, green: 229/255, blue: 27/255),
-            colors.red: RGBA(red: 1, green: 0, blue: 0),
-            colors.off: RGBA(red: 0, green: 0, blue: 0, alpha: 0.65)
+        let colorMap: [String: CGColor] = [
+            colors.yellow: CGColor(red: 245/255, green: 229/255, blue: 27/255, alpha: 1),
+            colors.red: CGColor(red: 1, green: 0, blue: 0, alpha: 1),
+            colors.off: CGColor(red: 0, green: 0, blue: 0, alpha: 0.65)
         ]
 
         let colorSchema = ColorSchema(
@@ -46,8 +46,8 @@ final class MainComposer {
             hours: colors.red
         )
 
-        let mapper: (String) -> RGBA = { colorRepresentation in
-            let unexpectedStringColor = RGBA(red: 0, green: 0, blue: 0)
+        let mapper: (String) -> CGColor = { colorRepresentation in
+            let unexpectedStringColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
             return (colorMap[colorRepresentation] ?? unexpectedStringColor)
         }
 

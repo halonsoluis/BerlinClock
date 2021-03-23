@@ -15,7 +15,7 @@ public class ThreadSafeAnimatedClockPresenter: ClockPresenter {
         self.clockPresenter = otherPresenter
     }
 
-    public func setLampsColor(colors: [RGBA]) {
+    public func setLampsColor(colors: [CGColor]) {
         dispatchOnMainThread {
             UIView.animate(withDuration: 0.3) {
                 self.clockPresenter?.setLampsColor(colors: colors)

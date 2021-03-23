@@ -63,17 +63,13 @@ final class BerlinClockViewModelTests: XCTestCase {
 
     func test_updateTime_parsesTheStringIntoColors() {
         let colorMapper = ColorMapperSpy()
-        let returnedColor: RGBA = colorMapper.returnedMap
+        let returnedColor: CGColor = colorMapper.returnedMap
         let (sut, clock, presenter) = createSut(colorMapper: colorMapper)
         clock.stubbedUHRTime = "RRY0"
 
         sut.updateTime(timer: Timer())
 
-//        let red = RGBA(red: 1.0, green: 0, blue: 0, alpha: 1.0)
-//        let yellow = RGBA(red: 245/255, green: 229/255, blue: 27/255, alpha: 1)
-//        let darkGray = RGBA(red: 0, green: 0, blue: 0, alpha: 0.65)
-
-        let expectedColors: [RGBA] = [returnedColor, returnedColor, returnedColor, returnedColor]
+        let expectedColors: [CGColor] = [returnedColor, returnedColor, returnedColor, returnedColor]
         XCTAssertEqual(presenter.invokedSetLampsColorWithArguments.first, expectedColors)
     }
 
@@ -111,16 +107,16 @@ final class BerlinClockViewModelTests: XCTestCase {
 
     class PresenterSpy: ClockPresenter {
 
-        var invokedSetLampsColorWithArguments: [[RGBA]] = []
-        func setLampsColor(colors: [RGBA]) {
+        var invokedSetLampsColorWithArguments: [[CGColor]] = []
+        func setLampsColor(colors: [CGColor]) {
             invokedSetLampsColorWithArguments.append(colors)
         }
     }
 
     class ColorMapperSpy {
-        var returnedMap = RGBA(red: 1, green: 1, blue: 1, alpha: 1)
+        var returnedMap = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
         var invokedMapWithArguments: [String] = []
-        func map(color: String) -> RGBA {
+        func map(color: String) -> CGColor {
             invokedMapWithArguments.append(color)
             return returnedMap
         }

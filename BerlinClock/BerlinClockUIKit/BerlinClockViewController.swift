@@ -9,7 +9,7 @@ import UIKit
 import BerlinClock
 
 public protocol ClockPresenter: class {
-    func setLampsColor(colors: [RGBA])
+    func setLampsColor(colors: [CGColor])
 }
 
 public final class BerlinClockViewController: UIViewController {
@@ -40,13 +40,13 @@ public final class BerlinClockViewController: UIViewController {
 }
 
 extension BerlinClockViewController: ClockPresenter {
-    public func setLampsColor(colors: [RGBA]) {
+    public func setLampsColor(colors: [CGColor]) {
 
         guard let lamps = lamps else {
             return
         }
 
-        let uiColors = colors.map { $0.uiColor() }
+        let uiColors = colors.map { UIColor(cgColor: $0) }
 
         colorize(colors: uiColors, lamps: lamps)
     }
@@ -87,16 +87,5 @@ extension BerlinClockViewController {
         views.forEach { (view) in
             view.layer.cornerRadius = cornerRadius
         }
-    }
-}
-
-extension RGBA {
-    func uiColor() -> UIColor {
-        UIColor.init(
-            red: CGFloat(red),
-            green: CGFloat(green),
-            blue: CGFloat(blue),
-            alpha: CGFloat(alpha)
-        )
     }
 }

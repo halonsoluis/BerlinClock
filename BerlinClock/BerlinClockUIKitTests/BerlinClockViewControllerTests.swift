@@ -36,13 +36,13 @@ final class BerlinClockViewControllerTests: XCTestCase {
     func test_setLigthsColor_applyColorToTheLamps() {
         let (sut, _) = createSut()
         sut.loadViewIfNeeded()
-        let lampColors = Array(repeating: UIColor.red, count: 24)
-        
-        sut.setLampsColor(colors: Array(repeating: RGBA(red: 1, green: 0, blue: 0, alpha: 1), count: 24))
+        let lampColors = Array(repeating: UIColor.red.cgColor, count: 24)
+
+        sut.setLampsColor(colors: lampColors)
 
         let colors = extractGradientLayers(from: sut.lamps!)
             .compactMap { ($0.colors?.last as! CGColor) }
-        let expectedColors = lampColors.map { $0.cgColor }
+        let expectedColors = lampColors.map { $0 }
         XCTAssertEqual(colors, expectedColors )
     }
 
@@ -52,7 +52,7 @@ final class BerlinClockViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
 
         let lampColors = Array(repeating: UIColor.red, count: 24)
-        sut.setLampsColor(colors: Array(repeating: RGBA(red: 1, green: 0, blue: 0, alpha: 1), count: 24))
+        sut.setLampsColor(colors: Array(repeating: CGColor(red: 1, green: 0, blue: 0, alpha: 1), count: 24))
 
         let gradientLayers = extractGradientLayers(from: sut.lamps!)
 

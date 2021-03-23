@@ -21,7 +21,7 @@ class ThreadSafeAnimatedClockPresenterTests: XCTestCase {
         let spy = BerlinClockViewModelTests.PresenterSpy()
         let sut = ThreadSafeAnimatedClockPresenter(otherPresenter: spy)
 
-        let colors: [RGBA] = [RGBA(red: 1, green: 1, blue: 1, alpha: 1)]
+        let colors: [CGColor] = [CGColor(red: 1, green: 1, blue: 1, alpha: 1)]
         sut.setLampsColor(colors: colors)
 
         XCTAssertEqual(spy.invokedSetLampsColorWithArguments, [colors])
