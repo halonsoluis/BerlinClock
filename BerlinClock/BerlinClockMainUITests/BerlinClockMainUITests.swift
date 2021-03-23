@@ -30,12 +30,23 @@ class BerlinClockMainUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
-        let seconds = XCUIApplication().windows
-            .children(matching: .other)
-            .containing(.other, identifier: "seconds")
+        let seconds = app.otherElements["seconds"]
 
-        XCTAssertEqual(seconds.count, 1)
+        XCTAssertTrue(seconds.exists)
     }
+
+    func test_visualForHour5_isPresent() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let element = app.otherElements["hour5"]
+
+        XCTAssertTrue(element.exists)
+    }
+
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {

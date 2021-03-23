@@ -102,6 +102,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjt-ow-Sv4" userLabel="hour5">
                                                 <rect key="frame" x="8" y="8" width="84" height="84"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="hour5"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAo-vD-9G8" userLabel="hour10">
                                                 <rect key="frame" x="102" y="8" width="84" height="84"/>
