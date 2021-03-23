@@ -11,13 +11,8 @@ import BerlinClockUIKit
 import UIKit
 
 final class MainComposer {
-    private let window: UIWindow
-    
-    init(window: UIWindow) {
-        self.window = window
-    }
 
-    func start() {
+    func start(using window: UIWindow) {
         let berlinClock = BerlinClock.create()
         let interactor = BerlinClockViewModel(clock: berlinClock)
 

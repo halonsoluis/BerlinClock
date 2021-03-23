@@ -51,7 +51,7 @@ extension BerlinClockViewController: ClockPresenter {
         colorize(colors: uiColors, lamps: lamps)
     }
 
-    func colorize(colors: [UIColor], lamps: [UIView]) {
+    private func colorize(colors: [UIColor], lamps: [UIView]) {
         zip(colors, lamps).forEach { (color, lamp) in
             lamp.backgroundColor = color
         }
@@ -59,7 +59,7 @@ extension BerlinClockViewController: ClockPresenter {
 }
 
 extension BerlinClockViewController {
-    func style() {
+    private func style() {
         guard let allButSeconds: ArraySlice<UIView> = lamps?.dropFirst() else {
             return
         }
