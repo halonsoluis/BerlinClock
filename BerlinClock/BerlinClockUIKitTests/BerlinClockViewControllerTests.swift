@@ -51,15 +51,13 @@ extension BerlinClockViewController: ClockPresenter {
 final class BerlinClockViewControllerTests: XCTestCase {
 
     func test_init_doesNotStartTheClock() {
-        let interactor = BerlinClockInteractorSpy()
-        _ = BerlinClockViewController(interactor: interactor)
+        let (_, interactor) = createSut()
 
         XCTAssertEqual(interactor.startCallCount, 0)
     }
 
     func test_viewDidLoad_doesNotStartTheClock() {
-        let interactor = BerlinClockInteractorSpy()
-        let sut = BerlinClockViewController(interactor: interactor)
+        let (sut, interactor) = createSut()
 
         sut.loadViewIfNeeded()
 
@@ -67,8 +65,7 @@ final class BerlinClockViewControllerTests: XCTestCase {
     }
 
     func test_viewDidLoad_preparesTheLamps() {
-        let interactor = BerlinClockInteractorSpy()
-        let sut = BerlinClockViewController(interactor: interactor)
+        let (sut, _) = createSut()
 
         sut.loadViewIfNeeded()
 
@@ -76,11 +73,9 @@ final class BerlinClockViewControllerTests: XCTestCase {
     }
 
     func test_setLigthsColor_applyColorToTheLamps() {
-        let interactor = BerlinClockInteractorSpy()
-        let sut = BerlinClockViewController(interactor: interactor)
+        let (sut, _) = createSut()
 
         sut.loadViewIfNeeded()
-
 
         let lampColors = Array(repeating: UIColor.red, count: 24)
         sut.setLampsColor(colors: Array(repeating: UIColor.red, count: 24))
@@ -90,8 +85,7 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
 
     func test_viewDidAppear_startTheClock() {
-        let interactor = BerlinClockInteractorSpy()
-        let sut = BerlinClockViewController(interactor: interactor)
+        let (sut, interactor) = createSut()
 
         sut.viewDidAppear(false)
 
@@ -99,6 +93,13 @@ final class BerlinClockViewControllerTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    func createSut() -> (BerlinClockViewController, BerlinClockInteractorSpy) {
+        let interactor = BerlinClockInteractorSpy()
+        let sut = BerlinClockViewController(interactor: interactor)
+
+        return (sut, interactor)
+    }
 
     class BerlinClockInteractorSpy: BerlinClockInteractor {
         private (set) var startCallCount: Int = 0
