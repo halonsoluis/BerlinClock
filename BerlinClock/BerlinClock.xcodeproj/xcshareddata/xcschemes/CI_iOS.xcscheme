@@ -58,6 +58,13 @@
             BlueprintName = "BerlinClockUIKit"
             ReferencedContainer = "container:BerlinClock.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5B3D15142609901000562332"
+            BuildableName = "BerlinClockMain.app"
+            BlueprintName = "BerlinClockMain"
+            ReferencedContainer = "container:BerlinClock.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
