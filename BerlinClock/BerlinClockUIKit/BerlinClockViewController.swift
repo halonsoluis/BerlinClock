@@ -16,8 +16,7 @@ final class BerlinClockViewController: UIViewController {
     private var interactor: BerlinClockInteractor?
     @IBOutlet var lamps: [UIView]? = Array(repeating: UIView(), count: 24)
 
-    convenience init(interactor: BerlinClockInteractor) {
-        self.init()
+    public func connect(interactor: BerlinClockInteractor) {
         self.interactor = interactor
     }
 
