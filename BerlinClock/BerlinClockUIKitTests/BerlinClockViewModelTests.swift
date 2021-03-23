@@ -8,22 +8,48 @@
 import XCTest
 import BerlinClock
 
+protocol BerlinClockInteractor {
+    func start()
+    func stop()
+}
+
 final class BerlinClockViewModel {
-    private var clock: BerlinClockTimeProvider?
+    private let clock: BerlinClockTimeProvider
 
     init(clock: BerlinClockTimeProvider) {
         self.clock = clock
     }
 }
 
-final class BerlinClockViewModelTests {
+extension BerlinClockViewModel: BerlinClockInteractor {
+    func start() {
+        _ = clock.time(for: Date())
+    }
+
+    func stop() {
+
+    }
+}
+
+final class BerlinClockViewModelTests: XCTestCase {
    
     func test_init_doesNotStartTheClock() {
         let clock = ClockSpy()
-        _ = BerlinClockViewController(clock: clock)
+        _ = BerlinClockViewModel(clock: clock)
 
         XCTAssertEqual(clock.timeCallCount, 0)
     }
+
+    func test_start_startsTheClock() {
+        let clock = ClockSpy()
+        let sut = BerlinClockViewModel(clock: clock)
+
+        sut.start()
+
+        XCTAssertEqual(clock.timeCallCount, 1)
+    }
+
+
 
     // MARK: - Helpers
 
