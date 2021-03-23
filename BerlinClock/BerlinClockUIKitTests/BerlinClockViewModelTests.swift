@@ -52,6 +52,15 @@ final class BerlinClockViewModelTests: XCTestCase {
         XCTAssertEqual(presenter.invokedSetLampsColorWithArguments.count, 1)
     }
 
+    func test_updateTime_isInvokedWithCurrentTime() {
+        let date = Date(timeIntervalSince1970: 100)
+        let (sut, clock, _) = createSut(returnedDate: date)
+
+        sut.updateTime(timer: Timer())
+
+        XCTAssertEqual(clock.invokedTimeWithArguments.first, date)
+    }
+
     // MARK: - Helpers
 
     func createSut(returnedDate: Date = Date()) -> (BerlinClockViewModel, ClockSpy, PresenterSpy) {
