@@ -22,13 +22,12 @@ final class MainComposer {
         let interactor = BerlinClockViewModel(clock: berlinClock)
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let clock = storyboard.instantiateViewController(withIdentifier: "Clock") as? BerlinClockViewController else {
+        guard let clockView = storyboard.instantiateViewController(withIdentifier: "Clock") as? BerlinClockViewController else {
             fatalError("ViewController is not the expected")
         }
+        clockView.connect(interactor: interactor)
+        interactor.presenter = ThreadSafeAnimatedClockPresenter(otherPresenter: clockView)
 
-        clock.connect(interactor: interactor)
-        interactor.presenter = clock
-
-        window.rootViewController = clock
+        window.rootViewController = clockView
     }
 }
