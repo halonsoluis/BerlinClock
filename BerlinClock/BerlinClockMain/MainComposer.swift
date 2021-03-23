@@ -33,9 +33,9 @@ final class MainComposer {
         let colors = (yellow: "Y", red: "R", off: "O")
 
         let colorMap: [String: CGColor] = [
-            colors.yellow: CGColor(red: 245/255, green: 229/255, blue: 27/255, alpha: 1),
-            colors.red: CGColor(red: 1, green: 0, blue: 0, alpha: 1),
-            colors.off: CGColor(red: 0, green: 0, blue: 0, alpha: 0.65)
+            colors.yellow: UIColor.systemYellow.cgColor,
+            colors.red: UIColor.systemRed.cgColor,
+            colors.off: UIColor.black.withAlphaComponent(0.2).cgColor
         ]
 
         let colorSchema = ColorSchema(
@@ -47,7 +47,7 @@ final class MainComposer {
         )
 
         let mapper: (String) -> CGColor = { colorRepresentation in
-            let unexpectedStringColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+            let unexpectedStringColor = UIColor.black.cgColor
             return (colorMap[colorRepresentation] ?? unexpectedStringColor)
         }
 

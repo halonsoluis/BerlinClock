@@ -51,8 +51,8 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
         sut.loadViewIfNeeded()
 
-        let lampColors = Array(repeating: UIColor.red, count: 24)
-        sut.setLampsColor(colors: Array(repeating: CGColor(red: 1, green: 0, blue: 0, alpha: 1), count: 24))
+        let lampColors = Array(repeating: UIColor.red.cgColor, count: 24)
+        sut.setLampsColor(colors: lampColors)
 
         let gradientLayers = extractGradientLayers(from: sut.lamps!)
 
