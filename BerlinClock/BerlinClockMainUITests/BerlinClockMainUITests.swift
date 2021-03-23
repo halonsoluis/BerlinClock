@@ -22,35 +22,48 @@ class BerlinClockMainUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_visualForSeconds_isPresent() throws {
+    func test_visualsOfTheClock_arePresent() throws {
 
         let app = XCUIApplication()
         app.launch()
 
-        checkVisualExists(identifier: "seconds", on: app)
+        let expectedIdentifiers = [
+            "seconds",
+            "hour5",
+            "hour10",
+            "hour15",
+            "hour20",
+            "hour1",
+            "hour2",
+            "hour3",
+            "hour4",
+            "minute1",
+            "minute2",
+            "minute3",
+            "minute4",
+            "minute5",
+            "minute10",
+            "minute15",
+            "minute20",
+            "minute25",
+            "minute30",
+            "minute35",
+            "minute40",
+            "minute45",
+            "minute50",
+            "minute55",
+        ]
+
+        expectedIdentifiers.forEach { identifier in
+            checkVisualExists(identifier: identifier, on: app)
+        }
     }
 
-    func test_visualForHour5_isPresent() throws {
-
-        let app = XCUIApplication()
-        app.launch()
-
-        checkVisualExists(identifier: "hour5", on: app)
-    }
+    // MARK: - Helpers
 
     private func checkVisualExists(identifier: String, on app: XCUIApplication, file: StaticString = #file, line: UInt = #line) {
 
         let element = app.otherElements[identifier]
-        XCTAssertTrue(element.exists)
-    }
-
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        XCTAssertTrue(element.exists, "Expected to find \(identifier)")
     }
 }
