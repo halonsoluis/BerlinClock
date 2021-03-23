@@ -36,6 +36,14 @@ final class BerlinClockViewModelTests: XCTestCase {
         XCTAssertFalse(sut.ticker!.isValid)
     }
 
+    func test_updateTime_attemptsToFormatTheTime() {
+        let (sut, clock) = createSut()
+
+        sut.updateTime(timer: Timer())
+
+        XCTAssertEqual(clock.timeCallCount, 1)
+    }
+
     // MARK: - Helpers
 
     func createSut() -> (BerlinClockViewModel, ClockSpy) {
