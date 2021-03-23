@@ -7,11 +7,7 @@
 
 import XCTest
 import BerlinClock
-
-protocol BerlinClockInteractor {
-    func start()
-    func stop()
-}
+@testable import BerlinClockUIKit
 
 final class BerlinClockViewModel {
     private let clock: BerlinClockTimeProvider
