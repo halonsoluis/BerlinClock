@@ -11,27 +11,33 @@ import BerlinClock
 
 final class BerlinClockViewModel {
     private let clock: BerlinClockTimeProvider
+    var ticker: Timer?
 
     init(clock: BerlinClockTimeProvider) {
         self.clock = clock
+    }
+
+    @objc func updateTime(timer: Timer) {
+        _ = clock.time(for: Date())
     }
 }
 
 extension BerlinClockViewModel: BerlinClockInteractor {
     func start() {
-        _ = clock.time(for: Date())
+        ticker = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: updateTime)
     }
 
     func stop() {
-
+        
     }
 }
 
 final class BerlinClockViewModelTests: XCTestCase {
    
     func test_init_doesNotStartTheClock() {
-        let (_, clock) = createSut()
+        let (sut, clock) = createSut()
 
+        XCTAssertNil(sut.ticker)
         XCTAssertEqual(clock.timeCallCount, 0)
     }
 
@@ -40,7 +46,8 @@ final class BerlinClockViewModelTests: XCTestCase {
 
         sut.start()
 
-        XCTAssertEqual(clock.timeCallCount, 1)
+        XCTAssertNotNil(sut.ticker)
+        XCTAssertEqual(clock.timeCallCount, 0)
     }
 
     // MARK: - Helpers
