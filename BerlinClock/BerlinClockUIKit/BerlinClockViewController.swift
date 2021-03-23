@@ -48,7 +48,11 @@ extension BerlinClockViewController: ClockPresenter {
 
         let uiColors = colors.map { $0.uiColor() }
 
-        zip(uiColors, lamps).forEach { (color, lamp) in
+        colorize(colors: uiColors, lamps: lamps)
+    }
+
+    func colorize(colors: [UIColor], lamps: [UIView]) {
+        zip(colors, lamps).forEach { (color, lamp) in
             lamp.backgroundColor = color
         }
     }
