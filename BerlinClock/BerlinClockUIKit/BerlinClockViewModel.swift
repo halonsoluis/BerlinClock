@@ -18,18 +18,20 @@ public struct RGBA: Equatable {
 public final class BerlinClockViewModel {
     private let clock: BerlinClockTimeProvider
     private let dateProvider: () -> Date
+    private let colorMapper: (String) -> RGBA
 
     public var presenter: ClockPresenter?
     var ticker: Timer?
 
-    public init(clock: BerlinClockTimeProvider, dateProvider: @escaping () -> Date = { Date() }) {
+    public init(clock: BerlinClockTimeProvider, dateProvider: @escaping () -> Date = { Date() }, colorMapper: @escaping (String) -> RGBA) {
         self.clock = clock
         self.dateProvider = dateProvider
+        self.colorMapper = colorMapper
     }
 
     @objc func updateTime(timer: Timer) {
         let formattedTime = clock.time(for: dateProvider())
-        
+
         let colors: [RGBA] = formattedTime.compactMap {
             switch $0 {
             case "Y": return RGBA(red: 245/255, green: 229/255, blue: 27/255, alpha: 1)

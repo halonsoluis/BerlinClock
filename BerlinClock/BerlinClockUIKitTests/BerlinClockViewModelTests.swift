@@ -76,11 +76,11 @@ final class BerlinClockViewModelTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func createSut(returnedDate: Date = Date()) -> (BerlinClockViewModel, ClockSpy, PresenterSpy) {
+    func createSut(returnedDate: Date = Date(), colorMapper: ColorMapperSpy = ColorMapperSpy()) -> (BerlinClockViewModel, ClockSpy, PresenterSpy) {
         let clock = ClockSpy()
         let presenter = PresenterSpy()
         let dateProvider = { returnedDate }
-        let sut = BerlinClockViewModel(clock: clock, dateProvider: dateProvider)
+        let sut = BerlinClockViewModel(clock: clock, dateProvider: dateProvider, colorMapper: colorMapper.map)
         sut.presenter = presenter
 
         return (sut, clock, presenter)
@@ -100,6 +100,15 @@ final class BerlinClockViewModelTests: XCTestCase {
         var invokedSetLampsColorWithArguments: [[RGBA]] = []
         func setLampsColor(colors: [RGBA]) {
             invokedSetLampsColorWithArguments.append(colors)
+        }
+    }
+
+    class ColorMapperSpy {
+        var returnedMap = RGBA(red: 1, green: 1, blue: 1, alpha: 1)
+        var mapInvokedWithArgument: [String] = []
+        func map(color: String) -> RGBA {
+            mapInvokedWithArgument.append(color)
+            return returnedMap
         }
     }
 }
