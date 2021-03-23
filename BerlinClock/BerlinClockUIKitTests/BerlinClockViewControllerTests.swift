@@ -35,19 +35,14 @@ final class BerlinClockViewControllerTests: XCTestCase {
 
     func test_setLigthsColor_applyColorToTheLamps() {
         let (sut, _) = createSut()
-
         sut.loadViewIfNeeded()
         let lampColors = Array(repeating: UIColor.red, count: 24)
+        
         sut.setLampsColor(colors: Array(repeating: RGBA(red: 1, green: 0, blue: 0, alpha: 1), count: 24))
 
-        let colors = sut.lamps!
-            .compactMap { $0.layer.sublayers?
-                .filter { $0 is CAGradientLayer }
-            }.joined()
-            .compactMap { $0 as? CAGradientLayer }
+        let colors = extractGradientLayers(from: sut.lamps!)
             .compactMap { ($0.colors?.last as! CGColor) }
         let expectedColors = lampColors.map { $0.cgColor }
-
         XCTAssertEqual(colors, expectedColors )
     }
 
@@ -59,11 +54,9 @@ final class BerlinClockViewControllerTests: XCTestCase {
         let lampColors = Array(repeating: UIColor.red, count: 24)
         sut.setLampsColor(colors: Array(repeating: RGBA(red: 1, green: 0, blue: 0, alpha: 1), count: 24))
 
-        let gradientLayers = sut.lamps?
-            .compactMap { $0.layer.sublayers?
-                .filter { $0 is CAGradientLayer }
-        }
-        XCTAssertEqual(gradientLayers?.count, lampColors.count)
+        let gradientLayers = extractGradientLayers(from: sut.lamps!)
+
+        XCTAssertEqual(gradientLayers.count, lampColors.count)
     }
 
 
@@ -103,5 +96,12 @@ final class BerlinClockViewControllerTests: XCTestCase {
         func stop() {
             stopCallCount += 1
         }
+    }
+
+    func extractGradientLayers(from views: [UIView]) -> [CAGradientLayer] {
+        views
+            .compactMap { $0.layer.sublayers }
+            .joined()
+            .compactMap { $0 as? CAGradientLayer }
     }
 }

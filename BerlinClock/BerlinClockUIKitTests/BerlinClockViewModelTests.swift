@@ -12,7 +12,7 @@ final class BerlinClockViewModelTests: XCTestCase {
    
     func test_init_doesNotStartTheClock() {
         let (sut, clock, _) = createSut()
-
+        
         XCTAssertNil(sut.ticker)
         XCTAssertEqual(clock.invokedTimeWithArguments.count, 0)
     }
