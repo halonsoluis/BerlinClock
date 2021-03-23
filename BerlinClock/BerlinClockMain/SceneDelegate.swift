@@ -18,15 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        // 2. Create a new UIWindow using the windowScene constructor which takes in a window scene.
-        let window = UIWindow(windowScene: windowScene)
-
-        /// 5. Set the window and call makeKeyAndVisible()
-        self.window = window
-        window.makeKeyAndVisible()
+        let mainWindow = UIWindow(windowScene: windowScene)
+        
+        self.window = mainWindow
+        mainWindow.makeKeyAndVisible()
 
         MainComposer()
-            .start(using: window)
+            .start(using: mainWindow)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
