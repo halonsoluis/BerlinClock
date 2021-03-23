@@ -23,28 +23,24 @@ class BerlinClockMainUITests: XCTestCase {
     }
 
     func test_visualForSeconds_isPresent() throws {
-        // UI tests must launch the application that they test.
+
         let app = XCUIApplication()
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-
-        let seconds = app.otherElements["seconds"]
-
-        XCTAssertTrue(seconds.exists)
+        checkVisualExists(identifier: "seconds", on: app)
     }
 
     func test_visualForHour5_isPresent() throws {
-        // UI tests must launch the application that they test.
+
         let app = XCUIApplication()
-
         app.launch()
-        
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let element = app.otherElements["hour5"]
 
+        checkVisualExists(identifier: "hour5", on: app)
+    }
+
+    private func checkVisualExists(identifier: String, on app: XCUIApplication, file: StaticString = #file, line: UInt = #line) {
+
+        let element = app.otherElements[identifier]
         XCTAssertTrue(element.exists)
     }
 
