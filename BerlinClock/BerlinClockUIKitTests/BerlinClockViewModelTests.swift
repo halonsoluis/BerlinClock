@@ -2,7 +2,7 @@
 //  BerlinClockViewModelTests.swift
 //  BerlinClockUIKitTests
 //
-//  Created by ***REMOVED*** on 23/03/2021.
+//  Created by ---- ------ on 23/03/2021.
 //
 import XCTest
 import BerlinClock
