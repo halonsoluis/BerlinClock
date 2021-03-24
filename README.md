@@ -34,6 +34,20 @@ This representation is based on the colors read from top to bottom. (Y or R or 0
 
 For more dedicated exercises, as the current one, an implementation of a visual interface that would present the clock working on real time is also required.
 
+## How to Run
+
+For running the project, follow the following steps:
+- Make sure you are on a mac and have the latest Xcode (currently Xcode 12.4)
+- Clone this repository into Xcode or via **git@github.com:2021-DEV2-012/BerlinClock.git**
+- Open the file /BerlinClock/BerlinClock.xcodeproj
+- Select BerlinClockMain as the schema to run and select any of the simulators available (If you have an Apple Silicon you can even run it as designed for iPad, but you will be required to insert a developer account and sign the build)
+- For a better experience, use an iPhone Simulator as the design is not adjusted for iPad and it looks a bit skewed.
+
+<p align="center">
+<img width="45%" alt="Screenshot 2021-03-23 at 21 05 33" src="https://user-images.githubusercontent.com/80991609/112236902-cf15b000-8c41-11eb-96d0-eb9bdc43fabd.png">
+<img width="45%" alt="Screenshot 2021-03-24 at 01 40 29" src="https://user-images.githubusercontent.com/80991609/112236948-ed7bab80-8c41-11eb-83ea-a535c10678be.png">
+</p>
+
 ## References
 
 - http://www.surveyor.in-berlin.de/berlin/uhr/indexe.html
