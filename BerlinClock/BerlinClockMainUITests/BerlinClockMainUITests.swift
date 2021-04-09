@@ -2,7 +2,7 @@
 //  BerlinClockMainUITests.swift
 //  BerlinClockMainUITests
 //
-//  Created by ---- ------ on 23/03/2021.
+//  Created by Hugo Alonso on 23/03/2021.
 //
 
 import XCTest

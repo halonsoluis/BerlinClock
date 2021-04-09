@@ -2,7 +2,7 @@
 //  MainComposer.swift
 //  BerlinClockMain
 //
-//  Created by ---- ------ on 23/03/2021.
+//  Created by Hugo Alonso on 23/03/2021.
 //
 
 import Foundation
@@ -61,6 +61,7 @@ final class MainComposer {
 
     private func obtainClockView() -> BerlinClockViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "Clock") as? BerlinClockViewController
+        return storyboard
+            .instantiateViewController(withIdentifier: "Clock") as? BerlinClockViewController
     }
 }
