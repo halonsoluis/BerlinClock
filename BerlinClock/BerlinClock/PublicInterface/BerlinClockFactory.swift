@@ -12,7 +12,7 @@ public struct BerlinClockFactory {
         calendar: Calendar = .init(identifier: .gregorian),
         colorSchema: ColorSchema = .init(off: "0", seconds: "Y", minutes: "Y", minutesVisualAid: "R", hours: "R")
     ) -> BerlinClockTimeProvider {
-        let clock = BerlinClock(berlinClock: .init(), calendar: calendar)
+        let clock = BerlinClock(calendar: calendar)
         let formatter = BerlinClockDateFormatter(berlinClock: clock, colorSchema: colorSchema)
         return formatter
     }

@@ -10,31 +10,48 @@ import Foundation
 final class BerlinClock {
 
     private let calendar: Calendar
-    private let berlinClock: BerlinClockEngine
 
-    init(berlinClock: BerlinClockEngine = .init(), calendar: Calendar) {
+    init(calendar: Calendar) {
         self.calendar = calendar
-        self.berlinClock = berlinClock
     }
 
     func secondsLamp(for date: Date) -> Bool {
-        berlinClock.secondsLamp(for: seconds(from: date))
+        seconds(from: date) % 2 == 0
     }
 
     func fiveHourRow(for date: Date) -> [Bool] {
-        berlinClock.fiveHourRow(for: hours(from: date))
+        calculateLights(
+            total: 4,
+            iluminated: hours(from: date) / 5
+        )
     }
 
     func singleHourRow(for date: Date) -> [Bool] {
-        berlinClock.singleHourRow(for: hours(from: date))
+        calculateLights(
+            total: 4,
+            iluminated: hours(from: date) % 5
+        )
     }
 
     func fiveMinuteRow(for date: Date) -> [Bool] {
-        berlinClock.fiveMinuteRow(for: minutes(from: date))
+        calculateLights(
+            total: 11,
+            iluminated: minutes(from: date) / 5
+        )
     }
 
     func singleMinuteRow(for date: Date) -> [Bool] {
-        berlinClock.singleMinuteRow(for: minutes(from: date))
+        calculateLights(
+            total: 4,
+            iluminated: minutes(from: date) % 5
+        )
+    }
+
+    private func calculateLights(total amountOfLights: Int, iluminated: Int) -> [Bool] {
+        let onLights = Array(repeating: true, count: iluminated)
+        let offLights = Array(repeating: false, count: amountOfLights - iluminated)
+
+        return onLights + offLights
     }
 }
 
