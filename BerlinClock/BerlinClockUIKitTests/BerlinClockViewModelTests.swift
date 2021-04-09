@@ -115,8 +115,8 @@ final class BerlinClockViewModelTests: XCTestCase {
 
     class ColorMapperSpy {
         var returnedMap = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
-        var invokedMapWithArguments: [String] = []
-        func map(color: String) -> CGColor {
+        var invokedMapWithArguments: [Character] = []
+        func map(color: Character) -> CGColor {
             invokedMapWithArguments.append(color)
             return returnedMap
         }

@@ -17,7 +17,10 @@ final class MainComposer {
         let (schema, mapper) = configureColorHandling()
 
         let berlinClock = BerlinClockFactory.create(colorSchema: schema)
-        let interactor = BerlinClockViewModel(clock: berlinClock, colorMapper: mapper)
+        let interactor = BerlinClockViewModel(
+            clock: berlinClock,
+            colorMapper: mapper
+        )
 
         guard let clockView = obtainClockView() else {
             fatalError("ViewController is not the expected")
@@ -29,24 +32,26 @@ final class MainComposer {
         window.rootViewController = clockView
     }
 
-    private func configureColorHandling() -> (ColorSchema, mapper: (String) -> CGColor) {
-        let colors = (yellow: "Y", red: "R", off: "O")
+    private func configureColorHandling() -> (ColorSchema, mapper: (Character) -> CGColor) {
+        let yellow: Character = "Y"
+        let red: Character = "R"
+        let off: Character = "O"
 
-        let colorMap: [String: CGColor] = [
-            colors.yellow: UIColor.systemYellow.cgColor,
-            colors.red: UIColor.systemRed.cgColor,
-            colors.off: UIColor.black.withAlphaComponent(0.2).cgColor
+        let colorMap: [Character: CGColor] = [
+            yellow: UIColor.systemYellow.cgColor,
+            red: UIColor.systemRed.cgColor,
+            off: UIColor.black.withAlphaComponent(0.2).cgColor
         ]
 
         let colorSchema = ColorSchema(
-            off: colors.off,
-            seconds: colors.yellow,
-            minutes: colors.yellow,
-            minutesVisualAid: colors.red,
-            hours: colors.red
+            off: off,
+            seconds: yellow,
+            minutes: yellow,
+            minutesVisualAid: red,
+            hours: red
         )
 
-        let mapper: (String) -> CGColor = { colorRepresentation in
+        let mapper: (Character) -> CGColor = { colorRepresentation in
             let unexpectedStringColor = UIColor.black.cgColor
             return (colorMap[colorRepresentation] ?? unexpectedStringColor)
         }

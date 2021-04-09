@@ -12,12 +12,12 @@ import BerlinClock
 public final class BerlinClockViewModel {
     private let clock: BerlinClockTimeProvider
     private let dateProvider: () -> Date
-    private let colorMapper: (String) -> CGColor
+    private let colorMapper: (Character) -> CGColor
 
     public var presenter: ClockPresenter?
     var ticker: Timer?
 
-    public init(clock: BerlinClockTimeProvider, dateProvider: @escaping () -> Date = { Date() }, colorMapper: @escaping (String) -> CGColor) {
+    public init(clock: BerlinClockTimeProvider, dateProvider: @escaping () -> Date = { Date() }, colorMapper: @escaping (Character) -> CGColor) {
         self.clock = clock
         self.dateProvider = dateProvider
         self.colorMapper = colorMapper
@@ -26,7 +26,6 @@ public final class BerlinClockViewModel {
     @objc func updateTime(timer: Timer) {
 
         let colors = clock.time(for: dateProvider())
-            .map(String.init)
             .map(colorMapper)
 
         presenter?.setLampsColor(colors: colors)

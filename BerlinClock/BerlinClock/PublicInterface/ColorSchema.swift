@@ -8,13 +8,17 @@
 import Foundation
 
 public struct ColorSchema {
-    let off: String
-    let seconds: String
-    let minutes: String
-    let minutesVisualAid: String
-    let hours: String
+    let off: Character
+    let seconds: Character
+    let minutes: Character
+    let minutesVisualAid: Character
+    let hours: Character
 
-    public init(off: String, seconds: String, minutes: String, minutesVisualAid: String, hours: String) {
+    public init(off: Character,
+                seconds: Character,
+                minutes: Character,
+                minutesVisualAid: Character,
+                hours: Character) {
         self.off = off
         self.seconds = seconds
         self.minutes = minutes

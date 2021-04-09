@@ -18,34 +18,51 @@ final class BerlinClockDateFormatter: BerlinClockRepresentation {
     }
 
     func singleMinuteRow(for date: Date) -> String {
-        berlinClock.singleMinuteRow(for: date)
+        let representation = berlinClock
+            .singleMinuteRow(for: date)
             .map { $0 ? colorSchema.minutes : colorSchema.off }
-            .joined()
+        return String(representation)
     }
 
     func fiveMinuteRow(for date: Date) -> String {
-        berlinClock.fiveMinuteRow(for: date)
+        let representation = berlinClock
+            .fiveMinuteRow(for: date)
             .map { $0 ? colorSchema.minutes : colorSchema.off }
-            .joined()
+
+        let resultWithoutVisualAid = String(representation)
+
+        return resultWithoutVisualAid
             .replacingOccurrences(
-                of: [colorSchema.minutes, colorSchema.minutes, colorSchema.minutes].joined(),
-                with: [ colorSchema.minutes, colorSchema.minutes, colorSchema.minutesVisualAid].joined()
+                of: String([
+                    colorSchema.minutes,
+                    colorSchema.minutes,
+                    colorSchema.minutes
+                ]),
+                with: String([
+                    colorSchema.minutes,
+                    colorSchema.minutes,
+                    colorSchema.minutesVisualAid
+                ])
             )
     }
 
     func fiveHourRow(for date: Date) -> String {
-        berlinClock.fiveHourRow(for: date)
+        let representation = berlinClock
+            .fiveHourRow(for: date)
             .map { $0 ? colorSchema.hours : colorSchema.off }
-            .joined()
+        return String(representation)
     }
 
     func singleHourRow(for date: Date) -> String {
-        berlinClock.singleHourRow(for: date)
+        let representation = berlinClock
+            .singleHourRow(for: date)
             .map { $0 ? colorSchema.hours : colorSchema.off }
-            .joined()
+        return String(representation)
     }
 
     func secondsLamp(for date: Date) -> String {
-        berlinClock.secondsLamp(for: date) ? colorSchema.seconds : colorSchema.off
+        let representation = berlinClock
+            .secondsLamp(for: date) ? colorSchema.seconds : colorSchema.off
+        return String(representation)
     }
 }

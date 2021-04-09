@@ -8,7 +8,6 @@
 import Foundation
 
 final class BerlinClock {
-
     private let calendar: Calendar
 
     init(calendar: Calendar) {
