@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B24C78026246DBE00E50C8E /* TickerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24C77F26246DBE00E50C8E /* TickerFactory.swift */; };
+		5B24C7882624AC9C00E50C8E /* TickerFactoryImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24C7872624AC9C00E50C8E /* TickerFactoryImplementationTests.swift */; };
 		5B3D12892606BE0E00562332 /* BerlinClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3D127F2606BE0E00562332 /* BerlinClock.framework */; };
 		5B3D128E2606BE0E00562332 /* BerlinClockRepresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D128D2606BE0E00562332 /* BerlinClockRepresentationTests.swift */; };
 		5B3D12902606BE0E00562332 /* BerlinClock.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3D12822606BE0E00562332 /* BerlinClock.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -122,6 +123,7 @@
 
 /* Begin PBXFileReference section */
 		5B24C77F26246DBE00E50C8E /* TickerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerFactory.swift; sourceTree = "<group>"; };
+		5B24C7872624AC9C00E50C8E /* TickerFactoryImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerFactoryImplementationTests.swift; sourceTree = "<group>"; };
 		5B3D127F2606BE0E00562332 /* BerlinClock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BerlinClock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3D12822606BE0E00562332 /* BerlinClock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerlinClock.h; sourceTree = "<group>"; };
 		5B3D12832606BE0E00562332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				5B3D14AA2609681F00562332 /* BerlinClockViewControllerTests.swift */,
 				5B3D14A92609681E00562332 /* BerlinClockUIKitTests-Bridging-Header.h */,
 				5B3D14B62609747F00562332 /* BerlinClockViewModelTests.swift */,
+				5B24C7872624AC9C00E50C8E /* TickerFactoryImplementationTests.swift */,
 			);
 			path = BerlinClockUIKitTests;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B24C7882624AC9C00E50C8E /* TickerFactoryImplementationTests.swift in Sources */,
 				5B3D14AB2609681F00562332 /* BerlinClockViewControllerTests.swift in Sources */,
 				5B3D14B72609747F00562332 /* BerlinClockViewModelTests.swift in Sources */,
 				5B3D159A2609A5D900562332 /* ThreadSafeAnimatedClockPresenterTests.swift in Sources */,
