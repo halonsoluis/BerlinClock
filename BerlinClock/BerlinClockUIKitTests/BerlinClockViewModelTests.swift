@@ -23,7 +23,6 @@ final class BerlinClockViewModelTests: XCTestCase {
 
         sut.start()
 
-
         XCTAssertEqual(ticker.invokedExecuteWithArguments.count, 1)
         XCTAssertEqual(ticker.invokedStopWithArguments.count, 0)
         XCTAssertEqual(clock.invokedTimeWithArguments.count, 0)

@@ -18,18 +18,17 @@ final class BerlinClockDateFormatter: BerlinClockRepresentation {
     }
 
     func singleMinuteRow(for date: Date) -> String {
-        let representation = berlinClock
+        return berlinClock
             .singleMinuteRow(for: date)
-            .map { $0 ? colorSchema.minutes : colorSchema.off }
-        return String(representation)
+            .map(colorForMinute)
+            .asString()
     }
 
     func fiveMinuteRow(for date: Date) -> String {
-        let representation = berlinClock
+        let resultWithoutVisualAid = berlinClock
             .fiveMinuteRow(for: date)
-            .map { $0 ? colorSchema.minutes : colorSchema.off }
-
-        let resultWithoutVisualAid = String(representation)
+            .map(colorForMinute)
+            .asString()
 
         return resultWithoutVisualAid
             .replacingOccurrences(
@@ -47,22 +46,52 @@ final class BerlinClockDateFormatter: BerlinClockRepresentation {
     }
 
     func fiveHourRow(for date: Date) -> String {
-        let representation = berlinClock
+        return berlinClock
             .fiveHourRow(for: date)
-            .map { $0 ? colorSchema.hours : colorSchema.off }
-        return String(representation)
+            .map(colorForHour)
+            .asString()
     }
 
     func singleHourRow(for date: Date) -> String {
-        let representation = berlinClock
+        return berlinClock
             .singleHourRow(for: date)
-            .map { $0 ? colorSchema.hours : colorSchema.off }
-        return String(representation)
+            .map(colorForHour)
+            .asString()
     }
 
     func secondsLamp(for date: Date) -> String {
-        let representation = berlinClock
-            .secondsLamp(for: date) ? colorSchema.seconds : colorSchema.off
-        return String(representation)
+        let isOn = berlinClock.secondsLamp(for: date)
+
+        return colorForSeconds(status: isOn)
+            .asString()
+    }
+
+    private func colorForMinute(status isOn: Bool) -> Character {
+        colorize(as: colorSchema.minutes, if: isOn)
+    }
+
+    private func colorForHour(status isOn: Bool) -> Character {
+        colorize(as: colorSchema.hours, if: isOn)
+    }
+
+    private func colorForSeconds(status isOn: Bool) -> Character {
+        colorize(as: colorSchema.seconds, if: isOn)
+    }
+
+    private func colorize(as color: Character, if isOn: Bool) -> Character {
+        isOn ? color : colorSchema.off
     }
 }
+
+extension Array where Element == Character {
+    func asString() -> String {
+        String(self)
+    }
+}
+
+extension Character {
+    func asString() -> String {
+        String(self)
+    }
+}
+
