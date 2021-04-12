@@ -13,19 +13,24 @@ public final class BerlinClockViewModel {
     private let clock: BerlinClockTimeProvider
     private let dateProvider: () -> Date
     private let colorMapper: (Character) -> CGColor
+    private var tickerFactory: TickerFactory
+    private var ticker: Timer?
 
     public var presenter: ClockPresenter?
-    var ticker: Timer?
 
-    public init(clock: BerlinClockTimeProvider, dateProvider: @escaping () -> Date = { Date() }, colorMapper: @escaping (Character) -> CGColor) {
+    public init(clock: BerlinClockTimeProvider,
+                dateProvider: @escaping () -> Date = { Date() },
+                colorMapper: @escaping (Character) -> CGColor,
+                tickerFactory: TickerFactory) {
         self.clock = clock
         self.dateProvider = dateProvider
         self.colorMapper = colorMapper
+        self.tickerFactory = tickerFactory
     }
 
-    @objc func updateTime(timer: Timer) {
-
-        let colors = clock.time(for: dateProvider())
+    func updateTime() {
+        let colors = clock
+            .time(for: dateProvider())
             .map(colorMapper)
 
         presenter?.setLampsColor(colors: colors)
@@ -34,10 +39,13 @@ public final class BerlinClockViewModel {
 
 extension BerlinClockViewModel: BerlinClockInteractor {
     public func start() {
-        ticker = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: updateTime)
+        ticker = tickerFactory.execute(block: updateTime, every: 1)
     }
 
     public func stop() {
-        ticker?.invalidate()
+        if let ticker = ticker {
+            tickerFactory.stop(ticker: ticker)
+        }
+        ticker = nil
     }
 }

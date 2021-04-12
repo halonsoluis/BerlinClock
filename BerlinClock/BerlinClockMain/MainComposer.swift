@@ -19,7 +19,8 @@ final class MainComposer {
         let berlinClock = BerlinClockFactory.create(colorSchema: schema)
         let interactor = BerlinClockViewModel(
             clock: berlinClock,
-            colorMapper: mapper
+            colorMapper: mapper,
+            tickerFactory: TickerFactoryImplementation()
         )
 
         guard let clockView = obtainClockView() else {

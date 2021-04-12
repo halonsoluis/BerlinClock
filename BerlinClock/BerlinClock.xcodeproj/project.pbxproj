@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B24C78026246DBE00E50C8E /* TickerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24C77F26246DBE00E50C8E /* TickerFactory.swift */; };
 		5B3D12892606BE0E00562332 /* BerlinClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3D127F2606BE0E00562332 /* BerlinClock.framework */; };
 		5B3D128E2606BE0E00562332 /* BerlinClockRepresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D128D2606BE0E00562332 /* BerlinClockRepresentationTests.swift */; };
 		5B3D12902606BE0E00562332 /* BerlinClock.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3D12822606BE0E00562332 /* BerlinClock.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,6 +121,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B24C77F26246DBE00E50C8E /* TickerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerFactory.swift; sourceTree = "<group>"; };
 		5B3D127F2606BE0E00562332 /* BerlinClock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BerlinClock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3D12822606BE0E00562332 /* BerlinClock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerlinClock.h; sourceTree = "<group>"; };
 		5B3D12832606BE0E00562332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				5B3D14E126097C1C00562332 /* BerlinClockInteractor.swift */,
 				5B3D14F12609804000562332 /* BerlinClockViewModel.swift */,
 				5B3D15A12609A5FC00562332 /* ThreadSafeAnimatedClockPresenter.swift */,
+				5B24C77F26246DBE00E50C8E /* TickerFactory.swift */,
 			);
 			path = BerlinClockUIKit;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B3D14C326097B4300562332 /* BerlinClockViewController.swift in Sources */,
+				5B24C78026246DBE00E50C8E /* TickerFactory.swift in Sources */,
 				5B3D14F22609804000562332 /* BerlinClockViewModel.swift in Sources */,
 				5B3D14E226097C1C00562332 /* BerlinClockInteractor.swift in Sources */,
 				5B3D15A22609A5FC00562332 /* ThreadSafeAnimatedClockPresenter.swift in Sources */,
