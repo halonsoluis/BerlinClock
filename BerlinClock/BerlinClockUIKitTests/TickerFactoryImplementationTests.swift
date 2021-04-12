@@ -19,6 +19,20 @@ final class TickerFactoryImplementationTests: XCTestCase {
         XCTAssertEqual(timer.timeInterval, 10)
     }
 
+    func test_execute_createsTimerThatExecutesBlock() {
+        let tickerFactory = createSUT()
+
+        var blockFired = false
+        let timer = tickerFactory.execute(
+            block: { blockFired = true },
+            every: 10
+        )
+
+        timer.fire()
+
+        XCTAssertTrue(blockFired)
+    }
+
     func test_stop_invalidatesTheTimer() {
         let tickerFactory = createSUT()
 
