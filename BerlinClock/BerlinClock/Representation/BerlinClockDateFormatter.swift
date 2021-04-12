@@ -25,24 +25,12 @@ final class BerlinClockDateFormatter: BerlinClockRepresentation {
     }
 
     func fiveMinuteRow(for date: Date) -> String {
-        let resultWithoutVisualAid = berlinClock
+        let minutes = berlinClock
             .fiveMinuteRow(for: date)
             .map(colorForMinute)
             .asString()
 
-        return resultWithoutVisualAid
-            .replacingOccurrences(
-                of: String([
-                    colorSchema.minutes,
-                    colorSchema.minutes,
-                    colorSchema.minutes
-                ]),
-                with: String([
-                    colorSchema.minutes,
-                    colorSchema.minutes,
-                    colorSchema.minutesVisualAid
-                ])
-            )
+        return addVisualAid(to: minutes)
     }
 
     func fiveHourRow(for date: Date) -> String {
@@ -66,6 +54,8 @@ final class BerlinClockDateFormatter: BerlinClockRepresentation {
             .asString()
     }
 
+    // MARK: - Helpers
+
     private func colorForMinute(status isOn: Bool) -> Character {
         colorize(as: colorSchema.minutes, if: isOn)
     }
@@ -80,6 +70,22 @@ final class BerlinClockDateFormatter: BerlinClockRepresentation {
 
     private func colorize(as color: Character, if isOn: Bool) -> Character {
         isOn ? color : colorSchema.off
+    }
+
+    private func addVisualAid(to minutes: String) -> String {
+        let original = String([
+            colorSchema.minutes,
+            colorSchema.minutes,
+            colorSchema.minutes
+        ])
+
+        let replacer = String([
+            colorSchema.minutes,
+            colorSchema.minutes,
+            colorSchema.minutesVisualAid
+        ])
+
+        return minutes.replacingOccurrences(of: original, with: replacer)
     }
 }
 
