@@ -8,7 +8,7 @@
 import XCTest
 import BerlinClock
 
-final class BerlinClockTimeProvidernTests: XCTestCase {
+final class BerlinClockTimeProviderTests: XCTestCase {
     
     func test_berlinClock_reportsCorrectTimeInIntegration() {
         assertBerlinClockTime(hour: 00, minute: 00, second: 00, returns: "Y00000000000000000000000")

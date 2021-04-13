@@ -27,7 +27,6 @@ final class TickerFactoryImplementationTests: XCTestCase {
             block: { blockFired = true },
             every: 10
         )
-
         timer.fire()
 
         XCTAssertTrue(blockFired)
