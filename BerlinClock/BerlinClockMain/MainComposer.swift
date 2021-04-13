@@ -28,7 +28,7 @@ final class MainComposer {
         }
 
         clockView.connect(interactor: interactor)
-        interactor.presenter = ThreadSafeAnimatedClockPresenter(otherPresenter: clockView)
+        interactor.presenter = MainQueueDispatchDecorator(decoratee: clockView)
 
         window.rootViewController = clockView
     }
@@ -64,5 +64,13 @@ final class MainComposer {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         return storyboard
             .instantiateViewController(withIdentifier: "Clock") as? BerlinClockViewController
+    }
+}
+
+extension MainQueueDispatchDecorator: ClockPresenter where T == ClockPresenter {
+    public func setLampsColor(colors: [CGColor]) {
+        dispatch {
+            self.decoratee.setLampsColor(colors: colors)
+        }
     }
 }

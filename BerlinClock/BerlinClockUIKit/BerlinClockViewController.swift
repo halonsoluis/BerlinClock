@@ -41,14 +41,12 @@ public final class BerlinClockViewController: UIViewController {
 
 extension BerlinClockViewController: ClockPresenter {
     public func setLampsColor(colors: [CGColor]) {
-
         guard let lamps = lamps else {
             return
         }
-
-        let uiColors = colors.map(UIColor.init)
-
-        colorize(colors: uiColors, lamps: lamps)
+        UIView.animate(withDuration: 0.3) {
+            self.colorize(colors: colors.map(UIColor.init), lamps: lamps)
+        }
     }
 
     private func colorize(colors: [UIColor], lamps: [UIView]) {
